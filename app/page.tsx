@@ -136,12 +136,13 @@ const inviaPrenotazione = async () => {
               />
             </div>
 
-            <nav className="hidden xl:flex items-center gap-6 2xl:gap-10 text-[11px] 2xl:text-[12px] font-black uppercase tracking-[0.15em] text-[#022166] ml-8">
-              <a href="#home" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">CHI SIAMO</a>
-              <a href="#servizi" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">I NOSTRI TRATTAMENTI</a>
-              <a href="#recensioni" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">RECENSIONI DEI PAZIENTI</a>
-              <a href="#dove-siamo" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">DOVE SIAMO</a>
-            </nav>
+<nav className="hidden xl:flex items-center gap-5 2xl:gap-8 text-[11px] 2xl:text-[12px] font-black uppercase tracking-[0.15em] text-[#022166] ml-8">
+  <a href="#home" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">CHI SIAMO</a>
+  <a href="#servizi" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">TRATTAMENTI</a>
+  <a href="#team" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">TEAM</a>
+  <a href="#recensioni" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">RECENSIONI</a>
+  <a href="#dove-siamo" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">DOVE SIAMO</a>
+</nav>
 
             <div className="flex items-center gap-3 ml-auto shrink-0">
               <a href="tel:3338225464" className="flex items-center gap-2 bg-white border-2 border-[#022166] text-[#022166] px-4 py-2.5 rounded-xl font-bold text-[11px] hover:bg-[#022166] hover:text-white transition-all whitespace-nowrap">
@@ -214,6 +215,61 @@ const inviaPrenotazione = async () => {
                   <div className="inline-flex items-center gap-2 text-[#55B4FF] font-black text-[10px] uppercase tracking-widest">
                     Scopri i dettagli <ChevronRight size={14} />
                   </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+{/* --- SEZIONE STAFF --- */}
+      <section id="team" className="relative py-24 px-4 overflow-hidden">
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="text-center mb-16">
+            <span className="text-[#55B4FF] font-black text-xs uppercase tracking-[0.3em] mb-4 block">Professionalità e Competenza</span>
+            <h2 className="text-4xl md:text-5xl font-black text-[#022166] tracking-tight mb-4">Il Nostro Team</h2>
+            <div className="w-20 h-1.5 bg-[#55B4FF] mx-auto rounded-full"></div>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {[
+              { 
+                nome: "Mirco Malavasi", 
+                ruolo: "Fisioterapista OMPT", 
+                specialita: "Specializzato in riabilitazione muscolo-scheletrica e fisioterapia oncologica", 
+                foto: "https://raw.githubusercontent.com/thinhdutong00/image-fisioterapia-malavasi/main/staff1.png" 
+              },
+              { 
+                nome: "Alice Nanetti", 
+                ruolo: "Fisioterapista", 
+                specialita: "Specializzata in riabilitazione muscolo-scheletrica e fisioterapia neurologica", 
+                foto: "https://raw.githubusercontent.com/thinhdutong00/image-fisioterapia-malavasi/main/staff2.png" 
+              },
+              { 
+                nome: "Luca Rabaglia", 
+                ruolo: "Fisioterapista", 
+                specialita: "Specializzato in riabilitazione muscolo-scheletrica e fisioterapia sportiva", 
+                foto: "https://raw.githubusercontent.com/thinhdutong00/image-fisioterapia-malavasi/main/staff3.png" 
+              }
+            ].map((membro, idx) => (
+              <div key={idx} className="group relative bg-white/40 backdrop-blur-md border border-white/60 rounded-[3rem] overflow-hidden transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
+                <div className="aspect-[4/5] relative overflow-hidden">
+                  <img 
+                    src={membro.foto} 
+                    alt={membro.nome} 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#022166]/80 via-transparent to-transparent opacity-60"></div>
+                </div>
+                
+                <div className="p-8 relative">
+                  <div className="absolute -top-12 left-8 bg-[#55B4FF] text-[#022166] px-6 py-2 rounded-xl font-black text-[10px] uppercase tracking-widest shadow-lg">
+                    {membro.ruolo}
+                  </div>
+                  <h3 className="text-2xl font-black text-[#022166] mb-2">{membro.nome}</h3>
+                  <p className="text-slate-600 text-sm font-medium leading-relaxed">
+                    {membro.specialita}
+                  </p>
                 </div>
               </div>
             ))}
