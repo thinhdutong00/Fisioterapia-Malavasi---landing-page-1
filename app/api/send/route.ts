@@ -31,14 +31,14 @@ export async function POST(req: Request) {
       subject: `Nuova Prenotazione: ${nome}`,
       attachments: attachments,
       html: `
-        <div style="font-family: sans-serif;">
-          <h2>Nuova richiesta di prenotazione</h2>
-          <p><strong>Paziente:</strong> ${nome}</p>
-          <p><strong>Telefono:</strong> ${telefono}</p>
-          <p><strong>Email:</strong> ${email}</p>
-          <p><strong>Sede:</strong> ${sede}</p>
-          <p><strong>Appuntamento:</strong> ${dataApp} alle ore ${ora}</p>
-          <p><strong>Motivo:</strong> ${motivo}</p>
+        <div style="font-family: sans-serif; color: #000000;">
+          <h2 style="color: #000000; margin-bottom: 20px;">Nuova richiesta di prenotazione</h2>
+          <p style="color: #000000; margin: 5px 0;"><strong>Paziente:</strong> ${nome}</p>
+          <p style="color: #000000; margin: 5px 0;"><strong>Telefono:</strong> ${telefono}</p>
+          <p style="color: #000000; margin: 5px 0;"><strong>Email:</strong> ${email}</p>
+          <p style="color: #000000; margin: 5px 0;"><strong>Sede:</strong> ${sede}</p>
+          <p style="color: #000000; margin: 5px 0;"><strong>Appuntamento:</strong> ${dataApp} alle ore ${ora}</p>
+          <p style="color: #000000; margin: 5px 0;"><strong>Motivo:</strong> ${motivo}</p>
         </div>
       `,
     });
