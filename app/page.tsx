@@ -88,31 +88,24 @@ export default function FisioterapiaMalavasi() {
 // --- FUNZIONE INVIO EMAIL RESEND ---
 const inviaPrenotazione = async () => {
     try {
-      // Usiamo FormData invece di JSON per poter inviare il file
       const data = new FormData();
       
-      // Inseriamo tutti i dati del modulo
-      data.append('motivo', formData.motivo);
-      data.append('sede', formData.sede);
-      data.append('data', formData.data);
-      data.append('ora', formData.ora);
-      data.append('nome', formData.nome);
-      data.append('telefono', formData.telefono);
-      data.append('email', formData.email);
+      // Trasferiamo i dati dal modulo al FormData
+      Object.entries(formData).forEach(([key, value]) => {
+        data.append(key, value.toString());
+      });
 
-      // Se l'utente ha caricato un file, lo aggiungiamo qui
+      // Aggiungiamo il file se l'utente lo ha selezionato
       if (file) {
         data.append('file', file);
       }
 
       const response = await fetch('/api/send', {
         method: 'POST',
-        // NOTA: Non mettiamo l'header Content-Type, lo decide il browser col FormData
-        body: data,
+        body: data, // Inviamo il FormData
       });
 
-
-if (response.ok) {
+      if (response.ok) {
         window.location.href = 'https://fisioterapiamalavasi.it/thank-you-page/';
       } else {
         alert("Errore nell'invio. Riprova tra poco.");
