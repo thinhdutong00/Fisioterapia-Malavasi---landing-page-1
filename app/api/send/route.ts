@@ -28,59 +28,60 @@ export async function POST(req: Request) {
 const data = await resend.emails.send({
       from: 'Studio Malavasi <onboarding@resend.dev>',
       to: ['thinh.dutong00@gmail.com'], 
-      subject: `✨ Nuova Richiesta: ${nome}`,
+      subject: `Nuova Prenotazione: ${nome}`,
       attachments: attachments,
       html: `
-        <div style="font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f0f4f8; padding: 30px; color: #1a2a3a;">
-          <div style="max-width: 650px; margin: 0 auto; background-color: rgba(255, 255, 255, 0.9); border: 1px solid #ffffff; border-radius: 20px; padding: 40px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);">
+        <div style="font-family: 'Segoe UI', Arial, sans-serif; background-color: #ffffff; padding: 20px; color: #000000; line-height: 1.5;">
+          <div style="max-width: 600px; margin: 0 auto;">
             
-            <div style="margin-bottom: 40px; text-align: left;">
-              <h1 style="color: #022166; margin: 0; font-size: 26px; font-weight: 800; letter-spacing: -0.5px;">Nuova Prenotazione</h1>
-              <div style="width: 50px; hieght: 4px; border-bottom: 4px solid #55B4FF; margin-top: 10px; border-radius: 10px;"></div>
-            </div>
-
-            <div style="display: flex; flex-wrap: wrap; margin-bottom: 30px;">
-              <div style="width: 100%; margin-bottom: 20px;">
-                <p style="text-transform: uppercase; font-size: 11px; font-weight: 700; color: #55B4FF; margin: 0 0 5px 0; letter-spacing: 1px;">Paziente</p>
-                <p style="font-size: 16px; color: #022166; margin: 0; font-weight: 600;">${nome}</p>
-              </div>
-              
-              <div style="width: 48%; margin-right: 4%; margin-bottom: 20px; display: inline-block;">
-                <p style="text-transform: uppercase; font-size: 11px; font-weight: 700; color: #55B4FF; margin: 0 0 5px 0; letter-spacing: 1px;">Telefono</p>
-                <p style="font-size: 15px; color: #000000; margin: 0;">${telefono}</p>
-              </div>
-              
-              <div style="width: 48%; margin-bottom: 20px; display: inline-block;">
-                <p style="text-transform: uppercase; font-size: 11px; font-weight: 700; color: #55B4FF; margin: 0 0 5px 0; letter-spacing: 1px;">Email</p>
-                <p style="font-size: 15px; color: #000000; margin: 0;">${email}</p>
-              </div>
-            </div>
-
-            <div style="background: rgba(2, 33, 102, 0.03); border: 1px solid rgba(2, 33, 102, 0.1); border-radius: 15px; padding: 25px; margin-bottom: 30px;">
-              <div style="margin-bottom: 15px;">
-                <p style="text-transform: uppercase; font-size: 11px; font-weight: 700; color: #022166; margin: 0 0 5px 0; letter-spacing: 1px;">📍 Sede</p>
-                <p style="font-size: 15px; color: #000000; margin: 0;">${sede}</p>
-              </div>
-              <div>
-                <p style="text-transform: uppercase; font-size: 11px; font-weight: 700; color: #022166; margin: 0 0 5px 0; letter-spacing: 1px;">📅 Appuntamento</p>
-                <p style="font-size: 15px; color: #000000; margin: 0;">${dataApp} alle ore <strong>${ora}</strong></p>
-              </div>
+            <div style="border-bottom: 3px solid #022166; padding-bottom: 15px; margin-bottom: 35px;">
+              <h1 style="color: #022166; margin: 0; font-size: 24px; font-weight: 800;">Nuova Richiesta di Prenotazione</h1>
+              <p style="color: #666666; margin: 5px 0 0 0; font-size: 14px;">Inviata dal sito fisioterapiamalavasi.it</p>
             </div>
 
             <div style="margin-bottom: 30px;">
-              <p style="text-transform: uppercase; font-size: 11px; font-weight: 700; color: #55B4FF; margin: 0 0 10px 0; letter-spacing: 1px;">Nota del Paziente</p>
-              <p style="font-size: 15px; color: #444444; margin: 0; line-height: 1.6; background: #ffffff; padding: 15px; border-radius: 10px; border: 1px solid #eef2f6;">${motivo}</p>
+              <p style="text-transform: uppercase; font-size: 11px; font-weight: 700; color: #022166; margin: 0 0 8px 0; letter-spacing: 1px;">Dati Anagrafici</p>
+              
+              <div style="margin-bottom: 15px;">
+                <p style="margin: 0; font-size: 13px; color: #666666;">Paziente:</p>
+                <p style="margin: 2px 0 0 0; font-size: 16px; font-weight: 600; color: #000000;">${nome}</p>
+              </div>
+
+              <div style="margin-bottom: 15px;">
+                <p style="margin: 0; font-size: 13px; color: #666666;">Telefono:</p>
+                <p style="margin: 2px 0 0 0; font-size: 16px; font-weight: 600; color: #000000;">${telefono}</p>
+              </div>
+
+              <div style="margin-bottom: 15px;">
+                <p style="margin: 0; font-size: 13px; color: #666666;">Email:</p>
+                <p style="margin: 2px 0 0 0; font-size: 16px; font-weight: 600; color: #000000;">${email}</p>
+              </div>
+            </div>
+
+            <div style="margin-bottom: 35px; padding: 20px; border: 1px solid #e1e8ed; border-radius: 12px;">
+              <p style="text-transform: uppercase; font-size: 11px; font-weight: 700; color: #022166; margin: 0 0 15px 0; letter-spacing: 1px;">Dettagli Visita</p>
+              
+              <p style="margin: 0 0 10px 0; font-size: 15px;"><strong>Sede:</strong> ${sede}</p>
+              <p style="margin: 0; font-size: 15px;"><strong>Data e Ora:</strong> ${dataApp} alle ore ${ora}</p>
+            </div>
+
+            <div style="margin-bottom: 35px;">
+              <p style="text-transform: uppercase; font-size: 11px; font-weight: 700; color: #022166; margin: 0 0 10px 0; letter-spacing: 1px;">Messaggio / Motivo</p>
+              <div style="font-size: 15px; color: #333333; background-color: #f9f9f9; padding: 15px; border-radius: 8px; border-left: 4px solid #022166;">
+                ${motivo}
+              </div>
             </div>
 
             ${attachments.length > 0 ? `
-              <div style="border-top: 1px dashed #cbd5e1; padding-top: 20px; text-align: center;">
-                <span style="background: #e0f2fe; color: #0369a1; padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 700;">📎 File allegato presente</span>
+              <div style="margin-bottom: 35px; padding: 12px; border: 1px solid #022166; border-radius: 8px; text-align: center;">
+                <p style="margin: 0; color: #022166; font-weight: bold; font-size: 14px;">📎 È presente un file in allegato</p>
               </div>
             ` : ''}
 
-            <div style="margin-top: 40px; text-align: center;">
-              <p style="font-size: 11px; color: #94a3b8; margin: 0; text-transform: uppercase; letter-spacing: 2px;">© 2026 Fisioterapia Malavasi</p>
+            <div style="border-top: 1px solid #eeeeee; padding-top: 20px; text-align: center;">
+              <p style="font-size: 11px; color: #999999; margin: 0;">© 2026 Fisioterapia Malavasi • Modena</p>
             </div>
+
           </div>
         </div>
       `
