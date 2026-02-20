@@ -85,6 +85,30 @@ export default function FisioterapiaMalavasi() {
     return () => window.removeEventListener('scroll', controlNavbar);
   }, [lastScrollY]);
 
+// --- FUNZIONE INVIO EMAIL RESEND ---
+  const inviaPrenotazione = async () => {
+    try {
+      const response = await fetch('/api/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        alert('Richiesta inviata con successo! Ti contatteremo a breve.');
+        setStep(1); // Torna allo step 1
+        setFormData({ // Reset del modulo
+          motivo: '', sede: '', data: '', ora: '', 
+          nome: '', telefono: '', email: '', privacy: false
+        });
+      } else {
+        alert("Errore nell'invio. Riprova tra poco.");
+      }
+    } catch (error) {
+      alert("Errore di connessione. Controlla la tua rete.");
+    }
+  };
+
   return (
     <main className="min-h-screen bg-[#F0F4F8] text-slate-800 font-sans scroll-smooth">
       
@@ -421,7 +445,7 @@ export default function FisioterapiaMalavasi() {
             <div className="mt-12 flex gap-4">
               {step > 1 && <button onClick={prevStep} className="p-5 border-2 border-white/10 rounded-2xl text-white hover:bg-white/10"><ChevronLeft size={24} /></button>}
               <button 
-                onClick={step === 5 ? () => alert('Richiesta inviata!') : nextStep} 
+               onClick={step === 5 ? inviaPrenotazione : nextStep}
                 disabled={
                   (step === 3 && !formData.sede) || 
                   (step === 4 && (!formData.data || !formData.ora)) ||
