@@ -94,13 +94,8 @@ export default function FisioterapiaMalavasi() {
         body: JSON.stringify(formData),
       });
 
-      if (response.ok) {
-        alert('Richiesta inviata con successo! Ti contatteremo a breve.');
-        setStep(1); // Torna allo step 1
-        setFormData({ // Reset del modulo
-          motivo: '', sede: '', data: '', ora: '', 
-          nome: '', telefono: '', email: '', privacy: false
-        });
+if (response.ok) {
+        window.location.href = 'https://fisioterapiamalavasi.it/thank-you-page/';
       } else {
         alert("Errore nell'invio. Riprova tra poco.");
       }
