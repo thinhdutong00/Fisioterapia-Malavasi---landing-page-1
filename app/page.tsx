@@ -237,19 +237,19 @@ const inviaPrenotazione = async () => {
                 nome: "Mirco Malavasi", 
                 ruolo: "Fisioterapista OMPT", 
                 specialita: "Specializzato in riabilitazione muscolo-scheletrica e fisioterapia oncologica", 
-                foto: "https://raw.githubusercontent.com/thinhdutong00/image-fisioterapia-malavasi/main/staff1.png" 
+                foto: "/mirco.webp" 
               },
               { 
                 nome: "Alice Nanetti", 
                 ruolo: "Fisioterapista", 
                 specialita: "Specializzata in riabilitazione muscolo-scheletrica e fisioterapia neurologica", 
-                foto: "https://raw.githubusercontent.com/thinhdutong00/image-fisioterapia-malavasi/main/staff2.png" 
+                foto: "/alice.jpg" 
               },
               { 
                 nome: "Luca Rabaglia", 
                 ruolo: "Fisioterapista", 
                 specialita: "Specializzato in riabilitazione muscolo-scheletrica e fisioterapia sportiva", 
-                foto: "https://raw.githubusercontent.com/thinhdutong00/image-fisioterapia-malavasi/main/staff3.png" 
+                foto: "/luca.webp" 
               }
             ].map((membro, idx) => (
               <div key={idx} className="group relative bg-white/40 backdrop-blur-md border border-white/60 rounded-[3rem] overflow-hidden transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
