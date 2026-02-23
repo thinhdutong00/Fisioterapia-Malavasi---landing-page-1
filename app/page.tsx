@@ -10,7 +10,9 @@ import {
   Accessibility, HandIcon, Move, Spline, Scale,
   Stethoscope, Dumbbell, UserCheck,
   // Nuove icone per approccio biomeccanico
-  Dna, MoveVertical, Footprints, Layers
+  Dna, MoveVertical, Footprints, Layers,
+  // Icone specifiche per la sezione "Come Lavoriamo" e "Recensioni"
+  MessageCircle, ClipboardCheck, Quote
 } from 'lucide-react';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -404,6 +406,85 @@ const inviaPrenotazione = async () => {
           </div>
         </div>
       </section>
+
+
+{/* --- SEZIONE COME LAVORIAMO (PROCESSO) --- */}
+      <section id="metodo" className="w-full py-32 px-4 bg-white relative overflow-hidden">
+        {/* Decorazione sottile di sfondo */}
+        <div className="absolute top-1/2 left-0 w-[300px] h-[300px] bg-[#55B4FF]/5 rounded-full blur-[100px] -z-10" />
+
+        <div className="max-w-7xl mx-auto relative z-10">
+          {/* Header Sezione */}
+          <div className="text-center mb-20">
+            <div className="inline-flex items-center justify-center p-1 px-3 mb-4 rounded-full bg-[#022166]/5 border border-[#022166]/10">
+              <span className="text-[#022166] font-black text-[10px] uppercase tracking-[0.3em]">Protocollo Clinico</span>
+            </div>
+            <h2 className="text-4xl md:text-6xl font-black text-[#022166] tracking-tighter mb-6">
+              Il Tuo Percorso di <span className="text-[#55B4FF]">Recupero</span>
+            </h2>
+            <p className="max-w-2xl mx-auto text-slate-500 font-bold text-lg leading-relaxed italic">
+              Un approccio scientifico in 3 fasi per risolvere il dolore alla radice e restituirti la libertà di movimento.
+            </p>
+          </div>
+
+          {/* Griglia dei Passaggi */}
+          <div className="grid md:grid-cols-3 gap-8 relative">
+            {/* Linea connettiva (visibile solo su desktop) */}
+            <div className="hidden lg:block absolute top-1/2 left-0 w-full h-0.5 bg-slate-100 -translate-y-1/2 z-0"></div>
+
+            {[
+              {
+                fase: "01",
+                titolo: "Anamnesi e Colloquio",
+                desc: "Ascoltiamo la tua storia. Raccogliamo ogni dettaglio sui tuoi sintomi e sulle tue attività quotidiane per inquadrare correttamente il tuo problema clinico fin dal primo istante.",
+                icon: <MessageCircle size={24} />
+              },
+              {
+                fase: "02",
+                titolo: "Esame Obiettivo e Test",
+                desc: "La scienza del movimento. Attraverso test specifici, valutazioni attive e passive, individuiamo con precisione la causa della tua disfunzione muscolo-scheletrica.",
+                icon: <ClipboardCheck size={24} />
+              },
+              {
+                fase: "03",
+                titolo: "Trattamento ed Autonomia",
+                desc: "Risultati che durano. Combiniamo terapia manuale ed esercizi personalizzati, rendendoti protagonista e autonomo nel tuo processo di guarigione.",
+                icon: <Zap size={24} />
+              }
+            ].map((step, idx) => (
+              <div key={idx} className="relative z-10 group">
+                <div className="bg-slate-50 rounded-[3rem] p-8 pb-12 border border-slate-100 transition-all duration-500 hover:bg-white hover:shadow-[0_30px_60px_-15px_rgba(2,33,102,0.1)] hover:-translate-y-2 h-full">
+                  
+                  {/* Numero Fase e Icona */}
+                  <div className="flex justify-between items-start mb-8">
+                    <span className="text-5xl font-black text-[#022166]/10 group-hover:text-[#55B4FF]/20 transition-colors">
+                      {step.fase}
+                    </span>
+                    <div className="w-12 h-12 rounded-2xl bg-[#022166] text-white flex items-center justify-center shadow-lg shadow-[#022166]/20">
+                      {step.icon}
+                    </div>
+                  </div>
+
+                  <h3 className="text-2xl font-black text-[#022166] mb-4 tracking-tight">
+                    {step.titolo}
+                  </h3>
+                  
+                  <p className="text-slate-500 font-bold text-sm leading-relaxed italic">
+                    {step.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Nota finale CTA */}
+          <div className="mt-20 text-center">
+            <p className="text-slate-400 text-sm font-bold uppercase tracking-widest mb-6">Ogni seduta ha una durata di circa 45-60 minuti</p>
+            <div className="w-12 h-1 bg-[#55B4FF] mx-auto rounded-full"></div>
+          </div>
+        </div>
+      </section>
+
 
 {/* --- DOVE SIAMO - CREATIVE SPLIT LAYOUT --- */}
       <section id="dove-siamo" className="h-screen w-full snap-start snap-always relative z-10 bg-white flex flex-col lg:flex-row overflow-hidden">
