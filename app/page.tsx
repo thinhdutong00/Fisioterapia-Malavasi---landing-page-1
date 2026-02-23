@@ -245,16 +245,22 @@ const inviaPrenotazione = async () => {
         </div>
       </section>
 
- {/* --- SEZIONE STAFF --- */}
-      <section id="team" className="min-h-screen w-full snap-start snap-always relative flex items-center justify-center py-24 px-4 overflow-hidden">
+{/* --- SEZIONE STAFF --- */}
+      <section id="team" className="min-h-screen w-full snap-start snap-always relative flex items-center justify-center py-32 px-4 overflow-hidden bg-slate-50">
+        {/* Elementi decorativi di sfondo */}
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#55B4FF]/5 rounded-full blur-[120px] -z-10 translate-x-1/2" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#022166]/5 rounded-full blur-[100px] -z-10 -translate-x-1/2" />
+
         <div className="max-w-7xl mx-auto relative z-10 w-full py-10">
-          <div className="text-center mb-16">
-            <span className="text-[#55B4FF] font-black text-xs uppercase tracking-[0.3em] mb-4 block">Professionalità e Competenza</span>
-            <h2 className="text-4xl md:text-5xl font-black text-[#022166] tracking-tight mb-4">Il Nostro Team</h2>
-            <div className="w-20 h-1.5 bg-[#55B4FF] mx-auto rounded-full"></div>
+          <div className="text-center mb-20">
+            <div className="inline-flex items-center justify-center p-1 px-3 mb-4 rounded-full bg-[#55B4FF]/10 border border-[#55B4FF]/20">
+               <span className="text-[#55B4FF] font-black text-[10px] uppercase tracking-[0.3em]">Professionalità e Competenza</span>
+            </div>
+            <h2 className="text-4xl md:text-6xl font-black text-[#022166] tracking-tighter mb-6">Il Nostro <span className="text-[#55B4FF]">Team</span></h2>
+            <div className="w-16 h-1 bg-[#022166] mx-auto rounded-full opacity-20"></div>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 xl:gap-12">
             {[
               { 
                 nome: "Mirco Malavasi", 
@@ -275,24 +281,45 @@ const inviaPrenotazione = async () => {
                 foto: "/luca.webp" 
               }
             ].map((membro, idx) => (
-              <div key={idx} className="group relative bg-white/40 backdrop-blur-md border border-white/60 rounded-[3rem] overflow-hidden transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
-                <div className="aspect-[4/5] relative overflow-hidden">
+              <div key={idx} className="group bg-white rounded-[3.5rem] p-4 pb-10 transition-all duration-700 hover:shadow-[0_40px_80px_-20px_rgba(2,33,102,0.15)] border border-slate-100 relative">
+                
+                {/* Immagine con maschera stondata */}
+                <div className="aspect-[4/4.5] relative overflow-hidden rounded-[2.8rem] mb-8">
                   <img 
                     src={membro.foto} 
                     alt={membro.nome} 
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#022166]/80 via-transparent to-transparent opacity-60"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#022166]/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 </div>
                 
-                <div className="p-8 relative">
-                  <div className="absolute -top-12 left-8 bg-[#55B4FF] text-[#022166] px-6 py-2 rounded-xl font-black text-[10px] uppercase tracking-widest shadow-lg">
-                    {membro.ruolo}
+                <div className="px-6 relative">
+                  {/* Badge Ruolo */}
+                  <div className="mb-4 inline-block">
+                    <span className="bg-[#f0f9ff] text-[#55B4FF] border border-[#55B4FF]/20 px-4 py-1.5 rounded-full font-black text-[9px] uppercase tracking-widest">
+                      {membro.ruolo}
+                    </span>
                   </div>
-                  <h3 className="text-2xl font-black text-[#022166] mb-2">{membro.nome}</h3>
-                  <p className="text-slate-600 text-sm font-medium leading-relaxed">
-                    {membro.specialita}
-                  </p>
+                  
+                  <h3 className="text-3xl font-black text-[#022166] mb-4 tracking-tight group-hover:text-[#55B4FF] transition-colors">
+                    {membro.nome}
+                  </h3>
+                  
+                  <div className="flex gap-3 items-start">
+                    <div className="mt-1">
+                      <div className="w-1.5 h-1.5 rounded-full bg-[#55B4FF]"></div>
+                    </div>
+                    <p className="text-slate-500 text-sm font-bold leading-relaxed tracking-tight italic">
+                      {membro.specialita}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Pulsante decorativo o link */}
+                <div className="absolute bottom-6 right-8 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500">
+                   <div className="w-12 h-12 rounded-full bg-[#022166] flex items-center justify-center text-white shadow-xl">
+                      <ArrowRight size={20} />
+                   </div>
                 </div>
               </div>
             ))}
