@@ -146,13 +146,14 @@ const inviaPrenotazione = async () => {
               />
             </div>
 
-            <nav className="hidden xl:flex items-center gap-5 2xl:gap-8 text-[11px] 2xl:text-[12px] font-black uppercase tracking-[0.15em] text-[#022166] ml-8">
-              <a href="#home" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">CHI SIAMO</a>
-              <a href="#servizi" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">TRATTAMENTI</a>
-              <a href="#team" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">TEAM</a>
-              <a href="#recensioni" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">RECENSIONI</a>
-              <a href="#dove-siamo" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">DOVE SIAMO</a>
-            </nav>
+<nav className="hidden xl:flex items-center gap-5 2xl:gap-8 text-[11px] 2xl:text-[12px] font-black uppercase tracking-[0.15em] text-[#022166] ml-8">
+  <a href="#home" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">CHI SIAMO</a>
+  <a href="#servizi" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">TRATTAMENTI</a>
+  <a href="#metodo" className="hover:text-[#55B4FF] transition-all whitespace-nowrap text-[#55B4FF]">COME LAVORIAMO</a>
+  <a href="#team" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">TEAM</a>
+  <a href="#recensioni" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">RECENSIONI</a>
+  <a href="#dove-siamo" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">DOVE SIAMO</a>
+</nav>
 
             <div className="flex items-center gap-3 ml-auto shrink-0">
               <a href="tel:3338225464" className="flex items-center gap-2 bg-white border-2 border-[#022166] text-[#022166] px-4 py-2.5 rounded-xl font-bold text-[11px] hover:bg-[#022166] hover:text-white transition-all whitespace-nowrap">
@@ -168,6 +169,23 @@ const inviaPrenotazione = async () => {
           </div>
         </div>
       </header>
+
+      {/* --- MENU MOBILE OVERLAY --- */}
+      {isMenuOpen && (
+        <div className="fixed inset-0 z-[150] bg-[#022166] flex flex-col items-center justify-center gap-8 animate-in fade-in duration-300 xl:hidden">
+          <button onClick={() => setIsMenuOpen(false)} className="absolute top-8 right-8 text-white">
+            <X size={40} />
+          </button>
+          <nav className="flex flex-col items-center gap-6 text-white font-black text-2xl uppercase tracking-widest">
+            <a href="#home" onClick={() => setIsMenuOpen(false)}>Chi Siamo</a>
+            <a href="#servizi" onClick={() => setIsMenuOpen(false)}>Trattamenti</a>
+            <a href="#metodo" onClick={() => setIsMenuOpen(false)} className="text-[#55B4FF]">Come Lavoriamo</a>
+            <a href="#team" onClick={() => setIsMenuOpen(false)}>Team</a>
+            <a href="#recensioni" onClick={() => setIsMenuOpen(false)}>Recensioni</a>
+            <a href="#dove-siamo" onClick={() => setIsMenuOpen(false)}>Dove Siamo</a>
+          </nav>
+        </div>
+      )}
 
 {/* --- HERO SECTION --- */}
       <section id="home" className="h-screen w-full snap-start snap-always relative flex items-center justify-center px-4 md:px-8 overflow-hidden bg-[#022166]">
