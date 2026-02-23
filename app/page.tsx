@@ -538,7 +538,7 @@ const inviaPrenotazione = async () => {
 
       {/* --- FOOTER --- */}
       <footer className="py-12 text-center border-t border-white/20 bg-white/40 backdrop-blur-md">
-        <p className="text-[#022166] font-black tracking-widest text-[10px] uppercase">© 2026 Fisioterapia Malavasi • Copyright © 2024  | Dott. Malavasi Mirco FISIOTERAPISTA | Via I Maggio n°95 41032 Cavezzo (MO) |  P. IVA 03890170362 | Powered by MAGO DIGITAL™</p>
+        <p className="text-[#022166] font-black tracking-widest text-[10px] uppercase">© 2026 Fisioterapia Malavasi • Via I Maggio n°95 41032 Cavezzo (MO) |  P. IVA 03890170362 | Powered by MAGO DIGITAL™</p>
       </footer>
     </main>
   );
