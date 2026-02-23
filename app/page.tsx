@@ -409,11 +409,11 @@ const inviaPrenotazione = async () => {
 
 
 {/* --- SEZIONE COME LAVORIAMO (PROCESSO) --- */}
-      <section id="metodo" className="w-full py-32 px-4 bg-white relative overflow-hidden">
+      <section id="metodo" className="min-h-screen w-full snap-start snap-always relative flex items-center justify-center py-32 px-4 overflow-hidden bg-white">
         {/* Decorazione sottile di sfondo */}
         <div className="absolute top-1/2 left-0 w-[300px] h-[300px] bg-[#55B4FF]/5 rounded-full blur-[100px] -z-10" />
 
-        <div className="max-w-7xl mx-auto relative z-10">
+        <div className="max-w-7xl mx-auto relative z-10 w-full">
           {/* Header Sezione */}
           <div className="text-center mb-20">
             <div className="inline-flex items-center justify-center p-1 px-3 mb-4 rounded-full bg-[#022166]/5 border border-[#022166]/10">
@@ -453,19 +453,19 @@ const inviaPrenotazione = async () => {
               }
             ].map((step, idx) => (
               <div key={idx} className="relative z-10 group">
-                <div className="bg-slate-50 rounded-[3rem] p-8 pb-12 border border-slate-100 transition-all duration-500 hover:bg-white hover:shadow-[0_30px_60px_-15px_rgba(2,33,102,0.1)] hover:-translate-y-2 h-full">
+                <div className="bg-slate-50 rounded-[3rem] p-8 pb-12 border border-slate-100 transition-all duration-700 hover:bg-white hover:shadow-[0_40px_80px_-20px_rgba(2,33,102,0.15)] hover:-translate-y-2 h-full flex flex-col items-center text-center">
                   
                   {/* Numero Fase e Icona */}
-                  <div className="flex justify-between items-start mb-8">
+                  <div className="flex justify-between items-start w-full mb-8">
                     <span className="text-5xl font-black text-[#022166]/10 group-hover:text-[#55B4FF]/20 transition-colors">
                       {step.fase}
                     </span>
-                    <div className="w-12 h-12 rounded-2xl bg-[#022166] text-white flex items-center justify-center shadow-lg shadow-[#022166]/20">
+                    <div className="w-12 h-12 rounded-2xl bg-[#022166] text-white flex items-center justify-center shadow-lg shadow-[#022166]/20 group-hover:bg-[#55B4FF] transition-colors duration-500">
                       {step.icon}
                     </div>
                   </div>
 
-                  <h3 className="text-2xl font-black text-[#022166] mb-4 tracking-tight">
+                  <h3 className="text-2xl font-black text-[#022166] mb-4 tracking-tight group-hover:text-[#55B4FF] transition-colors">
                     {step.titolo}
                   </h3>
                   
@@ -480,7 +480,7 @@ const inviaPrenotazione = async () => {
           {/* Nota finale CTA */}
           <div className="mt-20 text-center">
             <p className="text-slate-400 text-sm font-bold uppercase tracking-widest mb-6">Ogni seduta ha una durata di circa 45-60 minuti</p>
-            <div className="w-12 h-1 bg-[#55B4FF] mx-auto rounded-full"></div>
+            <div className="w-16 h-1 bg-[#022166] mx-auto rounded-full opacity-20"></div>
           </div>
         </div>
       </section>
