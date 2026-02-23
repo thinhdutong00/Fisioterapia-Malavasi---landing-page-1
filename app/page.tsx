@@ -176,7 +176,7 @@ const inviaPrenotazione = async () => {
         <div className="max-w-4xl mx-auto relative z-10 text-center py-20">
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 text-white px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.2em] mb-8 shadow-sm">
             <Activity size={14} className="text-[#55B4FF]" />
-            Eccellenza nella Riabilitazione a Modena
+            LA SCIENZA PENSATA PER IL TUO BENESSERE
           </div>
           
           <h1 className="text-5xl md:text-7xl xl:text-8xl font-black text-white leading-[1.1] mb-8 tracking-tighter">
