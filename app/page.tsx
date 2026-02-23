@@ -377,23 +377,73 @@ const inviaPrenotazione = async () => {
         </div>
       </section>
 
-      {/* --- DOVE SIAMO --- */}
-      <section id="dove-siamo" className="h-screen w-full snap-start snap-always py-24 px-4 relative z-10 bg-slate-50 flex items-center">
-        <div className="max-w-7xl mx-auto bg-white rounded-[3rem] p-8 md:p-12 lg:flex gap-12 items-center shadow-2xl w-full">
-          <div className="flex-1 space-y-6">
-            <h3 className="text-3xl font-black text-[#022166] mb-8">Le Nostre Sedi</h3>
-            {[
-              { n: 'Cavezzo (MO)', a: 'Via I maggio, 95', u: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2836.425145838563!2d11.0268581766627!3d44.8333169710705!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477f9506637e1967%3A0xc3f6050519965f3a!2sVia%20I%20Maggio%2C%2095%2C%2041032%20Cavezzo%20MO!5e0!3m2!1sit!2sit!4v1709564800000!5m2!1sit!2sit" },
-              { n: 'Rovereto sulla Secchia (MO)', a: 'Via Savino Forti, 61', u: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2837.2847594821564!2d10.957548776661955!3d44.82136127107067!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477f943f6f16428d%3A0x6b772c72b20755d5!2sVia%20Savino%20Forti%2C%2061%2C%2041016%20Rovereto%20Sulla%20Secchia%20MO!5e0!3m2!1sit!2sit!4v1709564900000!5m2!1sit!2sit" }
-            ].map(loc => (
-              <button key={loc.n} onClick={() => setMapUrl(loc.u)} className={`w-full flex items-center gap-5 p-6 rounded-[2rem] border-2 transition-all ${mapUrl === loc.u ? 'bg-white border-[#55B4FF] shadow-lg' : 'bg-transparent border-transparent hover:bg-slate-50'}`}>
-                <div className={`p-4 rounded-xl shrink-0 ${mapUrl === loc.u ? 'bg-[#55B4FF] text-white' : 'bg-[#022166] text-white'}`}><MapPin size={24} /></div>
-                <div className="text-left"><p className="font-black text-[#022166] text-lg">{loc.n}</p><p className="text-xs text-slate-500 font-medium">{loc.a}</p></div>
-              </button>
-            ))}
+{/* --- DOVE SIAMO - CREATIVE SPLIT LAYOUT --- */}
+      <section id="dove-siamo" className="h-screen w-full snap-start snap-always relative z-10 bg-white flex flex-col lg:flex-row overflow-hidden">
+        
+        {/* LATO TESTI E SELEZIONE */}
+        <div className="lg:w-2/5 w-full p-8 md:p-16 lg:p-24 flex flex-col justify-center bg-gradient-to-br from-white to-slate-50 relative">
+          {/* Decorazione Sottile */}
+          <div className="absolute top-0 right-0 w-32 h-32 bg-[#55B4FF]/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
+          
+          <div className="relative z-10">
+            <span className="text-[#55B4FF] font-black text-xs uppercase tracking-[0.3em] mb-4 block">Vicinanza e Accessibilità</span>
+            <h2 className="text-4xl md:text-5xl font-black text-[#022166] tracking-tight mb-4">Dove <span className="text-[#55B4FF]">Trovarci</span></h2>
+            <p className="text-slate-500 font-medium mb-12 max-w-sm">Scegli la sede più vicina a te e visualizza il percorso interattivo.</p>
+            
+            <div className="space-y-4">
+              {[
+                { n: 'Cavezzo (MO)', a: 'Via I maggio, 95', u: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2836.425145838563!2d11.0268581766627!3d44.8333169710705!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477f9506637e1967%3A0xc3f6050519965f3a!2sVia%20I%20Maggio%2C%2095%2C%2041032%20Cavezzo%20MO!5e0!3m2!1sit!2sit!4v1709564800000!5m2!1sit!2sit" },
+                { n: 'Rovereto sulla Secchia (MO)', a: 'Via Savino Forti, 61', u: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2837.2847594821564!2d10.957548776661955!3d44.82136127107067!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477f943f6f16428d%3A0x6b772c72b20755d5!2sVia%20Savino%20Forti%2C%2061%2C%2041016%20Rovereto%20Sulla%20Secchia%20MO!5e0!3m2!1sit!2sit!4v1709564900000!5m2!1sit!2sit" }
+              ].map(loc => (
+                <button 
+                  key={loc.n} 
+                  onClick={() => setMapUrl(loc.u)} 
+                  className={`group w-full flex items-center gap-6 p-6 rounded-[2.5rem] transition-all duration-500 ${
+                    mapUrl === loc.u 
+                    ? 'bg-[#022166] text-white shadow-2xl shadow-blue-900/20 translate-x-4' 
+                    : 'bg-white border border-slate-100 text-[#022166] hover:border-[#55B4FF]/30 hover:bg-slate-50'
+                  }`}
+                >
+                  <div className={`p-4 rounded-2xl shrink-0 transition-colors ${
+                    mapUrl === loc.u ? 'bg-[#55B4FF] text-[#022166]' : 'bg-slate-100 text-[#022166] group-hover:bg-[#55B4FF]/10'
+                  }`}>
+                    <MapPin size={24} />
+                  </div>
+                  <div className="text-left">
+                    <p className={`font-black text-lg leading-none mb-1 ${mapUrl === loc.u ? 'text-white' : 'text-[#022166]'}`}>{loc.n}</p>
+                    <p className={`text-xs font-bold uppercase tracking-widest ${mapUrl === loc.u ? 'text-[#55B4FF]' : 'text-slate-400'}`}>{loc.a}</p>
+                  </div>
+                </button>
+              ))}
+            </div>
+
+            <div className="mt-12 flex items-center gap-4 p-6 bg-[#55B4FF]/5 rounded-[2rem] border border-[#55B4FF]/10">
+              <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-[#55B4FF] shadow-sm">
+                <Clock size={20} />
+              </div>
+              <p className="text-[11px] font-black text-[#022166] uppercase tracking-wider leading-relaxed">
+                Orari: Lun - Ven: 09:00 - 21:00 <br /> <span className="text-slate-400">Sabato su appuntamento</span>
+              </p>
+            </div>
           </div>
-          <div className="flex-1 h-[450px] mt-10 lg:mt-0 rounded-[2rem] overflow-hidden border-[10px] border-white/60 shadow-xl relative">
-            <iframe src={mapUrl} width="100%" height="100%" style={{ border: 0 }} allowFullScreen loading="lazy"></iframe>
+        </div>
+
+        {/* LATO MAPPA (FULL HEIGHT) */}
+        <div className="lg:w-3/5 w-full h-full relative group bg-slate-200">
+          <div className="absolute inset-0 bg-[#022166]/5 pointer-events-none z-10"></div>
+          <iframe 
+            src={mapUrl} 
+            className="w-full h-full grayscale-[0.2] contrast-[1.1] relative z-0 transition-all duration-700 group-hover:grayscale-0" 
+            style={{ border: 0 }} 
+            allowFullScreen 
+            loading="lazy"
+          ></iframe>
+          
+          {/* Overlay informativo sulla mappa */}
+          <div className="absolute bottom-10 right-10 z-20 hidden md:block">
+            <div className="bg-white/80 backdrop-blur-md p-4 rounded-2xl border border-white/50 shadow-xl">
+              <p className="text-[10px] font-black text-[#022166] uppercase tracking-[0.2em]">Inizia la navigazione con Google Maps</p>
+            </div>
           </div>
         </div>
       </section>
