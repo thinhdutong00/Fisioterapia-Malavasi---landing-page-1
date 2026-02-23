@@ -619,29 +619,29 @@ const inviaPrenotazione = async () => {
           </div>
         </div>
 
-        {/* --- FOOTER (Posizionato fisso nell'ultima slide) --- */}
-        <footer className="w-full py-8 text-center bg-transparent shrink-0">
-          <p className="text-[#022166] font-black tracking-widest text-[10px] uppercase mb-4">
-            © 2026 Fisioterapia Malavasi • Via I Maggio n°95 41032 Cavezzo (MO) | P. IVA 03890170362
+{/* --- FOOTER (Stile Minimale) --- */}
+        <footer className="w-full py-12 text-center bg-transparent shrink-0">
+          <p className="text-white/30 font-black tracking-widest text-[10px] uppercase mb-4">
+            © 2026 Fisioterapia Malavasi • Via I Maggio n°95 Cavezzo (MO) | P. IVA 03890170362
           </p>
-          <div className="flex justify-center gap-6 text-[10px] font-bold uppercase tracking-widest">
-            <Link href="/privacy" className="text-[#022166] hover:text-[#55B4FF]">Privacy Policy</Link>
-            <Link href="/cookie" className="text-[#022166] hover:text-[#55B4FF]">Cookie Policy</Link>
+          <div className="flex justify-center gap-8 text-[10px] font-bold uppercase tracking-widest">
+            <Link href="/privacy" className="text-white/40 hover:text-[#55B4FF] transition-colors">Privacy Policy</Link>
+            <Link href="/cookie" className="text-white/40 hover:text-[#55B4FF] transition-colors">Cookie Policy</Link>
           </div>
-          <p className="mt-4 text-[9px] text-slate-400 font-bold uppercase tracking-widest">Powered by MAGO DIGITAL™</p>
+          <p className="mt-4 text-[9px] text-[#55B4FF]/40 font-bold uppercase tracking-[0.3em]">MAGO DIGITAL™ STUDIO</p>
         </footer>
       </section>
 
       {/* --- MODALE TRATTAMENTI --- */}
       {selectedTrattamento && (
-        <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
-          <div className="absolute inset-0 bg-[#022166]/60 backdrop-blur-md" onClick={() => setSelectedTrattamento(null)}></div>
-          <div className="relative bg-white rounded-[3rem] p-8 md:p-12 max-w-2xl w-full shadow-2xl animate-in fade-in zoom-in duration-300">
-            <button onClick={() => setSelectedTrattamento(null)} className="absolute top-6 right-6 p-2 rounded-full bg-slate-100 text-[#022166] hover:bg-red-500 hover:text-white transition-colors"><X size={24} /></button>
-            <div className="text-[#55B4FF] mb-6">{selectedTrattamento.icona}</div>
-            <h3 className="text-3xl font-black text-[#022166] mb-6">{selectedTrattamento.titolo}</h3>
-            <p className="text-slate-600 text-lg leading-relaxed mb-8">{selectedTrattamento.descrizione}</p>
-            <a href="#prenota" onClick={() => setSelectedTrattamento(null)} className="block w-full text-center bg-[#022166] text-white py-5 rounded-2xl font-black uppercase tracking-widest hover:bg-[#55B4FF]">Prenota Visita</a>
+        <div className="fixed inset-0 z-[200] flex items-center justify-center p-6">
+          <div className="absolute inset-0 bg-[#022166]/60 backdrop-blur-xl" onClick={() => setSelectedTrattamento(null)}></div>
+          <div className="relative bg-white rounded-[4rem] p-10 md:p-16 max-w-2xl w-full shadow-2xl animate-in fade-in zoom-in duration-300">
+            <button onClick={() => setSelectedTrattamento(null)} className="absolute top-10 right-10 p-2 text-[#022166] hover:rotate-90 transition-transform"><X size={32} /></button>
+            <div className="text-[#55B4FF] mb-8">{selectedTrattamento.icona}</div>
+            <h3 className="text-4xl font-black text-[#022166] mb-8 tracking-tighter">{selectedTrattamento.titolo}</h3>
+            <p className="text-slate-500 text-xl leading-relaxed mb-10 font-medium">{selectedTrattamento.descrizione}</p>
+            <a href="#prenota" onClick={() => setSelectedTrattamento(null)} className="block w-full text-center bg-[#022166] text-white py-6 rounded-full font-black uppercase tracking-widest hover:bg-[#55B4FF] transition-all shadow-xl">Prenota Visita</a>
           </div>
         </div>
       )}
