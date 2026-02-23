@@ -179,15 +179,15 @@ const inviaPrenotazione = async () => {
         </div>
 
 <div className="max-w-4xl mx-auto relative z-10 text-center py-20">
-            <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md border border-white/20 text-white px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.2em] mb-8 shadow-sm">
-              <img 
-                src="https://github.com/thinhdutong00/Fisioterapia-Malavasi---landing-page-1/blob/main/public/Progetto%20senza%20titolo%20-%202026-02-23T223838.202.png?raw=true" 
-                alt="Logo Malavasi" 
-                className="h-5 w-auto object-contain brightness-0 invert" 
-              />
-              LA SCIENZA PENSATA PER IL TUO BENESSERE
-            </div>
-            
+          <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md border border-white/20 text-white px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.2em] mb-8 shadow-sm">
+            <img 
+              src="https://github.com/thinhdutong00/Fisioterapia-Malavasi---landing-page-1/blob/main/public/Progetto%20senza%20titolo%20-%202026-02-23T223838.202.png?raw=true" 
+              alt="Logo Malavasi" 
+              className="h-5 w-auto object-contain brightness-0 invert" 
+            />
+            LA SCIENZA PENSATA PER IL TUO BENESSERE
+          </div>
+
           {/* Titolo alleggerito da font-black a font-bold */}
           <h1 className="text-5xl md:text-7xl xl:text-8xl font-bold text-white leading-[1.1] mb-8 tracking-tighter">
             Fisioterapia e Riabilitazione <br />
