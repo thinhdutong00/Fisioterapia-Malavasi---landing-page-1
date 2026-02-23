@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { 
   Activity, X, ChevronRight, Zap, UserRound, CheckCircle, 
   Phone, ArrowRight, Menu, Users, Star, MapPin, HeartPulse, 
@@ -496,12 +497,16 @@ const inviaPrenotazione = async () => {
                     <input type="tel" placeholder="Telefono" className="bg-white/10 border border-white/20 p-5 rounded-2xl outline-none focus:bg-white focus:text-[#022166] transition-all" value={formData.telefono} onChange={(e) => setFormData({...formData, telefono: e.target.value})} />
                     <input type="email" placeholder="Email" className="bg-white/10 border border-white/20 p-5 rounded-2xl outline-none focus:bg-white focus:text-[#022166] transition-all" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} />
                   </div>
-                  <label className="flex items-center gap-3 cursor-pointer pt-4">
-                    <input type="checkbox" className="w-5 h-5 rounded accent-[#55B4FF]" checked={formData.privacy} onChange={(e) => setFormData({...formData, privacy: e.target.checked})} />
-<span className="text-xs text-white/60">
-  Accetto il trattamento dei dati personali e sanitari (Privacy Policy)
-</span>
-                  </label>
+<label className="flex items-center gap-3 cursor-pointer pt-4">
+  <input type="checkbox" className="w-5 h-5 rounded accent-[#55B4FF]" checked={formData.privacy} onChange={(e) => setFormData({...formData, privacy: e.target.checked})} />
+  <span className="text-xs text-white/60">
+    Accetto il trattamento dei dati personali e sanitari (
+    <a href="/privacy" target="_blank" className="underline hover:text-[#55B4FF]">
+      Privacy Policy
+    </a>
+    )
+  </span>
+</label>
                 </div>
               )}
             </div>
