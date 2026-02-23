@@ -22,6 +22,7 @@ export default function FisioterapiaMalavasi() {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [mapUrl, setMapUrl] = useState("https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2836.216234033104!2d11.026365!3d44.838499!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDTCsDUwJzE4LjYiTiAxMcKwMDEnMzQuOSJF!5e0!3m2!1sit!2sit!4v1700000000000!5m2!1sit!2sit");
   const [selectedTrattamento, setSelectedTrattamento] = useState<any>(null);
+  const [isHoursOpen, setIsHoursOpen] = useState(false);
 
   // --- STATI MODULO MULTISTEP ---
   const [step, setStep] = useState(1);
@@ -382,7 +383,6 @@ const inviaPrenotazione = async () => {
         
         {/* LATO TESTI E SELEZIONE */}
         <div className="lg:w-2/5 w-full p-8 md:p-16 lg:p-24 flex flex-col justify-center bg-gradient-to-br from-white to-slate-50 relative">
-          {/* Decorazione Sottile */}
           <div className="absolute top-0 right-0 w-32 h-32 bg-[#55B4FF]/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
           
           <div className="relative z-10">
@@ -417,13 +417,42 @@ const inviaPrenotazione = async () => {
               ))}
             </div>
 
-            <div className="mt-12 flex items-center gap-4 p-6 bg-[#55B4FF]/5 rounded-[2rem] border border-[#55B4FF]/10">
-              <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-[#55B4FF] shadow-sm">
-                <Clock size={20} />
+            {/* FISARMONICA ORARI */}
+            <div className="mt-8 overflow-hidden rounded-[2rem] border border-slate-100 bg-white shadow-sm transition-all duration-300">
+              <button 
+                onClick={() => setIsHoursOpen(!isHoursOpen)}
+                className="w-full flex items-center justify-between p-6 hover:bg-slate-50 transition-colors"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 bg-[#55B4FF]/10 rounded-xl flex items-center justify-center text-[#55B4FF]">
+                    <Clock size={20} />
+                  </div>
+                  <span className="font-black text-[#022166] text-sm uppercase tracking-widest">Orari di Apertura</span>
+                </div>
+                <div className={`transition-transform duration-300 ${isHoursOpen ? 'rotate-180' : ''}`}>
+                  <ChevronRight size={20} className="text-slate-400 rotate-90" />
+                </div>
+              </button>
+              
+              <div className={`transition-all duration-500 ease-in-out ${isHoursOpen ? 'max-h-[400px] opacity-100' : 'max-h-0 opacity-0'} overflow-hidden`}>
+                <div className="p-6 pt-0 space-y-3 border-t border-slate-50">
+                  {[
+                    { d: 'Lunedì', o: '09–13, 15–20' },
+                    { d: 'Martedì', o: '09–13, 15–21' },
+                    { d: 'Mercoledì', o: '09–13, 15–21' },
+                    { d: 'Giovedì', o: '09–13, 15–21' },
+                    { d: 'Venerdì', o: '09–13, 15–20' },
+                    { d: 'Sabato', o: '09–13' },
+                    { d: 'Domenica', o: 'Chiuso' },
+                  ].map((item, idx) => (
+                    <div key={idx} className="flex justify-between items-center group/item">
+                      <span className="text-xs font-bold text-slate-400 uppercase tracking-tighter">{item.d}</span>
+                      <span className={`text-sm font-black ${item.o === 'Chiuso' ? 'text-red-400' : 'text-[#022166]'}`}>{item.o}</span>
+                    </div>
+                  ))}
+                  <p className="text-[10px] font-bold text-[#55B4FF] uppercase tracking-widest pt-2 italic">* Sabato pomeriggio su appuntamento</p>
+                </div>
               </div>
-              <p className="text-[11px] font-black text-[#022166] uppercase tracking-wider leading-relaxed">
-                Orari: Lun - Ven: 09:00 - 21:00 <br /> <span className="text-slate-400">Sabato su appuntamento</span>
-              </p>
             </div>
           </div>
         </div>
@@ -439,10 +468,9 @@ const inviaPrenotazione = async () => {
             loading="lazy"
           ></iframe>
           
-          {/* Overlay informativo sulla mappa */}
           <div className="absolute bottom-10 right-10 z-20 hidden md:block">
             <div className="bg-white/80 backdrop-blur-md p-4 rounded-2xl border border-white/50 shadow-xl">
-              <p className="text-[10px] font-black text-[#022166] uppercase tracking-[0.2em]">Inizia la navigazione con Google Maps</p>
+              <p className="text-[10px] font-black text-[#022166] uppercase tracking-[0.2em]">Visualizza su Google Maps</p>
             </div>
           </div>
         </div>
