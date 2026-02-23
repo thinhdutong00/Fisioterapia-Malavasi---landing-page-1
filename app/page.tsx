@@ -140,7 +140,7 @@ const inviaPrenotazione = async () => {
 
   return (
     // AGGIUNTO: Snap-y e overflow per gestire le slide
-<main className="h-screen overflow-y-auto md:snap-y md:snap-mandatory scroll-smooth bg-[#022166] text-slate-800 font-sans">
+<main className="h-screen overflow-y-auto md:snap-y md:snap-mandatory scroll-smooth bg-[#F0F4F8] text-slate-800 font-sans">
       
       {/* BACKGROUND DECORATIONS */}
       <div className="fixed inset-0 z-0 pointer-events-none">
