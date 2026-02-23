@@ -91,20 +91,15 @@ export default function FisioterapiaMalavasi() {
 const inviaPrenotazione = async () => {
     try {
       const data = new FormData();
-      
-      // Trasferiamo i dati dal modulo al FormData
       Object.entries(formData).forEach(([key, value]) => {
         data.append(key, value.toString());
       });
-
-      // Aggiungiamo il file se l'utente lo ha selezionato
       if (file) {
         data.append('file', file);
       }
-
       const response = await fetch('/api/send', {
         method: 'POST',
-        body: data, // Inviamo il FormData
+        body: data,
       });
 
       if (response.ok) {
@@ -118,7 +113,8 @@ const inviaPrenotazione = async () => {
   };
 
   return (
-    <main className="min-h-screen bg-[#F0F4F8] text-slate-800 font-sans scroll-smooth">
+    // AGGIUNTO: Snap-y e overflow per gestire le slide
+    <main className="h-screen overflow-y-auto snap-y snap-mandatory scroll-smooth bg-[#F0F4F8] text-slate-800 font-sans">
       
       {/* BACKGROUND DECORATIONS */}
       <div className="fixed inset-0 z-0 pointer-events-none">
@@ -127,7 +123,7 @@ const inviaPrenotazione = async () => {
       </div>
 
       {/* --- HEADER --- */}
-      <header className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`}>
+      <header className={`fixed top-0 inset-x-0 z-[100] transition-all duration-500 ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`}>
         <div className="bg-white/80 backdrop-blur-xl border-b border-white/40 shadow-sm h-24 flex items-center">
           <div className="w-full flex items-center px-4 md:px-6">
             <div className="flex items-center shrink-0">
@@ -138,13 +134,13 @@ const inviaPrenotazione = async () => {
               />
             </div>
 
-<nav className="hidden xl:flex items-center gap-5 2xl:gap-8 text-[11px] 2xl:text-[12px] font-black uppercase tracking-[0.15em] text-[#022166] ml-8">
-  <a href="#home" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">CHI SIAMO</a>
-  <a href="#servizi" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">TRATTAMENTI</a>
-  <a href="#team" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">TEAM</a>
-  <a href="#recensioni" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">RECENSIONI</a>
-  <a href="#dove-siamo" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">DOVE SIAMO</a>
-</nav>
+            <nav className="hidden xl:flex items-center gap-5 2xl:gap-8 text-[11px] 2xl:text-[12px] font-black uppercase tracking-[0.15em] text-[#022166] ml-8">
+              <a href="#home" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">CHI SIAMO</a>
+              <a href="#servizi" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">TRATTAMENTI</a>
+              <a href="#team" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">TEAM</a>
+              <a href="#recensioni" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">RECENSIONI</a>
+              <a href="#dove-siamo" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">DOVE SIAMO</a>
+            </nav>
 
             <div className="flex items-center gap-3 ml-auto shrink-0">
               <a href="tel:3338225464" className="flex items-center gap-2 bg-white border-2 border-[#022166] text-[#022166] px-4 py-2.5 rounded-xl font-bold text-[11px] hover:bg-[#022166] hover:text-white transition-all whitespace-nowrap">
@@ -161,9 +157,8 @@ const inviaPrenotazione = async () => {
         </div>
       </header>
 
-{/* --- HERO SECTION --- */}
-      <section id="home" className="relative min-h-screen flex items-center justify-center px-4 md:px-8 overflow-hidden bg-[#022166]">
-        {/* Sfondo */}
+      {/* --- HERO SECTION --- */}
+      <section id="home" className="h-screen w-full snap-start snap-always relative flex items-center justify-center px-4 md:px-8 overflow-hidden bg-[#022166]">
         <div className="absolute inset-0 z-0">
           <img 
             src="https://github.com/thinhdutong00/image-fisioterapia-malavasi/blob/main/1.png?raw=true" 
@@ -173,7 +168,6 @@ const inviaPrenotazione = async () => {
           <div className="absolute inset-0 bg-gradient-to-b from-[#022166]/80 via-[#022166]/60 to-[#022166]/90"></div>
         </div>
 
-        {/* Contenuto centrato */}
         <div className="max-w-4xl mx-auto relative z-10 text-center py-20">
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 text-white px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.2em] mb-8 shadow-sm">
             <Activity size={14} className="text-[#55B4FF]" />
@@ -199,7 +193,6 @@ const inviaPrenotazione = async () => {
           </div>
         </div>
 
-        {/* Freccia decorativa per scorrere (opzionale ma consigliata per l'altezza pieno schermo) */}
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 animate-bounce text-white/30 hidden md:block">
           <div className="w-6 h-10 border-2 border-white/20 rounded-full flex justify-center p-1">
             <div className="w-1 h-2 bg-white/40 rounded-full"></div>
@@ -208,8 +201,8 @@ const inviaPrenotazione = async () => {
       </section>
 
       {/* --- TRATTAMENTI --- */}
-      <section id="servizi" className="relative py-24 px-4 bg-white/5 backdrop-blur-sm overflow-hidden">
-        <div className="max-w-7xl mx-auto relative z-10">
+      <section id="servizi" className="h-screen w-full snap-start snap-always relative flex items-center justify-center py-24 px-4 bg-white/5 backdrop-blur-sm overflow-hidden">
+        <div className="max-w-7xl mx-auto relative z-10 h-full overflow-y-auto no-scrollbar py-10">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-black text-[#022166] tracking-tight mb-4">I Nostri Trattamenti</h2>
             <div className="w-20 h-1.5 bg-[#55B4FF] mx-auto rounded-full"></div>
@@ -241,9 +234,9 @@ const inviaPrenotazione = async () => {
         </div>
       </section>
 
-{/* --- SEZIONE STAFF --- */}
-      <section id="team" className="relative py-24 px-4 overflow-hidden">
-        <div className="max-w-7xl mx-auto relative z-10">
+      {/* --- SEZIONE STAFF --- */}
+      <section id="team" className="h-screen w-full snap-start snap-always relative flex items-center justify-center py-24 px-4 overflow-hidden">
+        <div className="max-w-7xl mx-auto relative z-10 h-full overflow-y-auto no-scrollbar py-10">
           <div className="text-center mb-16">
             <span className="text-[#55B4FF] font-black text-xs uppercase tracking-[0.3em] mb-4 block">Professionalità e Competenza</span>
             <h2 className="text-4xl md:text-5xl font-black text-[#022166] tracking-tight mb-4">Il Nostro Team</h2>
@@ -296,9 +289,9 @@ const inviaPrenotazione = async () => {
         </div>
       </section>
 
-      {/* RECENSIONI - SVANIMENTO SOLO SINISTRA */}
-      <section id="recensioni" className="py-24 px-4 relative overflow-hidden bg-gradient-to-b from-white to-[#F0F4F8]">
-        <div className="max-w-7xl mx-auto">
+      {/* --- RECENSIONI --- */}
+      <section id="recensioni" className="h-screen w-full snap-start snap-always py-24 px-4 relative overflow-hidden bg-gradient-to-b from-white to-[#F0F4F8] flex items-center">
+        <div className="max-w-7xl mx-auto w-full">
           <div className="flex flex-col md:flex-row items-center justify-between mb-16 gap-8">
             <div className="text-center md:text-left">
               <h2 className="text-4xl md:text-5xl font-black text-[#022166] tracking-tight mb-4">
@@ -381,13 +374,13 @@ const inviaPrenotazione = async () => {
       </section>
 
       {/* --- DOVE SIAMO --- */}
-      <section id="dove-siamo" className="py-24 px-4 relative z-10 bg-slate-50">
-        <div className="max-w-7xl mx-auto bg-white rounded-[3rem] p-8 md:p-12 lg:flex gap-12 items-center shadow-2xl">
+      <section id="dove-siamo" className="h-screen w-full snap-start snap-always py-24 px-4 relative z-10 bg-slate-50 flex items-center">
+        <div className="max-w-7xl mx-auto bg-white rounded-[3rem] p-8 md:p-12 lg:flex gap-12 items-center shadow-2xl w-full">
           <div className="flex-1 space-y-6">
             <h3 className="text-3xl font-black text-[#022166] mb-8">Le Nostre Sedi</h3>
             {[
-              { n: 'Cavezzo (MO)', a: 'Via I maggio, 95', u: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2836.21!2d11.0263!3d44.8384!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477f985b9b870d85%3A0x6ec07c46c36729a6!2sVia%201%C2%B0%20Maggio%2C%2095%2C%2041032%20Cavezzo%20MO!5e0!3m2!1sit!2sit!4v1700000000000!5m2!1sit!2sit" },
-              { n: 'Rovereto sulla Secchia (MO)', a: 'Via Savino Forti, 61', u: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2837.21!2d10.9500!3d44.8450!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477f999999999999%3A0x9999999999999999!2sVia%20Savino%20Forti%2C%2061%2C%2041030%20Rovereto%20Sulla%20Secchia%20MO!5e0!3m2!1sit!2sit!4v1700000000000!5m2!1sit!2sit" }
+              { n: 'Cavezzo (MO)', a: 'Via I maggio, 95', u: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2836.425145838563!2d11.0268581766627!3d44.8333169710705!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477f9506637e1967%3A0xc3f6050519965f3a!2sVia%20I%20Maggio%2C%2095%2C%2041032%20Cavezzo%20MO!5e0!3m2!1sit!2sit!4v1709564800000!5m2!1sit!2sit" },
+              { n: 'Rovereto sulla Secchia (MO)', a: 'Via Savino Forti, 61', u: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2837.2847594821564!2d10.957548776661955!3d44.82136127107067!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477f943f6f16428d%3A0x6b772c72b20755d5!2sVia%20Savino%20Forti%2C%2061%2C%2041016%20Rovereto%20Sulla%20Secchia%20MO!5e0!3m2!1sit!2sit!4v1709564900000!5m2!1sit!2sit" }
             ].map(loc => (
               <button key={loc.n} onClick={() => setMapUrl(loc.u)} className={`w-full flex items-center gap-5 p-6 rounded-[2rem] border-2 transition-all ${mapUrl === loc.u ? 'bg-white border-[#55B4FF] shadow-lg' : 'bg-transparent border-transparent hover:bg-slate-50'}`}>
                 <div className={`p-4 rounded-xl shrink-0 ${mapUrl === loc.u ? 'bg-[#55B4FF] text-white' : 'bg-[#022166] text-white'}`}><MapPin size={24} /></div>
@@ -401,20 +394,20 @@ const inviaPrenotazione = async () => {
         </div>
       </section>
 
-      {/* --- SEZIONE PRENOTAZIONE MULTISTEP (5 STEP) --- */}
-      <section id="prenota" className="py-24 px-4 bg-white">
-        <div className="max-w-4xl mx-auto bg-[#022166] rounded-[3rem] overflow-hidden shadow-2xl relative">
+      {/* --- PRENOTAZIONE MULTISTEP --- */}
+      <section id="prenota" className="h-screen w-full snap-start snap-always py-24 px-4 bg-white flex flex-col items-center justify-center relative overflow-hidden">
+        <div className="max-w-4xl w-full bg-[#022166] rounded-[3rem] overflow-hidden shadow-2xl relative flex flex-col h-full max-h-[850px]">
           <div className="absolute top-0 left-0 w-full h-2 bg-white/10">
             <div className="h-full bg-[#55B4FF] transition-all duration-500" style={{ width: `${(step / 5) * 100}%` }}></div>
           </div>
 
-          <div className="p-8 md:p-16 text-white">
-            <div className="mb-10 text-center">
+          <div className="p-8 md:p-16 text-white flex flex-col h-full">
+            <div className="mb-10 text-center shrink-0">
               <span className="text-[#55B4FF] font-black text-xs uppercase tracking-[0.2em]">Step {step} di 5</span>
               <h2 className="text-3xl font-black mt-2">Prenota la tua visita</h2>
             </div>
 
-            <div className="min-h-[400px] flex flex-col justify-center">
+            <div className="flex-grow flex flex-col justify-center overflow-y-auto no-scrollbar">
               {step === 1 && (
                 <div className="animate-in fade-in slide-in-from-right-4 duration-500">
                   <label className="block text-xl font-bold mb-6">Per quale motivo richiedi la visita?</label>
@@ -447,7 +440,6 @@ const inviaPrenotazione = async () => {
                 </div>
               )}
 
-              {/* STEP 4: CALENDARIO E ORARIO PREMIUM */}
               {step === 4 && (
                 <div className="animate-in fade-in zoom-in-95 duration-500">
                   <label className="block text-xl font-bold text-center mb-8">Seleziona Data e Orario</label>
@@ -459,50 +451,32 @@ const inviaPrenotazione = async () => {
                         </span>
                       </div>
                       <div className="grid grid-cols-7 gap-1 text-center mb-2">
-                 {['L', 'M', 'M', 'G', 'V', 'S', 'D'].map((g, idx) => (
-  <span key={idx} className="text-[10px] font-bold opacity-40 uppercase">{g}</span>
-))}
+                        {['L', 'M', 'M', 'G', 'V', 'S', 'D'].map((g, idx) => (
+                          <span key={idx} className="text-[10px] font-bold opacity-40 uppercase">{g}</span>
+                        ))}
                       </div>
                       <div className="grid grid-cols-7 gap-2">
                         {giorniMese.map((data, i) => {
                           const isoData = data.toISOString().split('T')[0];
                           const isSelected = formData.data === isoData;
                           return (
-                            <button
-                              key={i}
-                              type="button"
-                              onClick={() => setFormData({...formData, data: isoData})}
-                              className={`aspect-square rounded-xl text-sm font-bold transition-all flex items-center justify-center
-                                ${isSelected 
-                                  ? 'bg-[#55B4FF] text-[#022166] shadow-lg shadow-[#55B4FF]/20 scale-110' 
-                                  : 'hover:bg-white/10 text-white'}`}
-                            >
+                            <button key={i} type="button" onClick={() => setFormData({...formData, data: isoData})} className={`aspect-square rounded-xl text-sm font-bold transition-all flex items-center justify-center ${isSelected ? 'bg-[#55B4FF] text-[#022166] shadow-lg scale-110' : 'hover:bg-white/10 text-white'}`}>
                               {data.getDate()}
                             </button>
                           );
                         })}
                       </div>
                     </div>
-
-<div className="space-y-4">
-  <span className="text-xs font-black uppercase tracking-widest text-[#55B4FF] block mb-2">Orari disponibili</span>
-  {/* AGGIUNTO: max-h e overflow per gestire molti orari */}
-  <div className="grid grid-cols-3 gap-2 max-h-[320px] overflow-y-auto pr-2 custom-scrollbar">
-    {orariDisponibili.map((ora) => (
-      <button
-        key={ora}
-        type="button"
-        onClick={() => setFormData({...formData, ora: ora})}
-        className={`p-3 rounded-xl border-2 text-sm font-bold transition-all text-center
-          ${formData.ora === ora 
-            ? 'border-[#55B4FF] bg-[#55B4FF] text-[#022166]' 
-            : 'border-white/10 bg-white/5 text-white hover:border-white/30'}`}
-      >
-        {ora}
-      </button>
-    ))}
-  </div>
-</div>
+                    <div className="space-y-4">
+                      <span className="text-xs font-black uppercase tracking-widest text-[#55B4FF] block mb-2">Orari disponibili</span>
+                      <div className="grid grid-cols-3 gap-2 max-h-[220px] overflow-y-auto pr-2 custom-scrollbar">
+                        {orariDisponibili.map((ora) => (
+                          <button key={ora} type="button" onClick={() => setFormData({...formData, ora: ora})} className={`p-3 rounded-xl border-2 text-sm font-bold transition-all text-center ${formData.ora === ora ? 'border-[#55B4FF] bg-[#55B4FF] text-[#022166]' : 'border-white/10 bg-white/5 text-white hover:border-white/30'}`}>
+                            {ora}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </div>
               )}
@@ -515,29 +489,19 @@ const inviaPrenotazione = async () => {
                     <input type="tel" placeholder="Telefono" className="bg-white/10 border border-white/20 p-5 rounded-2xl outline-none focus:bg-white focus:text-[#022166] transition-all" value={formData.telefono} onChange={(e) => setFormData({...formData, telefono: e.target.value})} />
                     <input type="email" placeholder="Email" className="bg-white/10 border border-white/20 p-5 rounded-2xl outline-none focus:bg-white focus:text-[#022166] transition-all" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} />
                   </div>
-<label className="flex items-center gap-3 cursor-pointer pt-4">
-  <input type="checkbox" className="w-5 h-5 rounded accent-[#55B4FF]" checked={formData.privacy} onChange={(e) => setFormData({...formData, privacy: e.target.checked})} />
-  <span className="text-xs text-white/60">
-    Accetto il trattamento dei dati personali e sanitari (
-    <a href="/privacy" target="_blank" className="underline hover:text-[#55B4FF]">
-      Privacy Policy
-    </a>
-    )
-  </span>
-</label>
+                  <label className="flex items-center gap-3 cursor-pointer pt-4">
+                    <input type="checkbox" className="w-5 h-5 rounded accent-[#55B4FF]" checked={formData.privacy} onChange={(e) => setFormData({...formData, privacy: e.target.checked})} />
+                    <span className="text-xs text-white/60">Accetto il trattamento dati (<Link href="/privacy" className="underline">Privacy Policy</Link>)</span>
+                  </label>
                 </div>
               )}
             </div>
 
-            <div className="mt-12 flex gap-4">
-              {step > 1 && <button onClick={prevStep} className="p-5 border-2 border-white/10 rounded-2xl text-white hover:bg-white/10"><ChevronLeft size={24} /></button>}
+            <div className="mt-8 flex gap-4 shrink-0">
+              {step > 1 && <button onClick={prevStep} className="p-5 border-2 border-white/10 rounded-2xl text-white hover:bg-white/10 transition-all"><ChevronLeft size={24} /></button>}
               <button 
-               onClick={step === 5 ? inviaPrenotazione : nextStep}
-                disabled={
-                  (step === 3 && !formData.sede) || 
-                  (step === 4 && (!formData.data || !formData.ora)) ||
-                  (step === 5 && (!formData.nome || !formData.privacy))
-                }
+                onClick={step === 5 ? inviaPrenotazione : nextStep}
+                disabled={(step === 3 && !formData.sede) || (step === 4 && (!formData.data || !formData.ora)) || (step === 5 && (!formData.nome || !formData.privacy))}
                 className="flex-1 bg-[#55B4FF] text-[#022166] py-5 rounded-2xl font-black uppercase tracking-widest hover:bg-white transition-all disabled:opacity-30"
               >
                 {step === 5 ? 'Invia' : 'Continua'}
@@ -545,11 +509,23 @@ const inviaPrenotazione = async () => {
             </div>
           </div>
         </div>
+
+        {/* --- FOOTER (Posizionato fisso nell'ultima slide) --- */}
+        <footer className="w-full py-8 text-center bg-transparent shrink-0">
+          <p className="text-[#022166] font-black tracking-widest text-[10px] uppercase mb-4">
+            © 2026 Fisioterapia Malavasi • Via I Maggio n°95 41032 Cavezzo (MO) | P. IVA 03890170362
+          </p>
+          <div className="flex justify-center gap-6 text-[10px] font-bold uppercase tracking-widest">
+            <Link href="/privacy" className="text-[#022166] hover:text-[#55B4FF]">Privacy Policy</Link>
+            <Link href="/cookie" className="text-[#022166] hover:text-[#55B4FF]">Cookie Policy</Link>
+          </div>
+          <p className="mt-4 text-[9px] text-slate-400 font-bold uppercase tracking-widest">Powered by MAGO DIGITAL™</p>
+        </footer>
       </section>
 
       {/* --- MODALE TRATTAMENTI --- */}
       {selectedTrattamento && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
           <div className="absolute inset-0 bg-[#022166]/60 backdrop-blur-md" onClick={() => setSelectedTrattamento(null)}></div>
           <div className="relative bg-white rounded-[3rem] p-8 md:p-12 max-w-2xl w-full shadow-2xl animate-in fade-in zoom-in duration-300">
             <button onClick={() => setSelectedTrattamento(null)} className="absolute top-6 right-6 p-2 rounded-full bg-slate-100 text-[#022166] hover:bg-red-500 hover:text-white transition-colors"><X size={24} /></button>
@@ -560,19 +536,8 @@ const inviaPrenotazione = async () => {
           </div>
         </div>
       )}
-
-      {/* --- FOOTER --- */}
-<footer className="py-12 text-center border-t border-white/20 bg-white/40 backdrop-blur-md">
-  <p className="text-[#022166] font-black tracking-widest text-[10px] uppercase mb-4">
-    © 2026 Fisioterapia Malavasi • Via I Maggio n°95 41032 Cavezzo (MO) | P. IVA 03890170362
-  </p>
-  <div className="flex justify-center gap-6 text-[10px] font-bold uppercase tracking-widest">
-    <Link href="/privacy" className="text-[#022166] hover:text-[#55B4FF]">Privacy Policy</Link>
-    <Link href="/cookie" className="text-[#022166] hover:text-[#55B4FF]">Cookie Policy</Link>
-  </div>
-  <p className="mt-4 text-[9px] text-slate-400 font-bold uppercase tracking-widest">Powered by MAGO DIGITAL™</p>
-</footer>
-<CookieBanner />
+      
+      <CookieBanner />
     </main>
   );
 }
