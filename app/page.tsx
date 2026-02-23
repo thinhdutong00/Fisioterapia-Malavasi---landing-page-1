@@ -140,7 +140,7 @@ const inviaPrenotazione = async () => {
 
   return (
     // AGGIUNTO: Snap-y e overflow per gestire le slide
-<main className="h-screen overflow-y-auto md:snap-y md:snap-mandatory scroll-smooth bg-[#F0F4F8] text-slate-800 font-sans">
+<main className="h-screen overflow-y-auto md:snap-y md:snap-mandatory scroll-smooth bg-[#022166] text-slate-800 font-sans">
       
       {/* BACKGROUND DECORATIONS */}
       <div className="fixed inset-0 z-0 pointer-events-none">
@@ -149,9 +149,9 @@ const inviaPrenotazione = async () => {
       </div>
 
 {/* --- HEADER DINAMICO --- */}
-      <header className={`fixed top-0 inset-x-0 z-[100] transition-all duration-500 ease-in-out 
-        ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'}
-        ${isScrolled ? 'py-2' : 'py-4'}`}>
+<header className={`fixed top-0 inset-x-0 z-[100] transition-all duration-500 ease-in-out 
+  ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'}
+  ${isScrolled ? 'py-2' : 'py-0'}`}>
         
         <div className={`mx-auto transition-all duration-500 px-4 md:px-6 
           ${isScrolled 
