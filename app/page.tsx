@@ -281,19 +281,19 @@ const inviaPrenotazione = async () => {
                 foto: "/luca.webp" 
               }
             ].map((membro, idx) => (
-              <div key={idx} className="group bg-white rounded-[3.5rem] p-4 pb-12 transition-all duration-700 hover:shadow-[0_40px_80px_-20px_rgba(2,33,102,0.15)] border border-slate-100 relative text-center">
+              <div key={idx} className="group bg-white rounded-[3.5rem] p-4 pb-12 transition-all duration-700 hover:shadow-[0_40px_80px_-20px_rgba(2,33,102,0.15)] border border-slate-100 relative text-center flex flex-col items-center">
                 
-                {/* Immagine con maschera stondata */}
-                <div className="aspect-[4/4.5] relative overflow-hidden rounded-[2.8rem] mb-8">
+                {/* Immagine con maschera stondata e focus sui volti (object-top) */}
+                <div className="aspect-[4/4.5] w-full relative overflow-hidden rounded-[2.8rem] mb-8">
                   <img 
                     src={membro.foto} 
                     alt={membro.nome} 
-                    className="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+                    className="w-full h-full object-cover object-top grayscale-[20%] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#022166]/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 </div>
                 
-                <div className="px-6 relative flex flex-col items-center">
+                <div className="px-6 relative flex flex-col items-center w-full">
                   {/* Badge Ruolo centrato */}
                   <div className="mb-4 inline-block">
                     <span className="bg-[#f0f9ff] text-[#55B4FF] border border-[#55B4FF]/20 px-4 py-1.5 rounded-full font-black text-[9px] uppercase tracking-widest">
@@ -306,7 +306,7 @@ const inviaPrenotazione = async () => {
                     {membro.nome}
                   </h3>
                   
-                  {/* Specialità centrata senza pallino laterale per simmetria */}
+                  {/* Specialità centrata */}
                   <p className="text-slate-500 text-sm font-bold leading-relaxed tracking-tight italic max-w-[250px]">
                     {membro.specialita}
                   </p>
