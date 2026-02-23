@@ -14,10 +14,25 @@ export default function CookieBanner() {
   }, []);
 
   const acceptAll = () => {
+    // Salva la scelta localmente
     localStorage.setItem("cookieConsent", "accepted");
+
+    // Comunica il consenso a Google Consent Mode v2
+    if (typeof window !== "undefined" && (window as any).gtag) {
+      (window as any).gtag('consent', 'update', {
+        'ad_storage': 'granted',
+        'ad_user_data': 'granted',
+        'ad_ads_personalization': 'granted',
+        'analytics_storage': 'granted'
+      });
+      
+      // Invia un evento personalizzato per attivare eventuali tag di tracciamento
+      (window as any).dataLayer.push({
+        event: 'consent_granted'
+      });
+    }
+
     setShowBanner(false);
-    // Qui andrebbe attivato il Google Consent Mode v2
-    window.location.reload(); // Ricarica per attivare i pixel
   };
 
   const declineAll = () => {
