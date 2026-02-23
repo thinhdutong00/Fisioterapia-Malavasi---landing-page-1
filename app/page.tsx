@@ -71,20 +71,24 @@ export default function FisioterapiaMalavasi() {
   const nextStep = () => setStep(step + 1);
   const prevStep = () => setStep(step - 1);
 
-  // --- LOGICA NAVBAR ---
+// --- LOGICA NAVBAR (CORRETTA PER SNAP SCROLL) ---
   useEffect(() => {
+    const mainContainer = document.querySelector('main');
+    
     const controlNavbar = () => {
-      if (typeof window !== 'undefined') {
-        if (window.scrollY > lastScrollY && window.scrollY > 100) {
+      if (mainContainer) {
+        const currentScrollY = mainContainer.scrollTop;
+        if (currentScrollY > lastScrollY && currentScrollY > 100) {
           setIsVisible(false);
         } else {
           setIsVisible(true);
         }
-        setLastScrollY(window.scrollY);
+        setLastScrollY(currentScrollY);
       }
     };
-    window.addEventListener('scroll', controlNavbar);
-    return () => window.removeEventListener('scroll', controlNavbar);
+
+    mainContainer?.addEventListener('scroll', controlNavbar);
+    return () => mainContainer?.removeEventListener('scroll', controlNavbar);
   }, [lastScrollY]);
 
 // --- FUNZIONE INVIO EMAIL RESEND ---
@@ -122,9 +126,9 @@ const inviaPrenotazione = async () => {
         <div className="absolute bottom-[5%] right-[-5%] w-[30%] h-[30%] bg-[#022166]/5 rounded-full blur-[100px]"></div>
       </div>
 
-      {/* --- HEADER --- */}
-      <header className={`fixed top-0 inset-x-0 z-[100] transition-all duration-500 ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`}>
-        <div className="bg-white/80 backdrop-blur-xl border-b border-white/40 shadow-sm h-24 flex items-center">
+{/* --- HEADER --- */}
+      <header className={`fixed top-0 inset-x-0 z-[100] transition-all duration-700 ease-in-out ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'}`}>
+        <div className="bg-white/80 backdrop-blur-xl border-b border-white/40 shadow-sm h-24 flex items-center pointer-events-auto">
           <div className="w-full flex items-center px-4 md:px-6">
             <div className="flex items-center shrink-0">
               <img 
