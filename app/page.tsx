@@ -619,16 +619,16 @@ const inviaPrenotazione = async () => {
           </div>
         </div>
 
-{/* --- FOOTER (Stile Minimale) --- */}
-        <footer className="w-full py-12 text-center bg-transparent shrink-0">
-          <p className="text-white/30 font-black tracking-widest text-[10px] uppercase mb-4">
+{/* --- FOOTER POSIZIONATO IN FONDO E PIÙ CHIARO --- */}
+        <footer className="w-full pt-16 pb-12 text-center bg-transparent mt-auto border-t border-white/5">
+          <p className="text-slate-400 font-black tracking-widest text-[10px] uppercase mb-4 opacity-80">
             © 2026 Fisioterapia Malavasi • Via I Maggio n°95 Cavezzo (MO) | P. IVA 03890170362
           </p>
           <div className="flex justify-center gap-8 text-[10px] font-bold uppercase tracking-widest">
-            <Link href="/privacy" className="text-white/40 hover:text-[#55B4FF] transition-colors">Privacy Policy</Link>
-            <Link href="/cookie" className="text-white/40 hover:text-[#55B4FF] transition-colors">Cookie Policy</Link>
+            <Link href="/privacy" className="text-slate-500 hover:text-[#55B4FF] transition-colors">Privacy Policy</Link>
+            <Link href="/cookie" className="text-slate-500 hover:text-[#55B4FF] transition-colors">Cookie Policy</Link>
           </div>
-          <p className="mt-4 text-[9px] text-[#55B4FF]/40 font-bold uppercase tracking-[0.3em]">MAGO DIGITAL™ STUDIO</p>
+          <p className="mt-6 text-[9px] text-slate-600 font-bold uppercase tracking-[0.3em]">MAGO DIGITAL™ STUDIO</p>
         </footer>
       </section>
 
