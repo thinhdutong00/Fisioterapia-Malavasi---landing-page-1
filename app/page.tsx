@@ -369,89 +369,90 @@ const inviaPrenotazione = async () => {
         </div>
       </section>
 
-      {/* --- RECENSIONI --- */}
-<section id="recensioni" className="h-screen w-full md:snap-start md:snap-always py-24 px-4 relative overflow-hidden bg-gradient-to-b from-white to-[#F0F4F8] flex items-center">
-        <div className="max-w-7xl mx-auto w-full">
-          <div className="flex flex-col md:flex-row items-center justify-between mb-16 gap-8">
-            <div className="text-center md:text-left">
-              <h2 className="text-4xl md:text-5xl font-black text-[#022166] tracking-tight mb-4">
-                La parola ai nostri <span className="text-[#55B4FF]">Pazienti</span>
-              </h2>
-              <p className="text-slate-500 font-medium text-lg">Esperienze reali tratte dal nostro profilo ufficiale Google Business.</p>
-            </div>
-            
-            <div className="bg-white p-6 rounded-[2rem] shadow-xl shadow-blue-900/5 border border-slate-100 flex items-center gap-6">
-              <div className="bg-[#4285F4] p-3 rounded-xl">
-                <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.9 3.34-2 4.6-1.5 1.5-3.3 3.1-6.6 3.1-5.54 0-10.24-4.5-10.24-10.38s4.7-10.38 10.24-10.38c3.1 0 5.4 1.2 7.1 2.8l2.3-2.3c-2.4-2.2-5.5-4-9.4-4-7.3 0-13.4 6.1-13.4 13.5s6.1 13.5 13.4 13.5c4.4 0 7.7-1.5 10.2-4.1 2.6-2.6 3.4-6.3 3.4-9.2 0-.9-.08-1.7-.2-2.5h-13.4z"/>
-                </svg>
-              </div>
-              <div>
-                <div className="flex gap-1 text-yellow-400 mb-1">
-                  {[...Array(5)].map((_, i) => <Star key={i} size={18} fill="currentColor" />)}
-                </div>
-                <p className="text-[#022166] font-black text-sm uppercase tracking-tighter">Eccellenza 5.0 su Google</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="relative group px-4 md:px-16">
-            <div 
-              style={{ 
-                WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 15%)',
-                maskImage: 'linear-gradient(to right, transparent 0%, black 15%)' 
-              }}
-            >
-              <Swiper
-                modules={[Autoplay, Pagination, Navigation]}
-                spaceBetween={30}
-                slidesPerView={1}
-                navigation={{
-                  nextEl: '.swiper-button-next-custom',
-                  prevEl: '.swiper-button-prev-custom',
-                }}
-                autoplay={{ delay: 5000, disableOnInteraction: false }}
-                pagination={{ clickable: true, el: '.swiper-pagination-custom' }}
-                breakpoints={{ 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }}
-                className="!pb-20 !overflow-visible"
-              >
-                {[
-                  { n: "Federico Rossi", t: "Eccellente professionista. Mi ha seguito dopo un intervento al menisco con una tabella di marcia perfetta. Recupero rapido e completa mobilità riacquisita in tempi record.", d: "2 giorni fa" },
-                  { n: "Giulia Ferrari", t: "Il Dott. Malavasi è molto preparato e trasmette grande sicurezza. Ha risolto i miei problemi di postura e mal di schiena che mi portavo dietro da anni. Studio impeccabile.", d: "1 settimana fa" },
-                  { n: "Alessandro Moretti", t: "Ottima esperienza per un infortunio muscolare durante la preparazione atletica. Molto utile la Tecarterapia abbinata ai trattamenti manuali. Tornerò sicuramente.", d: "2 settimane fa" },
-                  { n: "Valentina Gatti", t: "Professionista serio, puntuale e molto onesto. Mi ha spiegato ogni passaggio della terapia con molta chiarezza. I dolori cervicali sono spariti dopo solo tre sedute.", d: "3 settimane fa" },
-                  { n: "Matteo Bianchi", t: "Ho apprezzato molto la flessibilità degli orari e la disponibilità. Trattamenti mirati ed efficaci. Uno dei migliori centri di fisioterapia della zona Modena/Cavezzo.", d: "1 mese fa" },
-                  { n: "Elena Piazzi", t: "Servizio a domicilio eccellente per mia madre anziana. Grande umanità e pazienza, oltre alla competenza tecnica. Un supporto fondamentale per la nostra famiglia.", d: "1 mese fa" }
-                ].map((rev, i) => (
-                  <SwiperSlide key={i} className="h-auto">
-                    <div className="bg-white p-8 md:p-10 rounded-[2.5rem] border border-slate-100 h-full flex flex-col relative shadow-lg shadow-blue-900/[0.02] hover:shadow-2xl transition-all duration-500 group">
-                      <div className="flex gap-0.5 text-yellow-400 mb-6">
-                        {[...Array(5)].map((_, i) => <Star key={i} size={16} fill="currentColor" />)}
-                      </div>
-                      <p className="text-slate-700 font-medium text-lg leading-relaxed flex-grow italic">"{rev.t}"</p>
-                      <div className="flex items-center gap-4 mt-10 pt-8 border-t border-slate-50">
-                        <div className="w-14 h-14 bg-gradient-to-br from-[#022166] to-[#0a3a8a] rounded-2xl flex items-center justify-center text-white font-black text-xl shadow-lg">{rev.n[0]}</div>
-                        <div>
-                          <p className="font-black text-[#022166] text-lg leading-none">{rev.n}</p>
-                          <p className="text-xs text-slate-400 font-bold uppercase tracking-widest mt-1.5">{rev.d}</p>
-                        </div>
-                      </div>
-                    </div>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-            </div>
-
-            <button className="swiper-button-prev-custom absolute top-1/2 -left-2 md:-left-6 -translate-y-1/2 z-50 w-14 h-14 bg-white border border-slate-100 rounded-full flex items-center justify-center text-[#022166] shadow-2xl hover:bg-[#55B4FF] hover:text-white transition-all">
-              <ChevronLeft size={28} />
-            </button>
-            <button className="swiper-button-next-custom absolute top-1/2 -right-2 md:-right-6 -translate-y-1/2 z-50 w-14 h-14 bg-white border border-slate-100 rounded-full flex items-center justify-center text-[#022166] shadow-2xl hover:bg-[#55B4FF] hover:text-white transition-all">
-              <ChevronRight size={28} />
-            </button>
-            <div className="swiper-pagination-custom flex justify-center mt-10 gap-2"></div>
-          </div>
+{/* --- RECENSIONI --- */}
+<section id="recensioni" className="min-h-screen w-full md:snap-start md:snap-always py-20 md:py-24 px-4 relative overflow-hidden bg-gradient-to-b from-white to-[#F0F4F8] flex items-center">
+  <div className="max-w-7xl mx-auto w-full">
+    <div className="flex flex-col md:flex-row items-center justify-between mb-12 md:mb-16 gap-8">
+      <div className="text-center md:text-left">
+        <h2 className="text-4xl md:text-5xl font-black text-[#022166] tracking-tight mb-4">
+          La parola ai nostri <span className="text-[#55B4FF]">Pazienti</span>
+        </h2>
+        <p className="text-slate-500 font-medium text-lg">Esperienze reali tratte dal nostro profilo ufficiale Google Business.</p>
+      </div>
+      
+      <div className="bg-white p-6 rounded-[2rem] shadow-xl shadow-blue-900/5 border border-slate-100 flex items-center gap-6">
+        <div className="bg-[#4285F4] p-3 rounded-xl">
+          <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.9 3.34-2 4.6-1.5 1.5-3.3 3.1-6.6 3.1-5.54 0-10.24-4.5-10.24-10.38s4.7-10.38 10.24-10.38c3.1 0 5.4 1.2 7.1 2.8l2.3-2.3c-2.4-2.2-5.5-4-9.4-4-7.3 0-13.4 6.1-13.4 13.5s6.1 13.5 13.4 13.5c4.4 0 7.7-1.5 10.2-4.1 2.6-2.6 3.4-6.3 3.4-9.2 0-.9-.08-1.7-.2-2.5h-13.4z"/>
+          </svg>
         </div>
-      </section>
+        <div>
+          <div className="flex gap-1 text-yellow-400 mb-1">
+            {[...Array(5)].map((_, i) => <Star key={i} size={18} fill="currentColor" />)}
+          </div>
+          <p className="text-[#022166] font-black text-sm uppercase tracking-tighter">Eccellenza 5.0 su Google</p>
+        </div>
+      </div>
+    </div>
+
+    <div className="relative group px-0 md:px-16">
+      {/* Maschera di sfumatura attiva solo su desktop per non coprire testo su mobile */}
+      <div 
+        className="md:[mask-image:linear-gradient(to_right,transparent_0%,black_15%,black_85%,transparent_100%)]"
+      >
+        <Swiper
+          modules={[Autoplay, Pagination, Navigation]}
+          spaceBetween={20}
+          slidesPerView={1}
+          navigation={{
+            nextEl: '.swiper-button-next-custom',
+            prevEl: '.swiper-button-prev-custom',
+          }}
+          autoplay={{ delay: 5000, disableOnInteraction: false }}
+          pagination={{ clickable: true, el: '.swiper-pagination-custom' }}
+          breakpoints={{ 768: { slidesPerView: 2, spaceBetween: 30 }, 1024: { slidesPerView: 3 } }}
+          className="!pb-16 md:!pb-20 !overflow-visible"
+        >
+          {[
+            { n: "Federico Rossi", t: "Eccellente professionista. Mi ha seguito dopo un intervento al menisco con una tabella di marcia perfetta. Recupero rapido e completa mobilità riacquisita in tempi record.", d: "2 giorni fa" },
+            { n: "Giulia Ferrari", t: "Il Dott. Malavasi è molto preparato e trasmette grande sicurezza. Ha risolto i miei problemi di postura e mal di schiena che mi portavo dietro da anni. Studio impeccabile.", d: "1 settimana fa" },
+            { n: "Alessandro Moretti", t: "Ottima esperienza per un infortunio muscolare durante la preparazione atletica. Molto utile la Tecarterapia abbinata ai trattamenti manuali. Tornerò sicuramente.", d: "2 settimane fa" },
+            { n: "Valentina Gatti", t: "Professionista serio, puntuale e molto onesto. Mi ha spiegato ogni passaggio della terapia con molta chiarezza. I dolori cervicali sono spariti dopo solo tre sedute.", d: "3 settimane fa" },
+            { n: "Matteo Bianchi", t: "Ho apprezzato molto la flessibilità degli orari e la disponibilità. Trattamenti mirati ed efficaci. Uno dei migliori centri di fisioterapia della zona Modena/Cavezzo.", d: "1 mese fa" },
+            { n: "Elena Piazzi", t: "Servizio a domicilio eccellente per mia madre anziana. Grande umanità e pazienza, oltre alla competenza tecnica. Un supporto fondamentale per la nostra famiglia.", d: "1 mese fa" }
+          ].map((rev, i) => (
+            <SwiperSlide key={i} className="h-auto px-2 md:px-0">
+              <div className="bg-white p-7 md:p-10 rounded-[2.5rem] border border-slate-100 h-full flex flex-col relative shadow-lg shadow-blue-900/[0.02] hover:shadow-2xl transition-all duration-500 group">
+                <div className="flex gap-0.5 text-yellow-400 mb-6">
+                  {[...Array(5)].map((_, i) => <Star key={i} size={16} fill="currentColor" />)}
+                </div>
+                <p className="text-slate-700 font-medium text-base md:text-lg leading-relaxed flex-grow italic">"{rev.t}"</p>
+                <div className="flex items-center gap-4 mt-8 md:mt-10 pt-6 md:pt-8 border-t border-slate-50">
+                  <div className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-[#022166] to-[#0a3a8a] rounded-2xl flex items-center justify-center text-white font-black text-lg shadow-lg">{rev.n[0]}</div>
+                  <div>
+                    <p className="font-black text-[#022166] text-base md:text-lg leading-none">{rev.n}</p>
+                    <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-1.5">{rev.d}</p>
+                  </div>
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+
+      {/* Frecce nascoste su mobile per pulizia, visibili da md in su */}
+      <button className="swiper-button-prev-custom hidden md:flex absolute top-1/2 -left-6 -translate-y-1/2 z-50 w-14 h-14 bg-white border border-slate-100 rounded-full items-center justify-center text-[#022166] shadow-2xl hover:bg-[#55B4FF] hover:text-white transition-all">
+        <ChevronLeft size={28} />
+      </button>
+      <button className="swiper-button-next-custom hidden md:flex absolute top-1/2 -right-6 -translate-y-1/2 z-50 w-14 h-14 bg-white border border-slate-100 rounded-full items-center justify-center text-[#022166] shadow-2xl hover:bg-[#55B4FF] hover:text-white transition-all">
+        <ChevronRight size={28} />
+      </button>
+      
+      {/* Pagination sempre visibile per feedback su mobile */}
+      <div className="swiper-pagination-custom flex justify-center mt-6 gap-2"></div>
+    </div>
+  </div>
+</section>
 
 
 {/* --- SEZIONE COME LAVORIAMO (PROCESSO) --- */}
