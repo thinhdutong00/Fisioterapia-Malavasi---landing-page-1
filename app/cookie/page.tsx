@@ -4,6 +4,7 @@ import React from 'react';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 
+
 export default function CookiePolicy() {
   return (
     <main className="min-h-screen bg-white text-slate-800 font-sans p-8 md:p-24">
@@ -44,7 +45,7 @@ export default function CookiePolicy() {
             </p>
           </section>
 
-          <section>
+<section>
             <h2 className="text-xl font-bold text-[#022166] mb-4">Titolare del Trattamento</h2>
             <p>Dott. Mirco Malavasi - Via S. Forti, n. 41 - 41016 Novi di Modena (MO)</p>
           </section>

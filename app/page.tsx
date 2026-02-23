@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import CookieBanner from './components/CookieBanner';
 import { 
   Activity, X, ChevronRight, Zap, UserRound, CheckCircle, 
   Phone, ArrowRight, Menu, Users, Star, MapPin, HeartPulse, 
@@ -554,6 +555,7 @@ const inviaPrenotazione = async () => {
   </div>
   <p className="mt-4 text-[9px] text-slate-400 font-bold uppercase tracking-widest">Powered by MAGO DIGITAL™</p>
 </footer>
+<CookieBanner />
     </main>
   );
 }
