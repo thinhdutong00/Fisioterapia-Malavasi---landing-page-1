@@ -422,6 +422,7 @@ const inviaPrenotazione = async () => {
               <button 
                 onClick={() => setIsHoursOpen(!isHoursOpen)}
                 className="w-full flex items-center justify-between p-6 hover:bg-slate-50 transition-colors"
+                type="button"
               >
                 <div className="flex items-center gap-4">
                   <div className="w-10 h-10 bg-[#55B4FF]/10 rounded-xl flex items-center justify-center text-[#55B4FF]">
@@ -445,12 +446,21 @@ const inviaPrenotazione = async () => {
                     { d: 'Sabato', o: '09–13' },
                     { d: 'Domenica', o: 'Chiuso' },
                   ].map((item, idx) => (
-                    <div key={idx} className="flex justify-between items-center group/item">
+                    <div key={idx} className="flex justify-between items-center">
                       <span className="text-xs font-bold text-slate-400 uppercase tracking-tighter">{item.d}</span>
                       <span className={`text-sm font-black ${item.o === 'Chiuso' ? 'text-red-400' : 'text-[#022166]'}`}>{item.o}</span>
                     </div>
                   ))}
-                  <p className="text-[10px] font-bold text-[#55B4FF] uppercase tracking-widest pt-2 italic">* Sabato pomeriggio su appuntamento</p>
+                  
+                  <div className="pt-2">
+                    <a 
+                      href="#prenota" 
+                      onClick={() => setIsHoursOpen(false)} 
+                      className="inline-flex items-center gap-2 text-[10px] font-black text-[#55B4FF] uppercase tracking-widest italic hover:text-[#022166] transition-colors"
+                    >
+                      <Zap size={12} /> Riceviamo solo su appuntamento
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -467,12 +477,6 @@ const inviaPrenotazione = async () => {
             allowFullScreen 
             loading="lazy"
           ></iframe>
-          
-          <div className="absolute bottom-10 right-10 z-20 hidden md:block">
-            <div className="bg-white/80 backdrop-blur-md p-4 rounded-2xl border border-white/50 shadow-xl">
-              <p className="text-[10px] font-black text-[#022166] uppercase tracking-[0.2em]">Visualizza su Google Maps</p>
-            </div>
-          </div>
         </div>
       </section>
 
