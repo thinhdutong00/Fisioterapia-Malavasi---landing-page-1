@@ -234,9 +234,9 @@ const inviaPrenotazione = async () => {
         </div>
       </section>
 
-      {/* --- SEZIONE STAFF --- */}
-      <section id="team" className="h-screen w-full snap-start snap-always relative flex items-center justify-center py-24 px-4 overflow-hidden">
-        <div className="max-w-7xl mx-auto relative z-10 h-full overflow-y-auto no-scrollbar py-10">
+ {/* --- SEZIONE STAFF --- */}
+      <section id="team" className="min-h-screen w-full snap-start snap-always relative flex items-center justify-center py-24 px-4 overflow-hidden">
+        <div className="max-w-7xl mx-auto relative z-10 w-full py-10">
           <div className="text-center mb-16">
             <span className="text-[#55B4FF] font-black text-xs uppercase tracking-[0.3em] mb-4 block">Professionalità e Competenza</span>
             <h2 className="text-4xl md:text-5xl font-black text-[#022166] tracking-tight mb-4">Il Nostro Team</h2>
