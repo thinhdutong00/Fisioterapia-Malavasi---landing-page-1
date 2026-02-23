@@ -498,7 +498,9 @@ const inviaPrenotazione = async () => {
                   </div>
                   <label className="flex items-center gap-3 cursor-pointer pt-4">
                     <input type="checkbox" className="w-5 h-5 rounded accent-[#55B4FF]" checked={formData.privacy} onChange={(e) => setFormData({...formData, privacy: e.target.checked})} />
-                    <span className="text-xs text-white/60">Accetto la privacy policy</span>
+<span className="text-xs text-white/60">
+  Accetto il trattamento dei dati personali e sanitari (Privacy Policy)
+</span>
                   </label>
                 </div>
               )}
