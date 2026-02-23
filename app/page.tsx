@@ -80,23 +80,31 @@ export default function FisioterapiaMalavasi() {
   const nextStep = () => setStep(step + 1);
   const prevStep = () => setStep(step - 1);
 
-// --- LOGICA NAVBAR AGGIORNATA ---
+// --- LOGICA NAVBAR AGGIORNATA (Nasconde in Prenotazione) ---
   useEffect(() => {
     const mainContainer = document.querySelector('main');
     
     const controlNavbar = () => {
       if (mainContainer) {
         const currentScrollY = mainContainer.scrollTop;
-        
-        // Gestisce la trasparenza (se siamo in cima è trasparente)
+        const scrollHeight = mainContainer.scrollHeight;
+        const clientHeight = mainContainer.clientHeight;
+
+        // Se siamo negli ultimi 800px (circa l'altezza della sezione prenota), nascondi l'header
+        const isNearBottom = scrollHeight - currentScrollY - clientHeight < 400;
+
+        // Gestisce la trasparenza
         setIsScrolled(currentScrollY > 50);
 
-        // Gestisce la comparsa/scomparsa
-        if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Gestisce la visibilità: scompare se scorri giù O se sei vicino al fondo (sezione prenota)
+        if (isNearBottom) {
+          setIsVisible(false);
+        } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
           setIsVisible(false);
         } else {
           setIsVisible(true);
         }
+        
         setLastScrollY(currentScrollY);
       }
     };
