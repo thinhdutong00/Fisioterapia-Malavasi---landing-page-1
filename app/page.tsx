@@ -480,67 +480,47 @@ const inviaPrenotazione = async () => {
         </div>
       </section>
 
-{/* --- PRENOTAZIONE MULTISTEP --- */}
-      <section id="prenota" className="h-screen w-full snap-start snap-always py-24 px-4 bg-slate-50 flex flex-col items-center justify-center relative overflow-hidden">
-        {/* Elementi decorativi di sfondo per un look clinico */}
-        <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-[#55B4FF]/5 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-[#022166]/5 rounded-full blur-[120px] pointer-events-none" />
-
-        <div className="max-w-4xl w-full bg-[#022166] rounded-[3.5rem] overflow-hidden shadow-[0_32px_64px_-16px_rgba(2,33,102,0.3)] relative flex flex-col h-full max-h-[850px] border border-white/5">
-          {/* Progress Bar con Glow */}
-          <div className="absolute top-0 left-0 w-full h-2 bg-white/5">
-            <div 
-              className="h-full bg-gradient-to-r from-[#55B4FF] to-[#A0D7FF] transition-all duration-700 ease-out shadow-[0_0_15px_rgba(85,180,255,0.5)]" 
-              style={{ width: `${(step / 5) * 100}%` }} 
-            />
+      {/* --- PRENOTAZIONE MULTISTEP --- */}
+      <section id="prenota" className="h-screen w-full snap-start snap-always py-24 px-4 bg-white flex flex-col items-center justify-center relative overflow-hidden">
+        <div className="max-w-4xl w-full bg-[#022166] rounded-[3rem] overflow-hidden shadow-2xl relative flex flex-col h-full max-h-[850px]">
+          <div className="absolute top-0 left-0 w-full h-2 bg-white/10">
+            <div className="h-full bg-[#55B4FF] transition-all duration-500" style={{ width: `${(step / 5) * 100}%` }}></div>
           </div>
 
           <div className="p-8 md:p-16 text-white flex flex-col h-full">
             <div className="mb-10 text-center shrink-0">
-              <span className="text-[#55B4FF] font-black text-[10px] uppercase tracking-[0.3em] bg-white/5 px-4 py-1.5 rounded-full">Step {step} di 5</span>
-              <h2 className="text-4xl font-black mt-4 tracking-tight">Prenota la tua <span className="text-[#55B4FF]">visita</span></h2>
+              <span className="text-[#55B4FF] font-black text-xs uppercase tracking-[0.2em]">Step {step} di 5</span>
+              <h2 className="text-3xl font-black mt-2">Prenota la tua visita</h2>
             </div>
 
-            <div className="flex-grow flex flex-col justify-center overflow-y-auto no-scrollbar px-2">
+            <div className="flex-grow flex flex-col justify-center overflow-y-auto no-scrollbar">
               {step === 1 && (
-                <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-                  <label className="block text-xl font-bold mb-6 text-center text-white/90">Per quale motivo richiedi la visita?</label>
-                  <textarea 
-                    className="w-full bg-white/5 border border-white/10 p-6 rounded-[2rem] outline-none focus:bg-white focus:text-[#022166] focus:ring-4 focus:ring-[#55B4FF]/20 transition-all min-h-[180px] text-lg resize-none placeholder:text-white/20" 
-                    placeholder="Esempio: dolore cervicale da una settimana..." 
-                    value={formData.motivo} 
-                    onChange={(e) => setFormData({...formData, motivo: e.target.value})} 
-                  />
+                <div className="animate-in fade-in slide-in-from-right-4 duration-500">
+                  <label className="block text-xl font-bold mb-6">Per quale motivo richiedi la visita?</label>
+                  <textarea className="w-full bg-white/10 border border-white/20 p-5 rounded-2xl outline-none focus:bg-white focus:text-[#022166] transition-all min-h-[150px]" placeholder="Descrivi brevemente il tuo problema..." value={formData.motivo} onChange={(e) => setFormData({...formData, motivo: e.target.value})} />
                 </div>
               )}
 
               {step === 2 && (
-                <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 text-center">
-                  <label className="block text-xl font-bold mb-3">Hai referti o esami?</label>
-                  <p className="text-white/50 mb-8 font-medium italic">Facoltativo: carica una foto o un PDF per una valutazione migliore.</p>
-                  <div className="relative border-2 border-dashed border-white/10 rounded-[2.5rem] p-16 hover:border-[#55B4FF] hover:bg-white/5 transition-all group cursor-pointer">
+                <div className="animate-in fade-in slide-in-from-right-4 duration-500 text-center">
+                  <label className="block text-xl font-bold mb-4">Hai referti o esami?</label>
+                  <p className="text-white/60 mb-8 font-medium">Facoltativo: carica una foto o un PDF.</p>
+                  <div className="relative border-2 border-dashed border-white/20 rounded-[2rem] p-12 hover:border-[#55B4FF] transition-colors group">
                     <input type="file" className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" onChange={(e) => setFile(e.target.files?.[0] || null)} />
                     <div className="flex flex-col items-center">
-                      <div className="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                        {file ? <FileText className="text-[#55B4FF]" size={40} /> : <Upload className="text-white/30 group-hover:text-[#55B4FF]" size={40} />}
-                      </div>
-                      <span className="font-black text-sm uppercase tracking-widest text-[#55B4FF]">{file ? file.name : "Seleziona file"}</span>
+                      {file ? <FileText className="text-[#55B4FF] mb-4" size={48} /> : <Upload className="text-white/40 group-hover:text-[#55B4FF] mb-4" size={48} />}
+                      <span className="font-bold text-sm uppercase tracking-widest">{file ? file.name : "Carica file"}</span>
                     </div>
                   </div>
                 </div>
               )}
 
               {step === 3 && (
-                <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 space-y-4 max-w-md mx-auto w-full">
-                  <label className="block text-xl font-bold mb-6 text-center">Dove preferisci la visita?</label>
+                <div className="animate-in fade-in slide-in-from-right-4 duration-500 space-y-4">
+                  <label className="block text-xl font-bold mb-6 text-center">Dove preferisci effettuare la visita?</label>
                   {['Sede Cavezzo (MO)', 'Sede Rovereto (MO)', 'Domicilio'].map((s) => (
-                    <button 
-                      key={s} 
-                      onClick={() => setFormData({...formData, sede: s})} 
-                      className={`w-full p-6 rounded-2xl border-2 font-bold transition-all text-left flex justify-between items-center group ${formData.sede === s ? 'border-[#55B4FF] bg-[#55B4FF] text-[#022166] shadow-lg shadow-[#55B4FF]/20' : 'border-white/10 bg-white/5 text-white hover:bg-white/10 hover:border-white/30'}`}
-                    >
-                      <span className="text-lg uppercase tracking-tight font-black">{s}</span>
-                      {formData.sede === s ? <CheckCircle size={24} /> : <div className="w-6 h-6 rounded-full border-2 border-white/10 group-hover:border-white/30" />}
+                    <button key={s} onClick={() => setFormData({...formData, sede: s})} className={`w-full p-6 rounded-2xl border-2 font-black transition-all text-left flex justify-between items-center ${formData.sede === s ? 'border-[#55B4FF] bg-[#55B4FF] text-[#022166]' : 'border-white/10 bg-white/5 text-white hover:border-white/30'}`}>
+                      {s} {formData.sede === s && <CheckCircle size={20} />}
                     </button>
                   ))}
                 </div>
@@ -548,17 +528,17 @@ const inviaPrenotazione = async () => {
 
               {step === 4 && (
                 <div className="animate-in fade-in zoom-in-95 duration-500">
-                  <label className="block text-xl font-bold text-center mb-8">Data e Orario</label>
+                  <label className="block text-xl font-bold text-center mb-8">Seleziona Data e Orario</label>
                   <div className="grid lg:grid-cols-2 gap-8 items-start">
-                    <div className="bg-white rounded-[2.5rem] p-6 shadow-xl border border-white/10">
-                      <div className="flex items-center justify-center mb-6">
-                        <span className="text-sm font-black uppercase tracking-widest text-[#022166]">
+                    <div className="bg-white/5 p-4 rounded-[2rem] border border-white/10">
+                      <div className="flex items-center justify-between mb-4 px-2">
+                        <span className="text-xs font-black uppercase tracking-widest text-[#55B4FF]">
                           {oggi.toLocaleString('it-IT', { month: 'long', year: 'numeric' })}
                         </span>
                       </div>
-                      <div className="grid grid-cols-7 gap-1 text-center mb-4">
+                      <div className="grid grid-cols-7 gap-1 text-center mb-2">
                         {['L', 'M', 'M', 'G', 'V', 'S', 'D'].map((g, idx) => (
-                          <span key={idx} className="text-[10px] font-black text-[#022166]/30 uppercase">{g}</span>
+                          <span key={idx} className="text-[10px] font-bold opacity-40 uppercase">{g}</span>
                         ))}
                       </div>
                       <div className="grid grid-cols-7 gap-2">
@@ -566,7 +546,7 @@ const inviaPrenotazione = async () => {
                           const isoData = data.toISOString().split('T')[0];
                           const isSelected = formData.data === isoData;
                           return (
-                            <button key={i} type="button" onClick={() => setFormData({...formData, data: isoData})} className={`aspect-square rounded-xl text-sm font-bold transition-all flex items-center justify-center ${isSelected ? 'bg-[#55B4FF] text-white shadow-lg scale-110' : 'hover:bg-slate-100 text-[#022166]'}`}>
+                            <button key={i} type="button" onClick={() => setFormData({...formData, data: isoData})} className={`aspect-square rounded-xl text-sm font-bold transition-all flex items-center justify-center ${isSelected ? 'bg-[#55B4FF] text-[#022166] shadow-lg scale-110' : 'hover:bg-white/10 text-white'}`}>
                               {data.getDate()}
                             </button>
                           );
@@ -574,15 +554,10 @@ const inviaPrenotazione = async () => {
                       </div>
                     </div>
                     <div className="space-y-4">
-                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#55B4FF] block mb-2 ml-2">Orari disponibili</span>
-                      <div className="grid grid-cols-3 gap-3 max-h-[250px] overflow-y-auto pr-2 custom-scrollbar">
+                      <span className="text-xs font-black uppercase tracking-widest text-[#55B4FF] block mb-2">Orari disponibili</span>
+                      <div className="grid grid-cols-3 gap-2 max-h-[220px] overflow-y-auto pr-2 custom-scrollbar">
                         {orariDisponibili.map((ora) => (
-                          <button 
-                            key={ora} 
-                            type="button" 
-                            onClick={() => setFormData({...formData, ora: ora})} 
-                            className={`p-4 rounded-xl border-2 text-sm font-black transition-all text-center ${formData.ora === ora ? 'border-[#55B4FF] bg-[#55B4FF] text-[#022166]' : 'border-white/10 bg-white/5 text-white hover:border-white/30'}`}
-                          >
+                          <button key={ora} type="button" onClick={() => setFormData({...formData, ora: ora})} className={`p-3 rounded-xl border-2 text-sm font-bold transition-all text-center ${formData.ora === ora ? 'border-[#55B4FF] bg-[#55B4FF] text-[#022166]' : 'border-white/10 bg-white/5 text-white hover:border-white/30'}`}>
                             {ora}
                           </button>
                         ))}
@@ -593,37 +568,29 @@ const inviaPrenotazione = async () => {
               )}
 
               {step === 5 && (
-                <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 space-y-5 max-w-xl mx-auto w-full">
-                  <label className="block text-xl font-bold mb-4 text-center">I tuoi recapiti</label>
-                  <div className="space-y-4">
-                    <div className="relative group">
-                       <input type="text" placeholder="Nome e Cognome" className="w-full bg-white/5 border border-white/10 p-5 rounded-2xl outline-none focus:bg-white focus:text-[#022166] transition-all font-bold placeholder:text-white/20" value={formData.nome} onChange={(e) => setFormData({...formData, nome: e.target.value})} />
-                    </div>
-                    <div className="grid md:grid-cols-2 gap-4">
-                      <input type="tel" placeholder="Telefono" className="bg-white/5 border border-white/10 p-5 rounded-2xl outline-none focus:bg-white focus:text-[#022166] transition-all font-bold placeholder:text-white/20" value={formData.telefono} onChange={(e) => setFormData({...formData, telefono: e.target.value})} />
-                      <input type="email" placeholder="Email" className="bg-white/5 border border-white/10 p-5 rounded-2xl outline-none focus:bg-white focus:text-[#022166] transition-all font-bold placeholder:text-white/20" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} />
-                    </div>
+                <div className="animate-in fade-in slide-in-from-right-4 duration-500 space-y-4">
+                  <label className="block text-xl font-bold mb-6 text-center">Dati di contatto</label>
+                  <input type="text" placeholder="Nome e Cognome" className="w-full bg-white/10 border border-white/20 p-5 rounded-2xl outline-none focus:bg-white focus:text-[#022166] transition-all" value={formData.nome} onChange={(e) => setFormData({...formData, nome: e.target.value})} />
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <input type="tel" placeholder="Telefono" className="bg-white/10 border border-white/20 p-5 rounded-2xl outline-none focus:bg-white focus:text-[#022166] transition-all" value={formData.telefono} onChange={(e) => setFormData({...formData, telefono: e.target.value})} />
+                    <input type="email" placeholder="Email" className="bg-white/10 border border-white/20 p-5 rounded-2xl outline-none focus:bg-white focus:text-[#022166] transition-all" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} />
                   </div>
-                  <label className="flex items-center gap-4 cursor-pointer pt-6 p-4 bg-white/5 rounded-2xl border border-white/5">
-                    <input type="checkbox" className="w-6 h-6 rounded-lg accent-[#55B4FF] bg-transparent border-white/20" checked={formData.privacy} onChange={(e) => setFormData({...formData, privacy: e.target.checked})} />
-                    <span className="text-[11px] text-white/50 leading-snug font-medium italic">Autorizzo il trattamento dei dati personali secondo la <Link href="/privacy" className="underline text-[#55B4FF] hover:text-white">Privacy Policy</Link></span>
+                  <label className="flex items-center gap-3 cursor-pointer pt-4">
+                    <input type="checkbox" className="w-5 h-5 rounded accent-[#55B4FF]" checked={formData.privacy} onChange={(e) => setFormData({...formData, privacy: e.target.checked})} />
+                    <span className="text-xs text-white/60">Accetto il trattamento dati (<Link href="/privacy" className="underline">Privacy Policy</Link>)</span>
                   </label>
                 </div>
               )}
             </div>
 
-            <div className="mt-12 flex gap-4 shrink-0">
-              {step > 1 && (
-                <button onClick={prevStep} className="p-6 border-2 border-white/10 rounded-2xl text-white hover:bg-white/10 hover:border-white/30 transition-all flex items-center justify-center">
-                  <ChevronLeft size={28} />
-                </button>
-              )}
+            <div className="mt-8 flex gap-4 shrink-0">
+              {step > 1 && <button onClick={prevStep} className="p-5 border-2 border-white/10 rounded-2xl text-white hover:bg-white/10 transition-all"><ChevronLeft size={24} /></button>}
               <button 
                 onClick={step === 5 ? inviaPrenotazione : nextStep}
                 disabled={(step === 3 && !formData.sede) || (step === 4 && (!formData.data || !formData.ora)) || (step === 5 && (!formData.nome || !formData.privacy))}
-                className="flex-1 bg-[#55B4FF] text-[#022166] py-6 rounded-2xl font-black uppercase tracking-[0.2em] text-sm hover:bg-white hover:scale-[1.02] active:scale-[0.98] shadow-xl shadow-[#55B4FF]/20 transition-all disabled:opacity-20 disabled:scale-100 disabled:shadow-none"
+                className="flex-1 bg-[#55B4FF] text-[#022166] py-5 rounded-2xl font-black uppercase tracking-widest hover:bg-white transition-all disabled:opacity-30"
               >
-                {step === 5 ? 'Invia Prenotazione' : 'Prossimo Step'}
+                {step === 5 ? 'Invia' : 'Continua'}
               </button>
             </div>
           </div>
