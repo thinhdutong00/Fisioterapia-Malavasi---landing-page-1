@@ -544,9 +544,16 @@ const inviaPrenotazione = async () => {
       )}
 
       {/* --- FOOTER --- */}
-      <footer className="py-12 text-center border-t border-white/20 bg-white/40 backdrop-blur-md">
-        <p className="text-[#022166] font-black tracking-widest text-[10px] uppercase">© 2026 Fisioterapia Malavasi • Via I Maggio n°95 41032 Cavezzo (MO) |  P. IVA 03890170362 | Powered by MAGO DIGITAL™</p>
-      </footer>
+<footer className="py-12 text-center border-t border-white/20 bg-white/40 backdrop-blur-md">
+  <p className="text-[#022166] font-black tracking-widest text-[10px] uppercase mb-4">
+    © 2026 Fisioterapia Malavasi • Via I Maggio n°95 41032 Cavezzo (MO) | P. IVA 03890170362
+  </p>
+  <div className="flex justify-center gap-6 text-[10px] font-bold uppercase tracking-widest">
+    <Link href="/privacy" className="text-[#022166] hover:text-[#55B4FF]">Privacy Policy</Link>
+    <Link href="/cookie" className="text-[#022166] hover:text-[#55B4FF]">Cookie Policy</Link>
+  </div>
+  <p className="mt-4 text-[9px] text-slate-400 font-bold uppercase tracking-widest">Powered by MAGO DIGITAL™</p>
+</footer>
     </main>
   );
 }
