@@ -167,7 +167,7 @@ const inviaPrenotazione = async () => {
         </div>
       </header>
 
-      {/* --- HERO SECTION --- */}
+{/* --- HERO SECTION --- */}
       <section id="home" className="h-screen w-full snap-start snap-always relative flex items-center justify-center px-4 md:px-8 overflow-hidden bg-[#022166]">
         <div className="absolute inset-0 z-0">
           <img 
@@ -184,7 +184,8 @@ const inviaPrenotazione = async () => {
             LA SCIENZA PENSATA PER IL TUO BENESSERE
           </div>
           
-          <h1 className="text-5xl md:text-7xl xl:text-8xl font-black text-white leading-[1.1] mb-8 tracking-tighter">
+          {/* Titolo alleggerito da font-black a font-bold */}
+          <h1 className="text-5xl md:text-7xl xl:text-8xl font-bold text-white leading-[1.1] mb-8 tracking-tighter">
             Fisioterapia e Riabilitazione <br />
             <span className="text-[#55B4FF]">a Cavezzo</span>
           </h1>
