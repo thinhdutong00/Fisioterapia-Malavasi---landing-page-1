@@ -27,6 +27,7 @@ export default function FisioterapiaMalavasi() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [isScrolled, setIsScrolled] = useState(false);
   const [mapUrl, setMapUrl] = useState("https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2836.216234033104!2d11.026365!3d44.838499!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDTCsDUwJzE4LjYiTiAxMcKwMDEnMzQuOSJF!5e0!3m2!1sit!2sit!4v1700000000000!5m2!1sit!2sit");
   const [selectedTrattamento, setSelectedTrattamento] = useState<any>(null);
   const [isHoursOpen, setIsHoursOpen] = useState(false);
@@ -79,13 +80,18 @@ export default function FisioterapiaMalavasi() {
   const nextStep = () => setStep(step + 1);
   const prevStep = () => setStep(step - 1);
 
-// --- LOGICA NAVBAR (CORRETTA PER SNAP SCROLL) ---
+// --- LOGICA NAVBAR AGGIORNATA ---
   useEffect(() => {
     const mainContainer = document.querySelector('main');
     
     const controlNavbar = () => {
       if (mainContainer) {
         const currentScrollY = mainContainer.scrollTop;
+        
+        // Gestisce la trasparenza (se siamo in cima è trasparente)
+        setIsScrolled(currentScrollY > 50);
+
+        // Gestisce la comparsa/scomparsa
         if (currentScrollY > lastScrollY && currentScrollY > 100) {
           setIsVisible(false);
         } else {
@@ -134,35 +140,49 @@ const inviaPrenotazione = async () => {
         <div className="absolute bottom-[5%] right-[-5%] w-[30%] h-[30%] bg-[#022166]/5 rounded-full blur-[100px]"></div>
       </div>
 
-{/* --- HEADER --- */}
-      <header className={`fixed top-0 inset-x-0 z-[100] transition-all duration-700 ease-in-out ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'}`}>
-        <div className="bg-white/80 backdrop-blur-xl border-b border-white/40 shadow-sm h-24 flex items-center pointer-events-auto">
-          <div className="w-full flex items-center px-4 md:px-6">
+{/* --- HEADER DINAMICO --- */}
+      <header className={`fixed top-0 inset-x-0 z-[100] transition-all duration-500 ease-in-out 
+        ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'}
+        ${isScrolled ? 'py-2' : 'py-4'}`}>
+        
+        <div className={`mx-auto transition-all duration-500 px-4 md:px-6 
+          ${isScrolled 
+            ? 'max-w-7xl bg-white/80 backdrop-blur-xl border border-white/40 shadow-lg rounded-2xl h-20' 
+            : 'max-w-full bg-transparent h-24'}`}>
+          
+          <div className="h-full flex items-center w-full">
             <div className="flex items-center shrink-0">
               <img 
                 src="https://raw.githubusercontent.com/thinhdutong00/image-fisioterapia-malavasi/92e18a782853772b8d90a1ef6e851630fc1492ae/CENTRO-FISIOTERAPICO-CAVEZZO-MODENA-1.webp" 
                 alt="Logo Fisioterapia Malavasi" 
-                className="h-10 md:h-12 w-auto object-contain"
+                className={`transition-all duration-500 object-contain ${isScrolled ? 'h-10 md:h-12' : 'h-12 md:h-16 brightness-0 invert'}`}
               />
             </div>
 
-<nav className="hidden xl:flex items-center gap-5 2xl:gap-8 text-[11px] 2xl:text-[12px] font-black uppercase tracking-[0.15em] text-[#022166] ml-8">
-  <a href="#home" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">CHI SIAMO</a>
-  <a href="#servizi" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">TRATTAMENTI</a>
-  <a href="#metodo" className="hover:text-[#55B4FF] transition-all whitespace-nowrap text-[#55B4FF]">COME LAVORIAMO</a>
-  <a href="#team" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">TEAM</a>
-  <a href="#recensioni" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">RECENSIONI</a>
-  <a href="#dove-siamo" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">DOVE SIAMO</a>
-</nav>
+            <nav className={`hidden xl:flex items-center gap-5 2xl:gap-8 text-[11px] 2xl:text-[12px] font-black uppercase tracking-[0.15em] ml-8 transition-colors duration-500
+              ${isScrolled ? 'text-[#022166]' : 'text-white'}`}>
+              <a href="#home" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">CHI SIAMO</a>
+              <a href="#servizi" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">TRATTAMENTI</a>
+              <a href="#metodo" className="hover:text-[#55B4FF] transition-all whitespace-nowrap text-[#55B4FF]">COME LAVORIAMO</a>
+              <a href="#team" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">TEAM</a>
+              <a href="#recensioni" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">RECENSIONI</a>
+              <a href="#dove-siamo" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">DOVE SIAMO</a>
+            </nav>
 
             <div className="flex items-center gap-3 ml-auto shrink-0">
-              <a href="tel:3338225464" className="flex items-center gap-2 bg-white border-2 border-[#022166] text-[#022166] px-4 py-2.5 rounded-xl font-bold text-[11px] hover:bg-[#022166] hover:text-white transition-all whitespace-nowrap">
+              <a href="tel:3338225464" className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-bold text-[11px] transition-all whitespace-nowrap border-2
+                ${isScrolled 
+                  ? 'bg-white border-[#022166] text-[#022166] hover:bg-[#022166] hover:text-white' 
+                  : 'bg-white/10 border-white/20 text-white hover:bg-white hover:text-[#022166]'}`}>
                 <Phone size={14} /> <span className="hidden lg:inline">333 822 5464</span>
               </a>
-              <a href="#prenota" className="flex items-center gap-2 bg-[#022166] text-white px-5 py-2.5 rounded-xl font-bold text-[11px] hover:bg-[#55B4FF] transition-all shadow-md whitespace-nowrap">
+              <a href="#prenota" className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-[11px] transition-all shadow-md whitespace-nowrap
+                ${isScrolled 
+                  ? 'bg-[#022166] text-white hover:bg-[#55B4FF]' 
+                  : 'bg-[#55B4FF] text-[#022166] hover:bg-white'}`}>
                 PRENOTA ORA
               </a>
-              <button className="xl:hidden text-[#022166] ml-2" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+              <button className={`xl:hidden ml-2 transition-colors ${isScrolled ? 'text-[#022166]' : 'text-white'}`} onClick={() => setIsMenuOpen(!isMenuOpen)}>
                 {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
               </button>
             </div>
