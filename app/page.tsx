@@ -180,12 +180,12 @@ const inviaPrenotazione = async () => {
           </div>
           
           <h1 className="text-5xl md:text-7xl xl:text-8xl font-black text-white leading-[1.1] mb-8 tracking-tighter">
-            Riprendi in mano il tuo <br />
-            <span className="text-[#55B4FF]">Benessere.</span>
+            Fisioterapia e Riabilitazione <br />
+            <span className="text-[#55B4FF]">a Cavezzo</span>
           </h1>
           
           <p className="text-lg md:text-xl text-white/80 mb-10 max-w-2xl mx-auto font-medium leading-relaxed">
-            Specialisti in fisioterapia e riabilitazione funzionale. Un approccio clinico su misura per tornare a muoverti senza dolore.
+            Valutazioni precise e trattamenti fisioterapici basati su evidenze scientifiche, pensati per ridurre il dolore, migliorare la mobilità e accompagnarti verso un recupero stabile e reale.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
