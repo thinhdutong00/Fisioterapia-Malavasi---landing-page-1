@@ -534,10 +534,10 @@ const inviaPrenotazione = async () => {
 
 
 {/* --- DOVE SIAMO - CREATIVE SPLIT LAYOUT --- */}
-<section id="dove-siamo" className="h-screen w-full md:snap-start md:snap-always relative z-10 bg-white flex flex-col lg:flex-row overflow-hidden">
+<section id="dove-siamo" className="min-h-screen lg:h-screen w-full md:snap-start md:snap-always relative z-10 bg-white flex flex-col lg:flex-row">
         
         {/* LATO TESTI E SELEZIONE */}
-        <div className="lg:w-2/5 w-full p-8 md:p-16 lg:p-24 flex flex-col justify-center bg-gradient-to-br from-white to-slate-50 relative">
+        <div className="lg:w-2/5 w-full p-6 md:p-16 lg:p-24 flex flex-col justify-center bg-gradient-to-br from-white to-slate-50 relative">
           <div className="absolute top-0 right-0 w-32 h-32 bg-[#55B4FF]/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
           
           <div className="relative z-10">
@@ -553,30 +553,30 @@ const inviaPrenotazione = async () => {
                 <button 
                   key={loc.n} 
                   onClick={() => setMapUrl(loc.u)} 
-                  className={`group w-full flex items-center gap-6 p-6 rounded-[2.5rem] transition-all duration-500 ${
+                  className={`group w-full flex items-center gap-4 md:gap-6 p-5 md:p-6 rounded-[2rem] md:rounded-[2.5rem] transition-all duration-500 ${
                     mapUrl === loc.u 
-                    ? 'bg-[#022166] text-white shadow-2xl shadow-blue-900/20 translate-x-4' 
+                    ? 'bg-[#022166] text-white shadow-2xl shadow-blue-900/20 translate-x-2 md:translate-x-4' 
                     : 'bg-white border border-slate-100 text-[#022166] hover:border-[#55B4FF]/30 hover:bg-slate-50'
                   }`}
                 >
-                  <div className={`p-4 rounded-2xl shrink-0 transition-colors ${
+                  <div className={`p-3 md:p-4 rounded-2xl shrink-0 transition-colors ${
                     mapUrl === loc.u ? 'bg-[#55B4FF] text-[#022166]' : 'bg-slate-100 text-[#022166] group-hover:bg-[#55B4FF]/10'
                   }`}>
-                    <MapPin size={24} />
+                    <MapPin size={22} />
                   </div>
                   <div className="text-left">
-                    <p className={`font-black text-lg leading-none mb-1 ${mapUrl === loc.u ? 'text-white' : 'text-[#022166]'}`}>{loc.n}</p>
-                    <p className={`text-xs font-bold uppercase tracking-widest ${mapUrl === loc.u ? 'text-[#55B4FF]' : 'text-slate-400'}`}>{loc.a}</p>
+                    <p className={`font-black text-base md:text-lg leading-none mb-1 ${mapUrl === loc.u ? 'text-white' : 'text-[#022166]'}`}>{loc.n}</p>
+                    <p className={`text-[10px] md:text-xs font-bold uppercase tracking-widest ${mapUrl === loc.u ? 'text-[#55B4FF]' : 'text-slate-400'}`}>{loc.a}</p>
                   </div>
                 </button>
               ))}
             </div>
 
-            {/* FISARMONICA ORARI */}
+            {/* FISARMONICA ORARI - Ottimizzata Mobile */}
             <div className="mt-8 overflow-hidden rounded-[2rem] border border-slate-100 bg-white shadow-sm transition-all duration-300">
               <button 
                 onClick={() => setIsHoursOpen(!isHoursOpen)}
-                className="w-full flex items-center justify-between p-6 hover:bg-slate-50 transition-colors"
+                className="w-full flex items-center justify-between p-5 md:p-6 hover:bg-slate-50 transition-colors"
                 type="button"
               >
                 <div className="flex items-center gap-4">
@@ -590,8 +590,8 @@ const inviaPrenotazione = async () => {
                 </div>
               </button>
               
-              <div className={`transition-all duration-500 ease-in-out ${isHoursOpen ? 'max-h-[400px] opacity-100' : 'max-h-0 opacity-0'} overflow-hidden`}>
-                <div className="p-6 pt-0 space-y-3 border-t border-slate-50">
+              <div className={`transition-all duration-500 ease-in-out ${isHoursOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'} overflow-hidden`}>
+                <div className="p-5 md:p-6 pt-0 space-y-3 border-t border-slate-50">
                   {[
                     { d: 'Lunedì', o: '09–13, 15–20' },
                     { d: 'Martedì', o: '09–13, 15–21' },
@@ -602,12 +602,12 @@ const inviaPrenotazione = async () => {
                     { d: 'Domenica', o: 'Chiuso' },
                   ].map((item, idx) => (
                     <div key={idx} className="flex justify-between items-center">
-                      <span className="text-xs font-bold text-slate-400 uppercase tracking-tighter">{item.d}</span>
-                      <span className={`text-sm font-black ${item.o === 'Chiuso' ? 'text-red-400' : 'text-[#022166]'}`}>{item.o}</span>
+                      <span className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-tighter">{item.d}</span>
+                      <span className={`text-xs md:text-sm font-black ${item.o === 'Chiuso' ? 'text-red-400' : 'text-[#022166]'}`}>{item.o}</span>
                     </div>
                   ))}
                   
-                  <div className="pt-2">
+                  <div className="pt-3">
                     <a 
                       href="#prenota" 
                       onClick={() => setIsHoursOpen(false)} 
@@ -622,8 +622,8 @@ const inviaPrenotazione = async () => {
           </div>
         </div>
 
-        {/* LATO MAPPA (FULL HEIGHT) */}
-        <div className="lg:w-3/5 w-full h-full relative group bg-slate-200">
+        {/* LATO MAPPA - Altezza minima garantita su mobile */}
+        <div className="lg:w-3/5 w-full h-[400px] lg:h-full relative group bg-slate-200">
           <div className="absolute inset-0 bg-[#022166]/5 pointer-events-none z-10"></div>
           <iframe 
             src={mapUrl} 
