@@ -281,7 +281,7 @@ const inviaPrenotazione = async () => {
                 foto: "/luca.webp" 
               }
             ].map((membro, idx) => (
-              <div key={idx} className="group bg-white rounded-[3.5rem] p-4 pb-10 transition-all duration-700 hover:shadow-[0_40px_80px_-20px_rgba(2,33,102,0.15)] border border-slate-100 relative">
+              <div key={idx} className="group bg-white rounded-[3.5rem] p-4 pb-12 transition-all duration-700 hover:shadow-[0_40px_80px_-20px_rgba(2,33,102,0.15)] border border-slate-100 relative text-center">
                 
                 {/* Immagine con maschera stondata */}
                 <div className="aspect-[4/4.5] relative overflow-hidden rounded-[2.8rem] mb-8">
@@ -293,33 +293,23 @@ const inviaPrenotazione = async () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-[#022166]/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 </div>
                 
-                <div className="px-6 relative">
-                  {/* Badge Ruolo */}
+                <div className="px-6 relative flex flex-col items-center">
+                  {/* Badge Ruolo centrato */}
                   <div className="mb-4 inline-block">
                     <span className="bg-[#f0f9ff] text-[#55B4FF] border border-[#55B4FF]/20 px-4 py-1.5 rounded-full font-black text-[9px] uppercase tracking-widest">
                       {membro.ruolo}
                     </span>
                   </div>
                   
-                  <h3 className="text-3xl font-black text-[#022166] mb-4 tracking-tight group-hover:text-[#55B4FF] transition-colors">
+                  {/* Nome centrato */}
+                  <h3 className="text-3xl font-black text-[#022166] mb-4 tracking-tight group-hover:text-[#55B4FF] transition-colors leading-tight">
                     {membro.nome}
                   </h3>
                   
-                  <div className="flex gap-3 items-start">
-                    <div className="mt-1">
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#55B4FF]"></div>
-                    </div>
-                    <p className="text-slate-500 text-sm font-bold leading-relaxed tracking-tight italic">
-                      {membro.specialita}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Pulsante decorativo o link */}
-                <div className="absolute bottom-6 right-8 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500">
-                   <div className="w-12 h-12 rounded-full bg-[#022166] flex items-center justify-center text-white shadow-xl">
-                      <ArrowRight size={20} />
-                   </div>
+                  {/* Specialità centrata senza pallino laterale per simmetria */}
+                  <p className="text-slate-500 text-sm font-bold leading-relaxed tracking-tight italic max-w-[250px]">
+                    {membro.specialita}
+                  </p>
                 </div>
               </div>
             ))}
