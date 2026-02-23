@@ -160,11 +160,11 @@ const inviaPrenotazione = async () => {
           
           <div className="h-full flex items-center w-full">
             <div className="flex items-center shrink-0">
-              <img 
-                src="https://raw.githubusercontent.com/thinhdutong00/image-fisioterapia-malavasi/92e18a782853772b8d90a1ef6e851630fc1492ae/CENTRO-FISIOTERAPICO-CAVEZZO-MODENA-1.webp" 
-                alt="Logo Fisioterapia Malavasi" 
-                className={`transition-all duration-500 object-contain ${isScrolled ? 'h-10 md:h-12' : 'h-12 md:h-16 brightness-0 invert'}`}
-              />
+<img 
+  src="https://raw.githubusercontent.com/thinhdutong00/image-fisioterapia-malavasi/92e18a782853772b8d90a1ef6e851630fc1492ae/CENTRO-FISIOTERAPICO-CAVEZZO-MODENA-1.webp" 
+  alt="Logo Fisioterapia Malavasi" 
+  className={`transition-all duration-500 object-contain ${isScrolled ? 'h-8 md:h-12' : 'h-10 md:h-16 brightness-0 invert'}`}
+/>
             </div>
 
             <nav className={`hidden xl:flex items-center gap-5 2xl:gap-8 text-[11px] 2xl:text-[12px] font-black uppercase tracking-[0.15em] ml-8 transition-colors duration-500
@@ -177,23 +177,28 @@ const inviaPrenotazione = async () => {
               <a href="#dove-siamo" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">DOVE SIAMO</a>
             </nav>
 
-            <div className="flex items-center gap-3 ml-auto shrink-0">
-              <a href="tel:3338225464" className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-bold text-[11px] transition-all whitespace-nowrap border-2
-                ${isScrolled 
-                  ? 'bg-white border-[#022166] text-[#022166] hover:bg-[#022166] hover:text-white' 
-                  : 'bg-white/10 border-white/20 text-white hover:bg-white hover:text-[#022166]'}`}>
-                <Phone size={14} /> <span className="hidden lg:inline">333 822 5464</span>
-              </a>
-              <a href="#prenota" className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-[11px] transition-all shadow-md whitespace-nowrap
-                ${isScrolled 
-                  ? 'bg-[#022166] text-white hover:bg-[#55B4FF]' 
-                  : 'bg-[#55B4FF] text-[#022166] hover:bg-white'}`}>
-                PRENOTA ORA
-              </a>
-              <button className={`xl:hidden ml-2 transition-colors ${isScrolled ? 'text-[#022166]' : 'text-white'}`} onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
-              </button>
-            </div>
+<div className="flex items-center gap-2 md:gap-3 ml-auto shrink-0">
+  {/* Pulsante Chiamata: Sempre visibile */}
+  <a href="tel:3338225464" className={`flex items-center gap-2 px-3 md:px-4 py-2 md:py-2.5 rounded-xl font-bold text-[11px] transition-all whitespace-nowrap border-2
+    ${isScrolled 
+      ? 'bg-white border-[#022166] text-[#022166] hover:bg-[#022166] hover:text-white' 
+      : 'bg-white/10 border-white/20 text-white hover:bg-white hover:text-[#022166]'}`}>
+    <Phone size={14} /> <span className="hidden sm:inline">333 822 5464</span>
+  </a>
+
+  {/* Pulsante Prenota: NASCOSTO su mobile (hidden), visibile da tablet in su (md:flex) */}
+  <a href="#prenota" className={`hidden md:flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-[11px] transition-all shadow-md whitespace-nowrap
+    ${isScrolled 
+      ? 'bg-[#022166] text-white hover:bg-[#55B4FF]' 
+      : 'bg-[#55B4FF] text-[#022166] hover:bg-white'}`}>
+    PRENOTA ORA
+  </a>
+
+  {/* Hamburger Menu: Sempre a destra su mobile */}
+  <button className={`xl:hidden p-1 transition-colors ${isScrolled ? 'text-[#022166]' : 'text-white'}`} onClick={() => setIsMenuOpen(!isMenuOpen)}>
+    {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+  </button>
+</div>
           </div>
         </div>
       </header>
