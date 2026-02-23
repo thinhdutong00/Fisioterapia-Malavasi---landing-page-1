@@ -481,28 +481,28 @@ const inviaPrenotazione = async () => {
       </section>
 
 {/* --- PRENOTAZIONE MULTISTEP --- */}
-      <section id="prenota" className="h-screen w-full snap-start snap-always py-24 px-6 bg-[#022166] flex flex-col items-center justify-center relative overflow-hidden">
-        {/* Decorazioni di sfondo organiche per uno stile sanitario moderno */}
+      <section id="prenota" className="min-h-screen w-full snap-start snap-always py-32 px-6 bg-[#022166] flex flex-col items-center relative overflow-hidden">
+        {/* Decorazioni di sfondo */}
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#55B4FF]/10 rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2" />
         <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#55B4FF]/5 rounded-full blur-[100px] -z-10 -translate-x-1/2 translate-y-1/2" />
 
-        <div className="max-w-4xl w-full flex flex-col h-full max-h-[800px] relative">
+        <div className="max-w-4xl w-full flex flex-col relative flex-grow justify-center">
           
-          {/* Progress Bar Sottile ed Elegante */}
-          <div className="w-full h-1 bg-white/10 rounded-full mb-12 overflow-hidden">
+          {/* Progress Bar */}
+          <div className="w-full h-1 bg-white/10 rounded-full mb-16 overflow-hidden">
             <div 
               className="h-full bg-[#55B4FF] transition-all duration-700 shadow-[0_0_10px_#55B4FF]" 
               style={{ width: `${(step / 5) * 100}%` }} 
             />
           </div>
 
-          <div className="text-white flex flex-col h-full">
+          <div className="text-white flex flex-col">
             <div className="mb-12">
               <span className="text-[#55B4FF] font-black text-[10px] uppercase tracking-[0.3em] block mb-2">Fase {step} di 5</span>
               <h2 className="text-4xl md:text-5xl font-black tracking-tighter">Prenota la tua <span className="text-[#55B4FF]">Visita</span></h2>
             </div>
 
-            <div className="flex-grow flex flex-col justify-center overflow-y-auto no-scrollbar">
+            <div className="min-h-[400px] flex flex-col justify-center">
               {step === 1 && (
                 <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
                   <label className="block text-2xl font-bold mb-8 tracking-tight">Qual è il motivo della consulenza?</label>
@@ -518,7 +518,7 @@ const inviaPrenotazione = async () => {
               {step === 2 && (
                 <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
                   <label className="block text-2xl font-bold mb-2 tracking-tight">Hai referti o esami?</label>
-                  <p className="text-[#55B4FF] mb-10 font-medium">Carica foto o PDF per aiutarci nella diagnosi (facoltativo).</p>
+                  <p className="text-[#55B4FF] mb-10 font-medium text-lg">Carica foto o PDF per aiutarci nella diagnosi (facoltativo).</p>
                   <div className="relative border-2 border-dashed border-white/20 rounded-[3rem] p-16 hover:border-[#55B4FF] hover:bg-white/5 transition-all group flex flex-col items-center justify-center cursor-pointer">
                     <input type="file" className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" onChange={(e) => setFile(e.target.files?.[0] || null)} />
                     <div className="w-20 h-20 rounded-full bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
@@ -602,7 +602,7 @@ const inviaPrenotazione = async () => {
               )}
             </div>
 
-            <div className="mt-16 flex gap-6 shrink-0">
+            <div className="mt-20 mb-24 flex gap-6 shrink-0">
               {step > 1 && (
                 <button onClick={prevStep} className="p-6 border-2 border-white/10 rounded-full text-white hover:border-[#55B4FF] hover:text-[#55B4FF] transition-all">
                   <ChevronLeft size={32} />
@@ -619,16 +619,16 @@ const inviaPrenotazione = async () => {
           </div>
         </div>
 
-{/* --- FOOTER (Stile Minimale) --- */}
-        <footer className="w-full py-12 text-center bg-transparent shrink-0">
-          <p className="text-white/30 font-black tracking-widest text-[10px] uppercase mb-4">
+        {/* --- FOOTER POSIZIONATO IN FONDO E PIÙ CHIARO --- */}
+        <footer className="w-full pt-16 pb-12 text-center bg-transparent mt-auto border-t border-white/5">
+          <p className="text-slate-400 font-black tracking-widest text-[10px] uppercase mb-4 opacity-80">
             © 2026 Fisioterapia Malavasi • Via I Maggio n°95 Cavezzo (MO) | P. IVA 03890170362
           </p>
           <div className="flex justify-center gap-8 text-[10px] font-bold uppercase tracking-widest">
-            <Link href="/privacy" className="text-white/40 hover:text-[#55B4FF] transition-colors">Privacy Policy</Link>
-            <Link href="/cookie" className="text-white/40 hover:text-[#55B4FF] transition-colors">Cookie Policy</Link>
+            <Link href="/privacy" className="text-slate-500 hover:text-[#55B4FF] transition-colors">Privacy Policy</Link>
+            <Link href="/cookie" className="text-slate-500 hover:text-[#55B4FF] transition-colors">Cookie Policy</Link>
           </div>
-          <p className="mt-4 text-[9px] text-[#55B4FF]/40 font-bold uppercase tracking-[0.3em]">MAGO DIGITAL™ STUDIO</p>
+          <p className="mt-6 text-[9px] text-slate-600 font-bold uppercase tracking-[0.3em]">MAGO DIGITAL™ STUDIO</p>
         </footer>
       </section>
 
