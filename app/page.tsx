@@ -161,31 +161,48 @@ const inviaPrenotazione = async () => {
         </div>
       </header>
 
-      {/* --- HERO SECTION --- */}
-      <section id="home" className="relative pt-36 pb-24 px-4 md:px-8 overflow-hidden bg-[#022166]">
+{/* --- HERO SECTION --- */}
+      <section id="home" className="relative min-h-screen flex items-center justify-center px-4 md:px-8 overflow-hidden bg-[#022166]">
+        {/* Sfondo */}
         <div className="absolute inset-0 z-0">
-          <img src="https://github.com/thinhdutong00/image-fisioterapia-malavasi/blob/main/1.png?raw=true" alt="Sfondo Anatomia" className="w-full h-full object-cover opacity-40" />
+          <img 
+            src="https://github.com/thinhdutong00/image-fisioterapia-malavasi/blob/main/1.png?raw=true" 
+            alt="Sfondo Anatomia" 
+            className="w-full h-full object-cover opacity-40" 
+          />
           <div className="absolute inset-0 bg-gradient-to-b from-[#022166]/80 via-[#022166]/60 to-[#022166]/90"></div>
         </div>
 
-        <div className="max-w-4xl mx-auto relative z-10 text-center">
+        {/* Contenuto centrato */}
+        <div className="max-w-4xl mx-auto relative z-10 text-center py-20">
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 text-white px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.2em] mb-8 shadow-sm">
             <Activity size={14} className="text-[#55B4FF]" />
             Eccellenza nella Riabilitazione a Modena
           </div>
+          
           <h1 className="text-5xl md:text-7xl xl:text-8xl font-black text-white leading-[1.1] mb-8 tracking-tighter">
-            Riprendi in mano il tuo <br /><span className="text-[#55B4FF]">Benessere.</span>
+            Riprendi in mano il tuo <br />
+            <span className="text-[#55B4FF]">Benessere.</span>
           </h1>
+          
           <p className="text-lg md:text-xl text-white/80 mb-10 max-w-2xl mx-auto font-medium leading-relaxed">
             Specialisti in fisioterapia e riabilitazione funzionale. Un approccio clinico su misura per tornare a muoverti senza dolore.
           </p>
+          
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <a href="#prenota" className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-[#55B4FF] text-[#022166] px-9 py-4.5 rounded-xl font-black text-xs uppercase tracking-widest hover:bg-white transition-all group">
+            <a href="#prenota" className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-[#55B4FF] text-[#022166] px-9 py-5 rounded-xl font-black text-xs uppercase tracking-widest hover:bg-white transition-all group shadow-lg shadow-[#55B4FF]/20">
               Inizia il Percorso <ArrowRight size={18} className="group-hover:translate-x-1.5 transition-transform" />
             </a>
-            <a href="#servizi" className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-white/10 backdrop-blur-md border border-white/20 text-white px-9 py-4.5 rounded-xl font-black text-xs uppercase tracking-widest hover:bg-white/20 transition-all">
+            <a href="#servizi" className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-white/10 backdrop-blur-md border border-white/20 text-white px-9 py-5 rounded-xl font-black text-xs uppercase tracking-widest hover:bg-white/20 transition-all">
               I nostri trattamenti
             </a>
+          </div>
+        </div>
+
+        {/* Freccia decorativa per scorrere (opzionale ma consigliata per l'altezza pieno schermo) */}
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 animate-bounce text-white/30 hidden md:block">
+          <div className="w-6 h-10 border-2 border-white/20 rounded-full flex justify-center p-1">
+            <div className="w-1 h-2 bg-white/40 rounded-full"></div>
           </div>
         </div>
       </section>
