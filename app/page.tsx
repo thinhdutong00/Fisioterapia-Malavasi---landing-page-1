@@ -533,19 +533,20 @@ const inviaPrenotazione = async () => {
       </section>
 
 
-{/* --- DOVE SIAMO - CREATIVE SPLIT LAYOUT --- */}
-<section id="dove-siamo" className="min-h-screen lg:h-screen w-full md:snap-start md:snap-always relative z-10 bg-white flex flex-col lg:flex-row">
+{/* --- DOVE SIAMO - FIX SCROLL LATERALE --- */}
+<section id="dove-siamo" className="min-h-screen lg:h-screen w-full md:snap-start md:snap-always relative z-10 bg-white flex flex-col lg:flex-row overflow-x-hidden">
         
         {/* LATO TESTI E SELEZIONE */}
-        <div className="lg:w-2/5 w-full p-6 md:p-16 lg:p-24 flex flex-col justify-center bg-gradient-to-br from-white to-slate-50 relative">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-[#55B4FF]/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
+        <div className="lg:w-2/5 w-full p-6 md:p-16 lg:p-24 flex flex-col justify-center bg-gradient-to-br from-white to-slate-50 relative overflow-hidden">
+          {/* Decorazione bloccata per non creare scroll */}
+          <div className="absolute top-0 right-0 w-32 h-32 bg-[#55B4FF]/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl pointer-events-none"></div>
           
-          <div className="relative z-10">
+          <div className="relative z-10 w-full">
             <span className="text-[#55B4FF] font-black text-xs uppercase tracking-[0.3em] mb-4 block">Vicinanza e Accessibilità</span>
             <h2 className="text-4xl md:text-5xl font-black text-[#022166] tracking-tight mb-4">Dove <span className="text-[#55B4FF]">Trovarci</span></h2>
             <p className="text-slate-500 font-medium mb-12 max-w-sm">Scegli la sede più vicina a te e visualizza il percorso interattivo.</p>
             
-            <div className="space-y-4">
+            <div className="space-y-4 w-full">
               {[
                 { n: 'Cavezzo (MO)', a: 'Via I maggio, 95', u: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2836.425145838563!2d11.0268581766627!3d44.8333169710705!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477f9506637e1967%3A0xc3f6050519965f3a!2sVia%20I%20Maggio%2C%2095%2C%2041032%20Cavezzo%20MO!5e0!3m2!1sit!2sit!4v1709564800000!5m2!1sit!2sit" },
                 { n: 'Rovereto sulla Secchia (MO)', a: 'Via Savino Forti, 61', u: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2837.2847594821564!2d10.957548776661955!3d44.82136127107067!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477f943f6f16428d%3A0x6b772c72b20755d5!2sVia%20Savino%20Forti%2C%2061%2C%2041016%20Rovereto%20Sulla%20Secchia%20MO!5e0!3m2!1sit!2sit!4v1709564900000!5m2!1sit!2sit" }
@@ -553,30 +554,30 @@ const inviaPrenotazione = async () => {
                 <button 
                   key={loc.n} 
                   onClick={() => setMapUrl(loc.u)} 
-                  className={`group w-full flex items-center gap-4 md:gap-6 p-5 md:p-6 rounded-[2rem] md:rounded-[2.5rem] transition-all duration-500 ${
+                  className={`group w-full flex items-center gap-4 p-5 rounded-[2rem] transition-all duration-500 border ${
                     mapUrl === loc.u 
-                    ? 'bg-[#022166] text-white shadow-2xl shadow-blue-900/20 translate-x-2 md:translate-x-4' 
-                    : 'bg-white border border-slate-100 text-[#022166] hover:border-[#55B4FF]/30 hover:bg-slate-50'
+                    ? 'bg-[#022166] text-white shadow-xl border-[#022166]' 
+                    : 'bg-white border-slate-100 text-[#022166]'
                   }`}
                 >
-                  <div className={`p-3 md:p-4 rounded-2xl shrink-0 transition-colors ${
-                    mapUrl === loc.u ? 'bg-[#55B4FF] text-[#022166]' : 'bg-slate-100 text-[#022166] group-hover:bg-[#55B4FF]/10'
+                  <div className={`p-3 rounded-2xl shrink-0 transition-colors ${
+                    mapUrl === loc.u ? 'bg-[#55B4FF] text-[#022166]' : 'bg-slate-100 text-[#022166]'
                   }`}>
                     <MapPin size={22} />
                   </div>
-                  <div className="text-left">
-                    <p className={`font-black text-base md:text-lg leading-none mb-1 ${mapUrl === loc.u ? 'text-white' : 'text-[#022166]'}`}>{loc.n}</p>
-                    <p className={`text-[10px] md:text-xs font-bold uppercase tracking-widest ${mapUrl === loc.u ? 'text-[#55B4FF]' : 'text-slate-400'}`}>{loc.a}</p>
+                  <div className="text-left overflow-hidden">
+                    <p className="font-black text-base leading-none mb-1 truncate">{loc.n}</p>
+                    <p className={`text-[10px] font-bold uppercase tracking-widest truncate ${mapUrl === loc.u ? 'text-[#55B4FF]' : 'text-slate-400'}`}>{loc.a}</p>
                   </div>
                 </button>
               ))}
             </div>
 
-            {/* FISARMONICA ORARI - Ottimizzata Mobile */}
-            <div className="mt-8 overflow-hidden rounded-[2rem] border border-slate-100 bg-white shadow-sm transition-all duration-300">
+            {/* FISARMONICA ORARI */}
+            <div className="mt-8 overflow-hidden rounded-[2rem] border border-slate-100 bg-white shadow-sm w-full">
               <button 
                 onClick={() => setIsHoursOpen(!isHoursOpen)}
-                className="w-full flex items-center justify-between p-5 md:p-6 hover:bg-slate-50 transition-colors"
+                className="w-full flex items-center justify-between p-5 hover:bg-slate-50 transition-colors"
                 type="button"
               >
                 <div className="flex items-center gap-4">
@@ -591,7 +592,7 @@ const inviaPrenotazione = async () => {
               </button>
               
               <div className={`transition-all duration-500 ease-in-out ${isHoursOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'} overflow-hidden`}>
-                <div className="p-5 md:p-6 pt-0 space-y-3 border-t border-slate-50">
+                <div className="p-5 pt-0 space-y-3 border-t border-slate-50">
                   {[
                     { d: 'Lunedì', o: '09–13, 15–20' },
                     { d: 'Martedì', o: '09–13, 15–21' },
@@ -601,33 +602,22 @@ const inviaPrenotazione = async () => {
                     { d: 'Sabato', o: '09–13' },
                     { d: 'Domenica', o: 'Chiuso' },
                   ].map((item, idx) => (
-                    <div key={idx} className="flex justify-between items-center">
-                      <span className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-tighter">{item.d}</span>
-                      <span className={`text-xs md:text-sm font-black ${item.o === 'Chiuso' ? 'text-red-400' : 'text-[#022166]'}`}>{item.o}</span>
+                    <div key={idx} className="flex justify-between items-center gap-4">
+                      <span className="text-[10px] font-bold text-slate-400 uppercase tracking-tighter shrink-0">{item.d}</span>
+                      <span className={`text-xs font-black ${item.o === 'Chiuso' ? 'text-red-400' : 'text-[#022166]'} text-right`}>{item.o}</span>
                     </div>
                   ))}
-                  
-                  <div className="pt-3">
-                    <a 
-                      href="#prenota" 
-                      onClick={() => setIsHoursOpen(false)} 
-                      className="inline-flex items-center gap-2 text-[10px] font-black text-[#55B4FF] uppercase tracking-widest italic hover:text-[#022166] transition-colors"
-                    >
-                      <Zap size={12} /> Riceviamo solo su appuntamento
-                    </a>
-                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* LATO MAPPA - Altezza minima garantita su mobile */}
-        <div className="lg:w-3/5 w-full h-[400px] lg:h-full relative group bg-slate-200">
-          <div className="absolute inset-0 bg-[#022166]/5 pointer-events-none z-10"></div>
+        {/* LATO MAPPA */}
+        <div className="lg:w-3/5 w-full h-[350px] lg:h-full relative bg-slate-200 overflow-hidden">
           <iframe 
             src={mapUrl} 
-            className="w-full h-full grayscale-[0.2] contrast-[1.1] relative z-0 transition-all duration-700 group-hover:grayscale-0" 
+            className="w-full h-full grayscale-[0.2] contrast-[1.1]" 
             style={{ border: 0 }} 
             allowFullScreen 
             loading="lazy"
