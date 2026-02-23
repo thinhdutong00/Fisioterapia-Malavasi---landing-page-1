@@ -140,7 +140,7 @@ const inviaPrenotazione = async () => {
 
   return (
     // AGGIUNTO: Snap-y e overflow per gestire le slide
-    <main className="h-screen overflow-y-auto snap-y snap-mandatory scroll-smooth bg-[#F0F4F8] text-slate-800 font-sans">
+<main className="h-screen overflow-y-auto md:snap-y md:snap-mandatory scroll-smooth bg-[#F0F4F8] text-slate-800 font-sans">
       
       {/* BACKGROUND DECORATIONS */}
       <div className="fixed inset-0 z-0 pointer-events-none">
@@ -216,7 +216,7 @@ const inviaPrenotazione = async () => {
       )}
 
 {/* --- HERO SECTION --- */}
-      <section id="home" className="h-screen w-full snap-start snap-always relative flex items-center justify-center px-4 md:px-8 overflow-hidden bg-[#022166]">
+      <section id="home" className="h-screen w-full md:snap-start md:snap-always relative flex items-center justify-center px-4 md:px-8 overflow-hidden bg-[#022166]">
         <div className="absolute inset-0 z-0">
           <img 
             src="https://github.com/thinhdutong00/image-fisioterapia-malavasi/blob/main/1.png?raw=true" 
@@ -264,7 +264,7 @@ const inviaPrenotazione = async () => {
       </section>
 
 {/* --- TRATTAMENTI --- */}
-      <section id="servizi" className="min-h-screen w-full snap-start snap-always relative flex items-center justify-center py-24 px-4 bg-white/5 backdrop-blur-sm overflow-hidden">
+      <section id="servizi" className="min-h-screen w-full md:snap-start md:snap-always relative flex items-center justify-center py-24 px-4 bg-white/5 backdrop-blur-sm overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10 w-full py-10">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-black text-[#022166] tracking-tight mb-4">I Nostri Trattamenti</h2>
@@ -298,7 +298,7 @@ const inviaPrenotazione = async () => {
       </section>
 
 {/* --- SEZIONE STAFF --- */}
-      <section id="team" className="min-h-screen w-full snap-start snap-always relative flex items-center justify-center py-32 px-4 overflow-hidden bg-slate-50">
+<section id="team" className="min-h-screen w-full md:snap-start md:snap-always relative flex items-center justify-center py-32 px-4 overflow-hidden bg-slate-50">
         {/* Elementi decorativi di sfondo */}
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#55B4FF]/5 rounded-full blur-[120px] -z-10 translate-x-1/2" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#022166]/5 rounded-full blur-[100px] -z-10 -translate-x-1/2" />
@@ -370,7 +370,7 @@ const inviaPrenotazione = async () => {
       </section>
 
       {/* --- RECENSIONI --- */}
-      <section id="recensioni" className="h-screen w-full snap-start snap-always py-24 px-4 relative overflow-hidden bg-gradient-to-b from-white to-[#F0F4F8] flex items-center">
+<section id="recensioni" className="h-screen w-full md:snap-start md:snap-always py-24 px-4 relative overflow-hidden bg-gradient-to-b from-white to-[#F0F4F8] flex items-center">
         <div className="max-w-7xl mx-auto w-full">
           <div className="flex flex-col md:flex-row items-center justify-between mb-16 gap-8">
             <div className="text-center md:text-left">
@@ -455,7 +455,7 @@ const inviaPrenotazione = async () => {
 
 
 {/* --- SEZIONE COME LAVORIAMO (PROCESSO) --- */}
-      <section id="metodo" className="min-h-screen w-full snap-start snap-always relative flex items-center justify-center py-32 px-4 overflow-hidden bg-white">
+<section id="metodo" className="min-h-screen w-full md:snap-start md:snap-always relative flex items-center justify-center py-32 px-4 overflow-hidden bg-white">
         {/* Decorazione sottile di sfondo */}
         <div className="absolute top-1/2 left-0 w-[300px] h-[300px] bg-[#55B4FF]/5 rounded-full blur-[100px] -z-10" />
 
@@ -533,7 +533,7 @@ const inviaPrenotazione = async () => {
 
 
 {/* --- DOVE SIAMO - CREATIVE SPLIT LAYOUT --- */}
-      <section id="dove-siamo" className="h-screen w-full snap-start snap-always relative z-10 bg-white flex flex-col lg:flex-row overflow-hidden">
+<section id="dove-siamo" className="h-screen w-full md:snap-start md:snap-always relative z-10 bg-white flex flex-col lg:flex-row overflow-hidden">
         
         {/* LATO TESTI E SELEZIONE */}
         <div className="lg:w-2/5 w-full p-8 md:p-16 lg:p-24 flex flex-col justify-center bg-gradient-to-br from-white to-slate-50 relative">
@@ -635,7 +635,7 @@ const inviaPrenotazione = async () => {
       </section>
 
 {/* --- PRENOTAZIONE MULTISTEP --- */}
-      <section id="prenota" className="min-h-screen w-full snap-start snap-always py-32 px-6 bg-[#022166] flex flex-col items-center relative overflow-hidden">
+<section id="prenota" className="min-h-screen w-full md:snap-start md:snap-always py-32 px-6 bg-[#022166] flex flex-col items-center relative overflow-hidden">
         {/* Decorazioni di sfondo */}
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#55B4FF]/10 rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2" />
         <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#55B4FF]/5 rounded-full blur-[100px] -z-10 -translate-x-1/2 translate-y-1/2" />
