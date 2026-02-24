@@ -256,39 +256,71 @@ export default function FisioterapiaMalavasi() {
         </div>
       </section>
 
-      {/* --- TRATTAMENTI --- */}
-      <section id="servizi" className="min-h-screen w-full md:snap-start md:snap-always relative flex items-center justify-center py-24 px-4 bg-slate-50 overflow-hidden">
-        <div className="max-w-7xl mx-auto relative z-10 w-full py-10">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-black text-[#022166] tracking-tight mb-4">I Nostri Trattamenti</h2>
-            <div className="w-20 h-1.5 bg-[#55B4FF] mx-auto rounded-full"></div>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              { id: 1, titolo: "Riabilitazione Post-Chirurgica", icona: <Accessibility size={32} />, breve: "Recupero mobilità post protesi o LCA.", colore: "from-blue-500/10" },
-              { id: 2, titolo: "Trattamento Cervicalgia e Lombalgia", icona: <MoveVertical size={32} />, breve: "Soluzioni per eliminare il dolore alla colonna.", colore: "from-cyan-500/10" },
-              { id: 3, titolo: "Fisioterapia Sportiva", icona: <Footprints size={32} />, breve: "Recupero traumi e ritorno in campo rapido.", colore: "from-[#55B4FF]/10" },
-              { id: 4, titolo: "Cura delle Tendiniti", icona: <Dna size={32} />, breve: "Trattamento avanzato per infiammazioni croniche.", colore: "from-indigo-500/10" },
-              { id: 5, titolo: "Riabilitazione Posturale", icona: <Layers size={32} />, breve: "Risoluzione di rigidità e cefalee tensive.", colore: "from-sky-500/10" },
-              { id: 6, titolo: "Altri Trattamenti", icona: <Plus size={32} />, breve: "Approccio su misura per ogni tua condizione.", colore: "from-blue-400/10" }
-            ].map((item) => (
-              <div key={item.id} onClick={() => setSelectedTrattamento(item)} className="group relative p-8 rounded-[2.5rem] bg-white border border-slate-100 cursor-pointer transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl">
-                <div className={`absolute inset-0 bg-gradient-to-br ${item.colore} to-transparent rounded-[2.5rem] opacity-0 group-hover:opacity-100 transition-opacity`}></div>
-                <div className="relative z-10">
-                  <div className="w-16 h-16 bg-[#022166] text-[#55B4FF] rounded-2xl flex items-center justify-center mb-6 shadow-lg transition-transform group-hover:scale-110">
-                    {item.icona}
-                  </div>
-                  <h3 className="text-xl font-black text-[#022166] mb-3 leading-tight">{item.titolo}</h3>
-                  <p className="text-slate-500 text-sm font-medium mb-6 line-clamp-2">{item.breve}</p>
-                  <div className="inline-flex items-center gap-2 text-[#55B4FF] font-black text-[10px] uppercase tracking-widest">
-                    Scopri i dettagli <ChevronRight size={14} />
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+{/* --- TRATTAMENTI --- */}
+
+<section id="servizi" className="min-h-screen w-full snap-start snap-always relative flex items-center justify-center py-24 px-4 bg-white/5 backdrop-blur-sm overflow-hidden">
+
+<div className="max-w-7xl mx-auto relative z-10 w-full py-10">
+
+<div className="text-center mb-16">
+
+<h2 className="text-4xl md:text-5xl font-black text-[#022166] tracking-tight mb-4">I Nostri Trattamenti</h2>
+
+<div className="w-20 h-1.5 bg-[#55B4FF] mx-auto rounded-full"></div>
+
+</div>
+
+<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+{[
+
+{ id: 1, titolo: "Riabilitazione Post-Chirurgica (Protesi e LCA)", icona: <Accessibility size={32} />, breve: "Percorsi specialistici per il recupero della mobilità dopo interventi di protesi (anca/ginocchio) o ricostruzione legamentosa (LCA).", descrizione: "L'intervento chirurgico è solo il primo passo: il vero successo dipende dalla riabilitazione. Seguo protocolli basati sulle più recenti evidenze scientifiche per ridurre l'infiammazione, recuperare la forza muscolare e restituirti la piena autonomia nel minor tempo possibile. Non lasciare che la cicatrice limiti il tuo movimento.", colore: "from-blue-500/20 to-transparent" },
+
+{ id: 2, titolo: "Trattamento Cervicalgia, Lombalgia ed Ernie del Disco", icona: <MoveVertical size={32} />, breve: "Soluzioni efficaci per eliminare il dolore alla colonna vertebrale, sciatalgie e tensioni muscolari legate alla postura.", descrizione: "Il mal di schiena non deve diventare una condizione normale della tua vita. Attraverso tecniche di terapia manuale e manipolazioni mirate, agisco sulla causa del dolore (sia essa meccanica, posturale o compressiva) per liberare le articolazioni e rilassare i tessuti profondi. Torna a muoverti senza paura di rimanere bloccato.", colore: "from-cyan-500/20 to-transparent" },
+
+{ id: 3, titolo: "Fisioterapia Sportiva e Recupero Traumi da Sport", icona: <Footprints size={32} />, breve: "Trattamento specialistico per distorsioni alla caviglia, lesioni muscolari e problematiche articolari della spalla.", descrizione: "Per uno sportivo, ogni giorno fermo è un giorno perso. Mi occupo del trattamento di traumi acuti e cronici, applicando tecniche che accelerano la riparazione dei tessuti e prevengono future recidive. Dalla gestione della fase acuta al ritorno in campo, ogni fase è monitorata per garantirti la massima performance.", colore: "from-[#55B4FF]/20 to-transparent" },
+
+{ id: 4, titolo: "Cura delle Tendiniti e Infiammazioni Croniche", icona: <Dna size={32} />, breve: "Trattamento per dolore al gomito (epicondilite), tendine d'Achille e fascite plantare con approcci conservativi avanzati.", descrizione: "Le tendinopatie richiedono pazienza e competenza specifica: il riposo assoluto spesso non basta. Utilizzo un approccio combinato di terapia manuale ed esercizio terapeutico per rieducare il tendine al carico, eliminando quel dolore persistente che ostacola i tuoi gesti quotidiani o la tua corsa.", colore: "from-indigo-500/20 to-transparent" },
+
+{ id: 5, titolo: "Riabilitazione Posturale e Cefalee Muscolo-Tensive", icona: <Layers size={32} />, breve: "Risoluzione di rigidità, formicolii e cefalee causate da posture prolungate davanti al PC o stress lavorativo.", descrizione: "Ore trascorse in smartworking o alla guida creano squilibri che sfociano in mal di testa e pesantezza alle spalle. Il mio intervento mira a riequilibrare le catene muscolari e a darti gli strumenti ergonomici per proteggere il tuo corpo durante il lavoro. Riconquista una postura naturale e senza tensioni.", colore: "from-sky-500/20 to-transparent" },
+
+{ id: 6, titolo: "Altri Trattamenti", icona: <Plus size={32} />, breve: "Descrivici la tua condizione per un approccio su misura.", descrizione: "Ogni corpo ha una storia unica e non tutte le patologie rientrano in categorie standard. Che si tratti di dolori articolari diffusi, riabilitazione neurologica, problemi post-traumatici complessi o semplicemente il desiderio di un check-up preventivo, sono qui per ascoltarti. Utilizzeremo il modulo di prenotazione per analizzare il tuo caso specifico ancora prima del tuo arrivo in studio.", colore: "from-blue-400/20 to-transparent" }
+
+].map((item) => (
+
+<div key={item.id} onClick={() => setSelectedTrattamento(item)} className="group relative p-8 rounded-[2.5rem] bg-white/40 backdrop-blur-md border border-white/60 cursor-pointer transition-all duration-500 hover:bg-white hover:-translate-y-2 hover:shadow-2xl">
+
+<div className={`absolute inset-0 bg-gradient-to-br ${item.colore} rounded-[2.5rem] opacity-0 group-hover:opacity-100 transition-opacity`}></div>
+
+<div className="relative z-10">
+
+<div className="w-16 h-16 bg-[#022166] text-[#55B4FF] rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-[#022166]/20 transition-transform group-hover:scale-110">
+
+{item.icona}
+
+</div>
+
+<h3 className="text-xl font-black text-[#022166] mb-3 leading-tight">{item.titolo}</h3>
+
+<p className="text-slate-600 text-sm font-medium mb-6 line-clamp-2">{item.breve}</p>
+
+<div className="inline-flex items-center gap-2 text-[#55B4FF] font-black text-[10px] uppercase tracking-widest">
+
+Scopri i dettagli <ChevronRight size={14} />
+
+</div>
+
+</div>
+
+</div>
+
+))}
+
+</div>
+
+</div>
+
+</section>
 
       {/* --- SEZIONE STAFF --- */}
       <section id="team" className="min-h-screen w-full md:snap-start md:snap-always relative flex items-center justify-center py-32 px-4 bg-white">
