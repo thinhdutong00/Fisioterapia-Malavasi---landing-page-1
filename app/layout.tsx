@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Fisioterapia Malavasi | Bomporto",
+  title: "Fisioterapia Malavasi | Cavezzo",
   description: "Studio di Fisioterapia del Dott. Mirco Malavasi",
 };
 
