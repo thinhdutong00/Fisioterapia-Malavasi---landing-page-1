@@ -6,7 +6,7 @@ import Script from 'next/script'; // Import necessario per Clarity
 import CookieBanner from './components/CookieBanner';
 import {
   Activity, X, ChevronRight, Zap, UserRound, CheckCircle,
-  Phone, ArrowRight, Menu, Users, Star, MapPin, HeartPulse,
+  Phone, ArrowRight, Menu, Users, Star, Home, MapPin, HeartPulse,
   Calendar, Clock, Plus, ChevronLeft, Upload, FileText,
   Accessibility, HandIcon, Move, Spline, Scale,
   Stethoscope, Dumbbell, UserCheck,
@@ -278,7 +278,7 @@ const inviaPrenotazione = async () => {
 
 {[
 
-{ id: 1, titolo: "Riabilitazione Post-Chirurgica (Protesi e LCA)", icona: <Accessibility size={32} />, breve: "Percorsi specialistici per il recupero della mobilità dopo interventi di protesi (anca/ginocchio) o ricostruzione legamentosa (LCA).", descrizione: "L'intervento chirurgico è solo il primo passo: il vero successo dipende dalla riabilitazione. Seguo protocolli basati sulle più recenti evidenze scientifiche per ridurre l'infiammazione, recuperare la forza muscolare e restituirti la piena autonomia nel minor tempo possibile. Non lasciare che la cicatrice limiti il tuo movimento.", colore: "from-blue-500/20 to-transparent" },
+{ id: 1, titolo: "Riabilitazione Post-Chirurgica", icona: <Accessibility size={32} />, breve: "Percorsi specialistici per il recupero della mobilità dopo interventi di protesi (anca/ginocchio) o ricostruzione legamentosa (LCA).", descrizione: "L'intervento chirurgico è solo il primo passo: il vero successo dipende dalla riabilitazione. Seguo protocolli basati sulle più recenti evidenze scientifiche per ridurre l'infiammazione, recuperare la forza muscolare e restituirti la piena autonomia nel minor tempo possibile. Non lasciare che la cicatrice limiti il tuo movimento.", colore: "from-blue-500/20 to-transparent" },
 
 { id: 2, titolo: "Trattamento Cervicalgia, Lombalgia ed Ernie del Disco", icona: <MoveVertical size={32} />, breve: "Soluzioni efficaci per eliminare il dolore alla colonna vertebrale, sciatalgie e tensioni muscolari legate alla postura.", descrizione: "Il mal di schiena non deve diventare una condizione normale della tua vita. Attraverso tecniche di terapia manuale e manipolazioni mirate, agisco sulla causa del dolore (sia essa meccanica, posturale o compressiva) per liberare le articolazioni e rilassare i tessuti profondi. Torna a muoverti senza paura di rimanere bloccato.", colore: "from-cyan-500/20 to-transparent" },
 
@@ -286,9 +286,9 @@ const inviaPrenotazione = async () => {
 
 { id: 4, titolo: "Cura delle Tendiniti e Infiammazioni Croniche", icona: <Dna size={32} />, breve: "Trattamento per dolore al gomito (epicondilite), tendine d'Achille e fascite plantare con approcci conservativi avanzati.", descrizione: "Le tendinopatie richiedono pazienza e competenza specifica: il riposo assoluto spesso non basta. Utilizzo un approccio combinato di terapia manuale ed esercizio terapeutico per rieducare il tendine al carico, eliminando quel dolore persistente che ostacola i tuoi gesti quotidiani o la tua corsa.", colore: "from-indigo-500/20 to-transparent" },
 
-{ id: 5, titolo: "Riabilitazione Posturale e Cefalee Muscolo-Tensive", icona: <Layers size={32} />, breve: "Risoluzione di rigidità, formicolii e cefalee causate da posture prolungate davanti al PC o stress lavorativo.", descrizione: "Ore trascorse in smartworking o alla guida creano squilibri che sfociano in mal di testa e pesantezza alle spalle. Il mio intervento mira a riequilibrare le catene muscolari e a darti gli strumenti ergonomici per proteggere il tuo corpo durante il lavoro. Riconquista una postura naturale e senza tensioni.", colore: "from-sky-500/20 to-transparent" },
+{ id: 5, titolo: "Riabilitazione Cefalee e vertigini", icona: <Scale size={32} />, breve: "Trattamento specialistico per emicrania tensionali, vertigini posizionali e disturbi dell'equilibrio di origine cervicale.", descrizione: "Il mal di testa e il senso di sbandamento non sono fatalità, ma spesso derivano da disfunzioni del sistema cervicale o vestibolare. Attraverso manovre specifiche e rieducazione mirata, agisco sulla causa dei tuoi sintomi per restituirti stabilità e una mente libera dal dolore cronico. Non lasciare che le vertigini limitino la tua libertà: prenota un consulto per ritrovare il tuo equilibrio.", colore: "from-sky-500/20 to-transparent" },
 
-{ id: 6, titolo: "Altri Trattamenti", icona: <Plus size={32} />, breve: "Descrivici la tua condizione per un approccio su misura.", descrizione: "Ogni corpo ha una storia unica e non tutte le patologie rientrano in categorie standard. Che si tratti di dolori articolari diffusi, riabilitazione neurologica, problemi post-traumatici complessi o semplicemente il desiderio di un check-up preventivo, sono qui per ascoltarti. Utilizzeremo il modulo di prenotazione per analizzare il tuo caso specifico ancora prima del tuo arrivo in studio.", colore: "from-blue-400/20 to-transparent" }
+{ id: 6, titolo: "Fisioterapia a Domicilio", icona: <Home size={32} />, breve: "Il professionista direttamente a casa tua per pazienti con ridotta mobilità, post-operatori o anziani.", descrizione: "Se il dolore o le difficoltà motorie ti impediscono di raggiungere lo studio, sarò io a venire da te. Offro un servizio domiciliare completo a Cavezzo e zone limitrofe, portando tutta l'attrezzatura e le competenze necessarie per iniziare subito il tuo percorso di guarigione nell'ambiente confortevole di casa tua. La tua riabilitazione non deve aspettare: contattami per organizzare la tua prima seduta a domicilio.", colore: "from-blue-400/20 to-transparent" }
 
 ].map((item) => (
 
