@@ -43,6 +43,11 @@ export default function RootLayout({
           }}
         />
         
+
+<link rel="preconnect" href="https://raw.githubusercontent.com" />
+  <link rel="dns-prefetch" href="https://raw.githubusercontent.com" />
+
+
 {/* Blocco Microsoft Clarity ottimizzato */}
 <Script id="microsoft-clarity" strategy="lazyOnload">
   {`
