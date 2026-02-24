@@ -42,6 +42,7 @@ export default function RootLayout({
             `,
           }}
         />
+        
         {/* Blocco Microsoft Clarity aggiunto qui */}
         <Script id="microsoft-clarity" strategy="afterInteractive">
           {`
