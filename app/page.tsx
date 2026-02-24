@@ -206,12 +206,18 @@ export default function FisioterapiaMalavasi() {
         </div>
       </header>
 
-      {/* --- MENU MOBILE OVERLAY --- */}
+{/* --- MENU MOBILE OVERLAY --- */}
       {isMenuOpen && (
         <div className="fixed inset-0 z-[150] bg-[#022166] flex flex-col items-center justify-center gap-8 animate-in fade-in zoom-in-95 duration-300 xl:hidden">
-          <button onClick={() => setIsMenuOpen(false)} className="absolute top-8 right-8 text-white p-2">
+          {/* Bottone chiusura con aria-label per accessibilità */}
+          <button 
+            onClick={() => setIsMenuOpen(false)} 
+            className="absolute top-8 right-8 text-white p-2"
+            aria-label="Chiudi menu navigazione"
+          >
             <X size={40} />
           </button>
+          
           <nav className="flex flex-col items-center gap-8 text-white font-black text-2xl uppercase tracking-widest">
             <a href="#home" onClick={() => setIsMenuOpen(false)}>Chi Siamo</a>
             <a href="#servizi" onClick={() => setIsMenuOpen(false)}>Trattamenti</a>
@@ -220,7 +226,14 @@ export default function FisioterapiaMalavasi() {
             <a href="#recensioni" onClick={() => setIsMenuOpen(false)}>Recensioni</a>
             <a href="#dove-siamo" onClick={() => setIsMenuOpen(false)}>Dove Siamo</a>
           </nav>
-          <a href="#prenota" onClick={() => setIsMenuOpen(false)} className="mt-4 bg-[#55B4FF] text-[#022166] px-10 py-4 rounded-2xl font-black text-lg">PRENOTA ORA</a>
+          
+          <a 
+            href="#prenota" 
+            onClick={() => setIsMenuOpen(false)} 
+            className="mt-4 bg-[#55B4FF] text-[#022166] px-10 py-4 rounded-2xl font-black text-lg"
+          >
+            PRENOTA ORA
+          </a>
         </div>
       )}
 
