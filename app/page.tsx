@@ -16,7 +16,16 @@ import {
   Shield
 } from 'lucide-react';
 
-import { Swiper, SwiperSlide } from 'swiper/react';
+import dynamic from 'next/dynamic';
+
+const Swiper = dynamic(() => import('swiper/react').then((mod) => mod.Swiper), { 
+  ssr: false,
+  loading: () => <div className="h-[400px] w-full bg-slate-50 animate-pulse rounded-[3rem]" /> 
+});
+const SwiperSlide = dynamic(() => import('swiper/react').then((mod) => mod.SwiperSlide), { 
+  ssr: false 
+});
+
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 
 import 'swiper/css';
