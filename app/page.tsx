@@ -597,7 +597,7 @@ export default function FisioterapiaMalavasi() {
             <div className="min-h-[400px] flex flex-col justify-center">
               {step === 1 && (
                 <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-                  <label className="block text-2xl font-bold mb-8 tracking-tight">Qual è il motivo della consulenza?</label>
+                  <label className="block text-2xl font-bold mb-8 tracking-tight">Qual è il motivo della visita?</label>
                   <textarea 
                     className="w-full bg-white/5 border-b-2 border-white/20 p-6 rounded-t-3xl outline-none focus:border-[#55B4FF] focus:bg-white/10 transition-all min-h-[200px] text-xl placeholder:text-white/20" 
                     placeholder="Descrivi brevemente il tuo problema o dolore..." 
