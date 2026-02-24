@@ -139,18 +139,18 @@ export default function FisioterapiaMalavasi() {
         <div className="absolute bottom-[5%] right-[-5%] w-[30%] h-[30%] bg-[#022166]/5 rounded-full blur-[100px]"></div>
       </div>
 
-      {/* --- HEADER DINAMICO --- */}
+{/* --- HEADER DINAMICO --- */}
       <header className={`fixed top-0 inset-x-0 z-[100] transition-all duration-500 ease-in-out px-4 md:px-8
         ${isVisible ? 'translate-y-4 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'}`}>
 
-        <div className={`mx-auto transition-all duration-500 ease-out flex items-center justify-between
+        <div className={`mx-auto transition-all duration-500 ease-out flex items-center
           ${isScrolled
-            ? 'max-w-7xl bg-white/90 backdrop-blur-xl border border-white/40 shadow-2xl rounded-3xl h-20 px-6 md:px-10'
+            ? 'max-w-7xl bg-white/90 backdrop-blur-xl border border-white/40 shadow-2xl rounded-3xl h-24 px-8 md:px-12'
             : 'max-w-full bg-transparent h-24 px-4'}`}>
 
-          {/* LOGO */}
-          <div className="flex items-center shrink-0">
-            <div className="relative h-12 md:h-16 w-40 md:w-56 transition-transform duration-500">
+          {/* LATO SINISTRO: LOGO (Occupa spazio per spingere il centro) */}
+          <div className="flex-1 flex justify-start">
+            <div className="relative h-12 md:h-16 w-40 md:w-56">
               <Image
                 src="https://raw.githubusercontent.com/thinhdutong00/image-fisioterapia-malavasi/92e18a782853772b8d90a1ef6e851630fc1492ae/CENTRO-FISIOTERAPICO-CAVEZZO-MODENA-1.webp"
                 alt="Logo Fisioterapia Malavasi"
@@ -161,8 +161,8 @@ export default function FisioterapiaMalavasi() {
             </div>
           </div>
 
-          {/* NAVIGATION DESKTOP */}
-          <nav className={`hidden xl:flex items-center gap-6 2xl:gap-10 text-[11px] font-black uppercase tracking-[0.2em] transition-colors duration-500
+          {/* CENTRO: NAV MENU (Posizionato esattamente al centro) */}
+          <nav className={`hidden xl:flex flex-none items-center gap-6 2xl:gap-8 text-[11px] font-black uppercase tracking-[0.2em] transition-colors duration-500
             ${isScrolled ? 'text-[#022166]' : 'text-white'}`}>
             <a href="#home" className="hover:text-[#55B4FF] transition-all">CHI SIAMO</a>
             <a href="#servizi" className="hover:text-[#55B4FF] transition-all">TRATTAMENTI</a>
@@ -172,8 +172,8 @@ export default function FisioterapiaMalavasi() {
             <a href="#dove-siamo" className="hover:text-[#55B4FF] transition-all">DOVE SIAMO</a>
           </nav>
 
-          {/* ACTIONS */}
-          <div className="flex items-center gap-3 md:gap-4">
+          {/* LATO DESTRO: PULSANTI (Occupa spazio uguale al lato sinistro) */}
+          <div className="flex-1 flex justify-end items-center gap-3 md:gap-4">
             <a href="tel:3338225464" className={`flex items-center gap-2 px-4 py-3 rounded-2xl font-bold text-[11px] transition-all border-2
               ${isScrolled
                 ? 'bg-white border-[#022166] text-[#022166] hover:bg-[#022166] hover:text-white'
@@ -183,8 +183,8 @@ export default function FisioterapiaMalavasi() {
 
             <a href="#prenota" className={`hidden md:flex items-center gap-2 px-6 py-3 rounded-2xl font-black text-[11px] transition-all shadow-xl
               ${isScrolled
-                ? 'bg-[#022166] text-white hover:bg-[#55B4FF] hover:-translate-y-0.5'
-                : 'bg-[#55B4FF] text-[#022166] hover:bg-white hover:-translate-y-0.5'}`}>
+                ? 'bg-[#022166] text-white hover:bg-[#55B4FF]'
+                : 'bg-[#55B4FF] text-[#022166] hover:bg-white'}`}>
               PRENOTA ORA
             </a>
 
@@ -192,6 +192,7 @@ export default function FisioterapiaMalavasi() {
               {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
           </div>
+
         </div>
       </header>
 
@@ -212,7 +213,7 @@ export default function FisioterapiaMalavasi() {
           <a href="#prenota" onClick={() => setIsMenuOpen(false)} className="mt-4 bg-[#55B4FF] text-[#022166] px-10 py-4 rounded-2xl font-black text-lg">PRENOTA ORA</a>
         </div>
       )}
-      
+
       {/* --- HERO SECTION --- */}
       <section id="home" className="h-screen w-full md:snap-start md:snap-always relative flex items-center justify-center px-4 md:px-8 overflow-hidden bg-[#022166]">
         <div className="absolute inset-0 z-0">
