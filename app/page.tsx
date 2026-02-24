@@ -140,59 +140,59 @@ export default function FisioterapiaMalavasi() {
       </div>
 
 {/* --- HEADER DINAMICO --- */}
-      <header className={`fixed top-0 inset-x-0 z-[100] transition-all duration-500 ease-in-out px-4 md:px-8
-        ${isVisible ? 'translate-y-4 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'}`}>
+      <header className={`fixed top-0 inset-x-0 z-[100] transition-all duration-500 ease-in-out
+        ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'}
+        ${isScrolled ? 'py-2' : 'py-0'}`}>
 
-        <div className={`mx-auto transition-all duration-500 ease-out flex items-center
+        <div className={`mx-auto transition-all duration-500 px-4 md:px-6
           ${isScrolled
-            ? 'max-w-7xl bg-white/90 backdrop-blur-xl border border-white/40 shadow-2xl rounded-3xl h-24 px-8 md:px-12'
-            : 'max-w-full bg-transparent h-24 px-4'}`}>
+            ? 'max-w-7xl bg-white/80 backdrop-blur-xl border border-white/40 shadow-lg rounded-2xl h-20'
+            : 'max-w-full bg-transparent h-24'}`}>
 
-          {/* 1. BLOCCO LOGO (Sinistra) */}
-          <div className="flex-1 flex justify-start items-center">
-            <div className="relative h-12 md:h-16 w-40 md:w-56">
+          <div className="h-full flex items-center w-full">
+            <div className="flex items-center shrink-0">
               <Image
                 src="https://raw.githubusercontent.com/thinhdutong00/image-fisioterapia-malavasi/92e18a782853772b8d90a1ef6e851630fc1492ae/CENTRO-FISIOTERAPICO-CAVEZZO-MODENA-1.webp"
                 alt="Logo Fisioterapia Malavasi"
-                fill
-                className={`transition-all duration-500 object-contain ${isScrolled ? 'brightness-100' : 'brightness-0 invert'}`}
+                width={256} // Larghezza massima indicativa per mantenere le proporzioni
+                height={64}  // Altezza massima indicativa
+                className={`transition-all duration-500 object-contain w-auto ${
+                  isScrolled ? 'h-8 md:h-12 brightness-100' : 'h-10 md:h-16 brightness-0 invert'
+                }`}
                 priority
               />
             </div>
+
+            <nav className={`hidden xl:flex items-center gap-5 2xl:gap-8 text-[11px] 2xl:text-[12px] font-black uppercase tracking-[0.15em] ml-8 transition-colors duration-500
+              ${isScrolled ? 'text-[#022166]' : 'text-white'}`}>
+              <a href="#home" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">CHI SIAMO</a>
+              <a href="#servizi" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">TRATTAMENTI</a>
+              <a href="#metodo" className="hover:text-[#55B4FF] transition-all whitespace-nowrap text-[#55B4FF]">COME LAVORIAMO</a>
+              <a href="#team" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">TEAM</a>
+              <a href="#recensioni" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">RECENSIONI</a>
+              <a href="#dove-siamo" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">DOVE SIAMO</a>
+            </nav>
+
+            <div className="flex items-center gap-2 md:gap-3 ml-auto shrink-0">
+              <a href="tel:3338225464" className={`flex items-center gap-2 px-3 md:px-4 py-2 md:py-2.5 rounded-xl font-bold text-[11px] transition-all whitespace-nowrap border-2
+                ${isScrolled
+                  ? 'bg-white border-[#022166] text-[#022166] hover:bg-[#022166] hover:text-white'
+                  : 'bg-white/10 border-white/20 text-white hover:bg-white hover:text-[#022166]'}`}>
+                <Phone size={14} /> <span className="hidden sm:inline">333 822 5464</span>
+              </a>
+
+              <a href="#prenota" className={`hidden md:flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-[11px] transition-all shadow-md whitespace-nowrap
+                ${isScrolled
+                  ? 'bg-[#022166] text-white hover:bg-[#55B4FF]'
+                  : 'bg-[#55B4FF] text-[#022166] hover:bg-white'}`}>
+                PRENOTA ORA
+              </a>
+
+              <button className={`xl:hidden p-1 transition-colors ${isScrolled ? 'text-[#022166]' : 'text-white'}`} onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+              </button>
+            </div>
           </div>
-
-          {/* 2. BLOCCO NAVIGAZIONE (Centro) */}
-          <nav className={`hidden xl:flex flex-none items-center gap-6 2xl:gap-8 text-[11px] font-black uppercase tracking-[0.2em] transition-colors duration-500
-            ${isScrolled ? 'text-[#022166]' : 'text-white'}`}>
-            <a href="#home" className="hover:text-[#55B4FF] transition-all">CHI SIAMO</a>
-            <a href="#servizi" className="hover:text-[#55B4FF] transition-all">TRATTAMENTI</a>
-            <a href="#metodo" className="hover:text-[#55B4FF] transition-all">METODO</a>
-            <a href="#team" className="hover:text-[#55B4FF] transition-all">TEAM</a>
-            <a href="#recensioni" className="hover:text-[#55B4FF] transition-all">RECENSIONI</a>
-            <a href="#dove-siamo" className="hover:text-[#55B4FF] transition-all">DOVE SIAMO</a>
-          </nav>
-
-          {/* 3. BLOCCO PULSANTI (Destra) */}
-          <div className="flex-1 flex justify-end items-center gap-3 md:gap-4">
-            <a href="tel:3338225464" className={`flex items-center gap-2 px-4 py-3 rounded-2xl font-bold text-[11px] transition-all border-2
-              ${isScrolled
-                ? 'bg-white border-[#022166] text-[#022166] hover:bg-[#022166] hover:text-white'
-                : 'bg-white/10 border-white/20 text-white hover:bg-white hover:text-[#022166]'}`}>
-              <Phone size={14} /> <span className="hidden lg:inline">333 822 5464</span>
-            </a>
-
-            <a href="#prenota" className={`hidden md:flex items-center gap-2 px-6 py-3 rounded-2xl font-black text-[11px] transition-all shadow-xl
-              ${isScrolled
-                ? 'bg-[#022166] text-white hover:bg-[#55B4FF]'
-                : 'bg-[#55B4FF] text-[#022166] hover:bg-white'}`}>
-              PRENOTA ORA
-            </a>
-
-            <button className={`xl:hidden p-2 transition-colors ${isScrolled ? 'text-[#022166]' : 'text-white'}`} onClick={() => setIsMenuOpen(!isMenuOpen)}>
-              {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
-            </button>
-          </div>
-
         </div>
       </header>
 
