@@ -1,188 +1,537 @@
 "use client";
 
+
+
 import React, { useState, useEffect } from 'react';
+
 import Link from 'next/link';
-import Script from 'next/script';
+
 import CookieBanner from './components/CookieBanner';
-import { 
-  Activity, X, ChevronRight, Zap, UserRound, CheckCircle, 
-  Phone, ArrowRight, Menu, Users, Star, MapPin, HeartPulse, 
-  Calendar, Clock, Plus, ChevronLeft, Upload, FileText,
-  Accessibility, HandIcon, Move, Spline, Scale,
-  Stethoscope, Dumbbell, UserCheck,
-  Dna, MoveVertical, Footprints, Layers,
-  MessageCircle, ClipboardCheck, Quote,
-  Shield 
+
+import {
+
+Activity, X, ChevronRight, Zap, UserRound, CheckCircle,
+
+Phone, ArrowRight, Menu, Users, Star, MapPin, HeartPulse,
+
+Calendar, Clock, Plus, ChevronLeft, Upload, FileText,
+
+Accessibility, HandIcon, Move, Spline, Scale,
+
+Stethoscope, Dumbbell, UserCheck,
+
+// Nuove icone per approccio biomeccanico
+
+Dna, MoveVertical, Footprints, Layers,
+
+// Icone specifiche per la sezione "Come Lavoriamo" e "Recensioni"
+
+MessageCircle, ClipboardCheck, Quote,
+
+// Aggiunta icona scudo
+
+Shield
+
 } from 'lucide-react';
 
+
+
 import { Swiper, SwiperSlide } from 'swiper/react';
+
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 
+
+
 import 'swiper/css';
+
 import 'swiper/css/pagination';
+
 import 'swiper/css/navigation';
 
+
+
 export default function FisioterapiaMalavasi() {
-  // --- STATI INTERFACCIA ---
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [mapUrl, setMapUrl] = useState("https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2836.216234033104!2d11.026365!3d44.838499!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDTCsDUwJzE4LjYiTiAxMcKwMDEnMzQuOSJF!5e0!3m2!1sit!2sit!4v1700000000000!5m2!1sit!2sit");
-  const [selectedTrattamento, setSelectedTrattamento] = useState<any>(null);
-  const [isHoursOpen, setIsHoursOpen] = useState(false);
 
-  // --- STATI MODULO MULTISTEP ---
-  const [step, setStep] = useState(1);
-  const [file, setFile] = useState<File | null>(null);
-  const [formData, setFormData] = useState({
-    motivo: '', sede: '', data: '', ora: '', nome: '', telefono: '', email: '', privacy: false
-  });
+// --- STATI INTERFACCIA ---
 
-  // --- LOGICA CALENDARIO ---
-  const oggi = new Date();
-  const giorniMese = Array.from({ length: 28 }, (_, i) => {
-    const d = new Date();
-    d.setDate(oggi.getDate() + i);
-    return d;
-  });
+const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const generaOrari = () => {
-    const slots = [];
-    const intervalli = [{ start: 9, end: 13 }, { start: 15, end: 21 }];
-    intervalli.forEach(range => {
-      for (let ora = range.start; ora < range.end; ora++) {
-        for (let min = 0; min < 60; min += 15) {
-          slots.push(`${ora.toString().padStart(2, '0')}:${min.toString().padStart(2, '0')}`);
-        }
-      }
-    });
-    slots.push("13:00", "21:00");
-    return [...new Set(slots)].sort();
-  };
+const [isVisible, setIsVisible] = useState(true);
 
-  const orariDisponibili = generaOrari();
-  const nextStep = () => setStep(step + 1);
-  const prevStep = () => setStep(step - 1);
+const [lastScrollY, setLastScrollY] = useState(0);
 
-  // --- LOGICA NAVBAR ---
-  useEffect(() => {
-    const mainContainer = document.querySelector('main');
-    const controlNavbar = () => {
-      if (mainContainer) {
-        const currentScrollY = mainContainer.scrollTop;
-        const isNearBottom = mainContainer.scrollHeight - currentScrollY - mainContainer.clientHeight < 400;
-        setIsScrolled(currentScrollY > 50);
-        if (isNearBottom || (currentScrollY > lastScrollY && currentScrollY > 100)) {
-          setIsVisible(false);
-        } else {
-          setIsVisible(true);
-        }
-        setLastScrollY(currentScrollY);
-      }
-    };
-    mainContainer?.addEventListener('scroll', controlNavbar);
-    return () => mainContainer?.removeEventListener('scroll', controlNavbar);
-  }, [lastScrollY]);
+const [isScrolled, setIsScrolled] = useState(false);
 
-  const inviaPrenotazione = async () => {
-    try {
-      const data = new FormData();
-      Object.entries(formData).forEach(([key, value]) => data.append(key, value.toString()));
-      if (file) data.append('file', file);
-      const response = await fetch('/api/send', { method: 'POST', body: data });
-      if (response.ok) window.location.href = 'https://fisioterapiamalavasi.it/thank-you-page/';
-      else alert("Errore nell'invio.");
-    } catch (error) {
-      alert("Errore di connessione.");
-    }
-  };
+const [mapUrl, setMapUrl] = useState("https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2836.216234033104!2d11.026365!3d44.838499!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDTCsDUwJzE4LjYiTiAxMcKwMDEnMzQuOSJF!5e0!3m2!1sit!2sit!4v1700000000000!5m2!1sit!2sit");
 
-  return (
-    <main className="h-screen overflow-y-auto md:snap-y md:snap-mandatory scroll-smooth bg-white text-slate-800 font-sans">
-      
-      <Script id="microsoft-clarity" strategy="afterInteractive">
-        {`
-          (function(c,l,a,r,i,t,y){
-              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-          })(window, document, "clarity", "script", "vm4wfzivpa");
-        `}
-      </Script>
+const [selectedTrattamento, setSelectedTrattamento] = useState<any>(null);
 
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        <div className="absolute top-[-5%] left-[-5%] w-[40%] h-[40%] bg-[#55B4FF]/10 rounded-full blur-[100px]"></div>
-        <div className="absolute bottom-[5%] right-[-5%] w-[30%] h-[30%] bg-[#022166]/5 rounded-full blur-[100px]"></div>
-      </div>
+const [isHoursOpen, setIsHoursOpen] = useState(false);
 
-      {/* --- HEADER --- */}
-      <header className={`fixed top-0 inset-x-0 z-[100] transition-all duration-500 ease-in-out 
-        ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'}
-        ${isScrolled ? 'py-2' : 'py-0'}`}>
-        <div className={`mx-auto transition-all duration-500 px-4 md:px-6 
-          ${isScrolled 
-            ? 'max-w-7xl bg-white/90 backdrop-blur-xl border border-slate-200 shadow-lg rounded-2xl h-20' 
-            : 'max-w-full bg-transparent h-24'}`}>
-          <div className="h-full flex items-center w-full">
-            <div className="flex items-center shrink-0">
-              <img 
-                src="https://raw.githubusercontent.com/thinhdutong00/image-fisioterapia-malavasi/92e18a782853772b8d90a1ef6e851630fc1492ae/CENTRO-FISIOTERAPICO-CAVEZZO-MODENA-1.webp" 
-                alt="Logo" 
-                className={`transition-all duration-500 object-contain ${isScrolled ? 'h-8 md:h-12' : 'h-10 md:h-16'}`}
-              />
-            </div>
-            <nav className="hidden xl:flex items-center gap-5 ml-8 text-[11px] font-black uppercase tracking-widest text-[#022166]">
-              <a href="#home" className="hover:text-[#55B4FF]">CHI SIAMO</a>
-              <a href="#servizi" className="hover:text-[#55B4FF]">TRATTAMENTI</a>
-              <a href="#metodo" className="text-[#55B4FF]">COME LAVORIAMO</a>
-              <a href="#team" className="hover:text-[#55B4FF]">TEAM</a>
-              <a href="#recensioni" className="hover:text-[#55B4FF]">RECENSIONI</a>
-              <a href="#dove-siamo" className="hover:text-[#55B4FF]">DOVE SIAMO</a>
-            </nav>
-            <div className="flex items-center gap-3 ml-auto">
-              <a href="tel:3338225464" className="flex items-center gap-2 px-4 py-2 rounded-xl font-bold text-[11px] border-2 border-[#022166] text-[#022166] hover:bg-[#022166] hover:text-white transition-all">
-                <Phone size={14} /> <span className="hidden sm:inline">333 822 5464</span>
-              </a>
-              <a href="#prenota" className="hidden md:flex bg-[#022166] text-white px-5 py-2.5 rounded-xl font-bold text-[11px] hover:bg-[#55B4FF] shadow-md transition-all">
-                PRENOTA ORA
-              </a>
-            </div>
-          </div>
-        </div>
-      </header>
 
-      {/* --- HERO SECTION (AGGIUNTA) --- */}
-      <section id="home" className="min-h-screen w-full md:snap-start md:snap-always relative flex items-center justify-center pt-24 pb-12 px-4">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center relative z-10">
-          <div className="space-y-8 text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#022166]/5 border border-[#022166]/10 text-[#022166] font-bold text-xs uppercase tracking-widest">
-              <Zap size={14} className="text-[#55B4FF]" /> Specialisti della Riabilitazione
-            </div>
-            <h1 className="text-5xl md:text-7xl font-black text-[#022166] leading-[1.1] tracking-tighter">
-              Riconquista il tuo <span className="text-[#55B4FF]">Movimento.</span>
-            </h1>
-            <p className="text-lg text-slate-600 font-medium leading-relaxed max-w-xl mx-auto lg:mx-0">
-              Il Centro Fisioterapico Malavasi a Cavezzo (MO) offre percorsi di cura personalizzati basati sulle più recenti evidenze scientifiche.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
-              <a href="#prenota" className="group flex items-center gap-3 bg-[#022166] text-white px-8 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-[#55B4FF] transition-all shadow-xl shadow-[#022166]/20">
-                Inizia il Recupero <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-              </a>
-              <a href="#servizi" className="text-[#022166] font-black text-sm uppercase p-4 hover:text-[#55B4FF] transition-colors">
-                I Nostri Trattamenti
-              </a>
-            </div>
-          </div>
-          <div className="relative aspect-square md:aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white">
-            <img 
-              src="https://raw.githubusercontent.com/thinhdutong00/image-fisioterapia-malavasi/92e18a782853772b8d90a1ef6e851630fc1492ae/STUDIO-FISIOTERAPIA-CAVEZZO.webp" 
-              alt="Studio Fisioterapia" 
-              className="w-full h-full object-cover" 
-            />
-          </div>
-        </div>
-      </section>
+
+// --- STATI MODULO MULTISTEP ---
+
+const [step, setStep] = useState(1);
+
+const [file, setFile] = useState<File | null>(null);
+
+const [formData, setFormData] = useState({
+
+motivo: '',
+
+sede: '',
+
+data: '',
+
+ora: '',
+
+nome: '',
+
+telefono: '',
+
+email: '',
+
+privacy: false
+
+});
+
+
+
+// --- LOGICA CALENDARIO PREMIUM ---
+
+const oggi = new Date();
+
+const giorniMese = Array.from({ length: 28 }, (_, i) => {
+
+const d = new Date();
+
+d.setDate(oggi.getDate() + i);
+
+return d;
+
+});
+
+
+
+// Genera orari 9-13 e 15-21 ogni 15 minuti
+
+const generaOrari = () => {
+
+const slots = [];
+
+const intervalli = [
+
+{ start: 9, end: 13 },
+
+{ start: 15, end: 21 }
+
+];
+
+
+
+intervalli.forEach(range => {
+
+for (let ora = range.start; ora < range.end; ora++) {
+
+for (let min = 0; min < 60; min += 15) {
+
+const h = ora.toString().padStart(2, '0');
+
+const m = min.toString().padStart(2, '0');
+
+slots.push(`${h}:${m}`);
+
+}
+
+}
+
+});
+
+slots.push("13:00", "21:00");
+
+return [...new Set(slots)].sort();
+
+};
+
+
+
+const orariDisponibili = generaOrari();
+
+
+
+const nextStep = () => setStep(step + 1);
+
+const prevStep = () => setStep(step - 1);
+
+
+
+// --- LOGICA NAVBAR AGGIORNATA (Nasconde in Prenotazione) ---
+
+useEffect(() => {
+
+const mainContainer = document.querySelector('main');
+
+
+const controlNavbar = () => {
+
+if (mainContainer) {
+
+const currentScrollY = mainContainer.scrollTop;
+
+const scrollHeight = mainContainer.scrollHeight;
+
+const clientHeight = mainContainer.clientHeight;
+
+
+
+// Se siamo negli ultimi 800px (circa l'altezza della sezione prenota), nascondi l'header
+
+const isNearBottom = scrollHeight - currentScrollY - clientHeight < 400;
+
+
+
+// Gestisce la trasparenza
+
+setIsScrolled(currentScrollY > 50);
+
+
+
+// Gestisce la visibilità: scompare se scorri giù O se sei vicino al fondo (sezione prenota)
+
+if (isNearBottom) {
+
+setIsVisible(false);
+
+} else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+
+setIsVisible(false);
+
+} else {
+
+setIsVisible(true);
+
+}
+
+
+setLastScrollY(currentScrollY);
+
+}
+
+};
+
+
+
+mainContainer?.addEventListener('scroll', controlNavbar);
+
+return () => mainContainer?.removeEventListener('scroll', controlNavbar);
+
+}, [lastScrollY]);
+
+
+
+// --- FUNZIONE INVIO EMAIL RESEND ---
+
+const inviaPrenotazione = async () => {
+
+try {
+
+const data = new FormData();
+
+Object.entries(formData).forEach(([key, value]) => {
+
+data.append(key, value.toString());
+
+});
+
+if (file) {
+
+data.append('file', file);
+
+}
+
+const response = await fetch('/api/send', {
+
+method: 'POST',
+
+body: data,
+
+});
+
+
+
+if (response.ok) {
+
+window.location.href = 'https://fisioterapiamalavasi.it/thank-you-page/';
+
+} else {
+
+alert("Errore nell'invio. Riprova tra poco.");
+
+}
+
+} catch (error) {
+
+alert("Errore di connessione. Controlla la tua rete.");
+
+}
+
+};
+
+
+
+return (
+
+// AGGIUNTO: Snap-y e overflow per gestire le slide
+
+<main className="h-screen overflow-y-auto md:snap-y md:snap-mandatory scroll-smooth bg-[#F0F4F8] text-slate-800 font-sans">
+
+
+{/* BACKGROUND DECORATIONS */}
+
+<div className="fixed inset-0 z-0 pointer-events-none">
+
+<div className="absolute top-[-5%] left-[-5%] w-[40%] h-[40%] bg-[#55B4FF]/10 rounded-full blur-[100px]"></div>
+
+<div className="absolute bottom-[5%] right-[-5%] w-[30%] h-[30%] bg-[#022166]/5 rounded-full blur-[100px]"></div>
+
+</div>
+
+
+
+{/* --- HEADER DINAMICO --- */}
+
+<header className={`fixed top-0 inset-x-0 z-[100] transition-all duration-500 ease-in-out
+
+${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'}
+
+${isScrolled ? 'py-2' : 'py-0'}`}>
+
+
+<div className={`mx-auto transition-all duration-500 px-4 md:px-6
+
+${isScrolled
+
+? 'max-w-7xl bg-white/80 backdrop-blur-xl border border-white/40 shadow-lg rounded-2xl h-20'
+
+: 'max-w-full bg-transparent h-24'}`}>
+
+
+<div className="h-full flex items-center w-full">
+
+<div className="flex items-center shrink-0">
+
+<img
+
+src="https://raw.githubusercontent.com/thinhdutong00/image-fisioterapia-malavasi/92e18a782853772b8d90a1ef6e851630fc1492ae/CENTRO-FISIOTERAPICO-CAVEZZO-MODENA-1.webp"
+
+alt="Logo Fisioterapia Malavasi"
+
+className={`transition-all duration-500 object-contain ${isScrolled ? 'h-8 md:h-12' : 'h-10 md:h-16 brightness-0 invert'}`}
+
+/>
+
+</div>
+
+
+
+<nav className={`hidden xl:flex items-center gap-5 2xl:gap-8 text-[11px] 2xl:text-[12px] font-black uppercase tracking-[0.15em] ml-8 transition-colors duration-500
+
+${isScrolled ? 'text-[#022166]' : 'text-white'}`}>
+
+<a href="#home" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">CHI SIAMO</a>
+
+<a href="#servizi" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">TRATTAMENTI</a>
+
+<a href="#metodo" className="hover:text-[#55B4FF] transition-all whitespace-nowrap text-[#55B4FF]">COME LAVORIAMO</a>
+
+<a href="#team" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">TEAM</a>
+
+<a href="#recensioni" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">RECENSIONI</a>
+
+<a href="#dove-siamo" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">DOVE SIAMO</a>
+
+</nav>
+
+
+
+<div className="flex items-center gap-2 md:gap-3 ml-auto shrink-0">
+
+{/* Pulsante Chiamata: Sempre visibile */}
+
+<a href="tel:3338225464" className={`flex items-center gap-2 px-3 md:px-4 py-2 md:py-2.5 rounded-xl font-bold text-[11px] transition-all whitespace-nowrap border-2
+
+${isScrolled
+
+? 'bg-white border-[#022166] text-[#022166] hover:bg-[#022166] hover:text-white'
+
+: 'bg-white/10 border-white/20 text-white hover:bg-white hover:text-[#022166]'}`}>
+
+<Phone size={14} /> <span className="hidden sm:inline">333 822 5464</span>
+
+</a>
+
+
+
+{/* Pulsante Prenota: NASCOSTO su mobile (hidden), visibile da tablet in su (md:flex) */}
+
+<a href="#prenota" className={`hidden md:flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-[11px] transition-all shadow-md whitespace-nowrap
+
+${isScrolled
+
+? 'bg-[#022166] text-white hover:bg-[#55B4FF]'
+
+: 'bg-[#55B4FF] text-[#022166] hover:bg-white'}`}>
+
+PRENOTA ORA
+
+</a>
+
+
+
+{/* Hamburger Menu: Sempre a destra su mobile */}
+
+<button className={`xl:hidden p-1 transition-colors ${isScrolled ? 'text-[#022166]' : 'text-white'}`} onClick={() => setIsMenuOpen(!isMenuOpen)}>
+
+{isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</header>
+
+
+
+{/* --- MENU MOBILE OVERLAY --- */}
+
+{isMenuOpen && (
+
+<div className="fixed inset-0 z-[150] bg-[#022166] flex flex-col items-center justify-center gap-8 animate-in fade-in duration-300 xl:hidden">
+
+<button onClick={() => setIsMenuOpen(false)} className="absolute top-8 right-8 text-white">
+
+<X size={40} />
+
+</button>
+
+<nav className="flex flex-col items-center gap-6 text-white font-black text-2xl uppercase tracking-widest">
+
+<a href="#home" onClick={() => setIsMenuOpen(false)}>Chi Siamo</a>
+
+<a href="#servizi" onClick={() => setIsMenuOpen(false)}>Trattamenti</a>
+
+<a href="#metodo" onClick={() => setIsMenuOpen(false)} className="text-[#55B4FF]">Come Lavoriamo</a>
+
+<a href="#team" onClick={() => setIsMenuOpen(false)}>Team</a>
+
+<a href="#recensioni" onClick={() => setIsMenuOpen(false)}>Recensioni</a>
+
+<a href="#dove-siamo" onClick={() => setIsMenuOpen(false)}>Dove Siamo</a>
+
+</nav>
+
+</div>
+
+)}
+
+
+
+{/* --- HERO SECTION --- */}
+
+<section id="home" className="h-screen w-full md:snap-start md:snap-always relative flex items-center justify-center px-4 md:px-8 overflow-hidden bg-[#022166]">
+
+<div className="absolute inset-0 z-0">
+
+<img
+
+src="https://github.com/thinhdutong00/image-fisioterapia-malavasi/blob/main/1.png?raw=true"
+
+alt="Sfondo Anatomia"
+
+className="w-full h-full object-cover opacity-40"
+
+/>
+
+<div className="absolute inset-0 bg-gradient-to-b from-[#022166]/80 via-[#022166]/60 to-[#022166]/90"></div>
+
+</div>
+
+
+
+<div className="max-w-4xl mx-auto relative z-10 text-center py-20">
+
+<div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md border border-white/20 text-white px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.2em] mb-8 shadow-sm">
+
+<img
+
+src="https://github.com/thinhdutong00/Fisioterapia-Malavasi---landing-page-1/blob/main/public/Progetto%20senza%20titolo%20-%202026-02-23T223838.202.png?raw=true"
+
+alt="Logo Malavasi"
+
+className="h-5 w-auto object-contain brightness-0 invert"
+
+/>
+
+LA SCIENZA PENSATA PER IL TUO BENESSERE
+
+</div>
+
+
+
+{/* Titolo alleggerito da font-black a font-bold */}
+
+<h1 className="text-5xl md:text-7xl xl:text-8xl font-bold text-white leading-[1.1] mb-8 tracking-tighter">
+
+Fisioterapia e Riabilitazione <br />
+
+<span className="text-[#55B4FF]">a Cavezzo</span>
+
+</h1>
+
+
+<p className="text-lg md:text-xl text-white/80 mb-10 max-w-2xl mx-auto font-medium leading-relaxed">
+
+Valutazioni precise e trattamenti fisioterapici basati su evidenze scientifiche, pensati per ridurre il dolore, migliorare la mobilità e accompagnarti verso un recupero stabile e reale.
+
+</p>
+
+
+<div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+
+<a href="#prenota" className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-[#55B4FF] text-[#022166] px-9 py-5 rounded-xl font-black text-xs uppercase tracking-widest hover:bg-white transition-all group shadow-lg shadow-[#55B4FF]/20">
+
+Inizia il Percorso <ArrowRight size={18} className="group-hover:translate-x-1.5 transition-transform" />
+
+</a>
+
+<a href="#servizi" className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-white/10 backdrop-blur-md border border-white/20 text-white px-9 py-5 rounded-xl font-black text-xs uppercase tracking-widest hover:bg-white/20 transition-all">
+
+I nostri trattamenti
+
+</a>
+
+</div>
+
+</div>
+
+
+
+<div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 animate-bounce text-white/30 hidden md:block">
+
+<div className="w-6 h-10 border-2 border-white/20 rounded-full flex justify-center p-1">
+
+<div className="w-1 h-2 bg-white/40 rounded-full"></div>
+
+</div>
+
+</div>
+
+</section>
 
       {/* --- TRATTAMENTI --- */}
       <section id="servizi" className="min-h-screen w-full md:snap-start md:snap-always relative flex items-center justify-center py-24 px-4 bg-slate-50 overflow-hidden">
