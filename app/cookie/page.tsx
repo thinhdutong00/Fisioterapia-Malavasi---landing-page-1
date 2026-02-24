@@ -3,11 +3,22 @@
 import React from 'react';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
-
+import Script from 'next/script'; // Importato per Clarity
 
 export default function CookiePolicy() {
   return (
     <main className="min-h-screen bg-white text-slate-800 font-sans p-8 md:p-24">
+      {/* Script Clarity con il tuo ID vm4wfzivpa */}
+      <Script id="microsoft-clarity" strategy="afterInteractive">
+        {`
+          (function(c,l,a,r,i,t,y){
+              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "vm4wfzivpa");
+        `}
+      </Script>
+
       <div className="max-w-3xl mx-auto">
         <Link href="/" className="inline-flex items-center gap-2 text-[#55B4FF] font-bold mb-12 hover:gap-3 transition-all">
           <ArrowLeft size={20} /> Torna al sito
@@ -30,7 +41,8 @@ export default function CookiePolicy() {
                 <strong>Cookie Tecnici:</strong> Necessari per il corretto funzionamento del modulo di prenotazione e della navigazione (non richiedono consenso).
               </li>
               <li>
-                <strong>Cookie Statistici (Google Analytics):</strong> Utilizzati per capire quante persone visitano il sito in forma aggregata e anonima.
+                {/* AGGIORNATO: Inserito Microsoft Clarity qui */}
+                <strong>Cookie Statistici e di Comportamento (Microsoft Clarity & Google Analytics):</strong> Utilizzati per capire come gli utenti interagiscono con il sito (mappe di calore e registrazioni anonime). Tutti i dati sensibili inseriti nei moduli vengono mascherati automaticamente.
               </li>
               <li>
                 <strong>Cookie di Marketing (Google & Meta Ads):</strong> Poiché utilizziamo campagne pubblicitarie, questi cookie tracciano le conversioni (es. quante persone cliccano su "Invia" dopo aver visto un annuncio).
@@ -45,7 +57,7 @@ export default function CookiePolicy() {
             </p>
           </section>
 
-<section>
+          <section>
             <h2 className="text-xl font-bold text-[#022166] mb-4">Titolare del Trattamento</h2>
             <p>Dott. Mirco Malavasi - Via S. Forti, n. 41 - 41016 Novi di Modena (MO)</p>
           </section>
