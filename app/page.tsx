@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image'; // Import aggiunto per ottimizzazione immagini
+import Image from 'next/image';
 import Script from 'next/script';
 import CookieBanner from './components/CookieBanner';
 import {
@@ -84,7 +84,9 @@ export default function FisioterapiaMalavasi() {
         const scrollHeight = mainContainer.scrollHeight;
         const clientHeight = mainContainer.clientHeight;
         const isNearBottom = scrollHeight - currentScrollY - clientHeight < 400;
+        
         setIsScrolled(currentScrollY > 50);
+
         if (isNearBottom) {
           setIsVisible(false);
         } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
@@ -121,11 +123,9 @@ export default function FisioterapiaMalavasi() {
       if (response.ok) {
         window.location.href = 'https://fisioterapiamalavasi.it/thank-you-page/';
       } else {
-        console.error("Errore risposta server:", response.status);
         alert("Errore nell'invio. Riprova tra poco.");
       }
     } catch (error) {
-      console.error("Errore connessione:", error);
       alert("Errore di connessione.");
     }
   };
@@ -140,17 +140,17 @@ export default function FisioterapiaMalavasi() {
       </div>
 
       {/* --- HEADER DINAMICO --- */}
-      <header className={`fixed top-0 inset-x-0 z-[100] transition-all duration-500 ease-in-out
-        ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'}
-        ${isScrolled ? 'py-2' : 'py-0'}`}>
+      <header className={`fixed top-0 inset-x-0 z-[100] transition-all duration-500 ease-in-out px-4 md:px-8
+        ${isVisible ? 'translate-y-4 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'}`}>
 
-        <div className={`mx-auto transition-all duration-500 px-4 md:px-6
+        <div className={`mx-auto transition-all duration-500 ease-out flex items-center justify-between
           ${isScrolled
-            ? 'max-w-7xl bg-white/80 backdrop-blur-xl border border-white/40 shadow-lg rounded-2xl h-20'
-            : 'max-w-full bg-transparent h-24'}`}>
+            ? 'max-w-7xl bg-white/90 backdrop-blur-xl border border-white/40 shadow-2xl rounded-3xl h-20 px-6 md:px-10'
+            : 'max-w-full bg-transparent h-24 px-4'}`}>
 
-          <div className="h-full flex items-center w-full">
-            <div className="flex items-center shrink-0 relative h-10 md:h-16 w-40 md:w-64">
+          {/* LOGO */}
+          <div className="flex items-center shrink-0">
+            <div className="relative h-12 md:h-16 w-40 md:w-56 transition-transform duration-500">
               <Image
                 src="https://raw.githubusercontent.com/thinhdutong00/image-fisioterapia-malavasi/92e18a782853772b8d90a1ef6e851630fc1492ae/CENTRO-FISIOTERAPICO-CAVEZZO-MODENA-1.webp"
                 alt="Logo Fisioterapia Malavasi"
@@ -159,57 +159,60 @@ export default function FisioterapiaMalavasi() {
                 priority
               />
             </div>
+          </div>
 
-            <nav className={`hidden xl:flex items-center gap-5 2xl:gap-8 text-[11px] 2xl:text-[12px] font-black uppercase tracking-[0.15em] ml-8 transition-colors duration-500
-              ${isScrolled ? 'text-[#022166]' : 'text-white'}`}>
-              <a href="#home" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">CHI SIAMO</a>
-              <a href="#servizi" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">TRATTAMENTI</a>
-              <a href="#metodo" className="hover:text-[#55B4FF] transition-all whitespace-nowrap text-[#55B4FF]">COME LAVORIAMO</a>
-              <a href="#team" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">TEAM</a>
-              <a href="#recensioni" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">RECENSIONI</a>
-              <a href="#dove-siamo" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">DOVE SIAMO</a>
-            </nav>
+          {/* NAVIGATION DESKTOP */}
+          <nav className={`hidden xl:flex items-center gap-6 2xl:gap-10 text-[11px] font-black uppercase tracking-[0.2em] transition-colors duration-500
+            ${isScrolled ? 'text-[#022166]' : 'text-white'}`}>
+            <a href="#home" className="hover:text-[#55B4FF] transition-all">CHI SIAMO</a>
+            <a href="#servizi" className="hover:text-[#55B4FF] transition-all">TRATTAMENTI</a>
+            <a href="#metodo" className="hover:text-[#55B4FF] transition-all">METODO</a>
+            <a href="#team" className="hover:text-[#55B4FF] transition-all">TEAM</a>
+            <a href="#recensioni" className="hover:text-[#55B4FF] transition-all">RECENSIONI</a>
+            <a href="#dove-siamo" className="hover:text-[#55B4FF] transition-all">DOVE SIAMO</a>
+          </nav>
 
-            <div className="flex items-center gap-2 md:gap-3 ml-auto shrink-0">
-              <a href="tel:3338225464" className={`flex items-center gap-2 px-3 md:px-4 py-2 md:py-2.5 rounded-xl font-bold text-[11px] transition-all whitespace-nowrap border-2
-                ${isScrolled
-                  ? 'bg-white border-[#022166] text-[#022166] hover:bg-[#022166] hover:text-white'
-                  : 'bg-white/10 border-white/20 text-white hover:bg-white hover:text-[#022166]'}`}>
-                <Phone size={14} /> <span className="hidden sm:inline">333 822 5464</span>
-              </a>
+          {/* ACTIONS */}
+          <div className="flex items-center gap-3 md:gap-4">
+            <a href="tel:3338225464" className={`flex items-center gap-2 px-4 py-3 rounded-2xl font-bold text-[11px] transition-all border-2
+              ${isScrolled
+                ? 'bg-white border-[#022166] text-[#022166] hover:bg-[#022166] hover:text-white'
+                : 'bg-white/10 border-white/20 text-white hover:bg-white hover:text-[#022166]'}`}>
+              <Phone size={14} /> <span className="hidden lg:inline">333 822 5464</span>
+            </a>
 
-              <a href="#prenota" className={`hidden md:flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-[11px] transition-all shadow-md whitespace-nowrap
-                ${isScrolled
-                  ? 'bg-[#022166] text-white hover:bg-[#55B4FF]'
-                  : 'bg-[#55B4FF] text-[#022166] hover:bg-white'}`}>
-                PRENOTA ORA
-              </a>
+            <a href="#prenota" className={`hidden md:flex items-center gap-2 px-6 py-3 rounded-2xl font-black text-[11px] transition-all shadow-xl
+              ${isScrolled
+                ? 'bg-[#022166] text-white hover:bg-[#55B4FF] hover:-translate-y-0.5'
+                : 'bg-[#55B4FF] text-[#022166] hover:bg-white hover:-translate-y-0.5'}`}>
+              PRENOTA ORA
+            </a>
 
-              <button className={`xl:hidden p-1 transition-colors ${isScrolled ? 'text-[#022166]' : 'text-white'}`} onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
-              </button>
-            </div>
+            <button className={`xl:hidden p-2 transition-colors ${isScrolled ? 'text-[#022166]' : 'text-white'}`} onClick={() => setIsMenuOpen(!isMenuOpen)}>
+              {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+            </button>
           </div>
         </div>
       </header>
 
       {/* --- MENU MOBILE OVERLAY --- */}
       {isMenuOpen && (
-        <div className="fixed inset-0 z-[150] bg-[#022166] flex flex-col items-center justify-center gap-8 animate-in fade-in duration-300 xl:hidden">
-          <button onClick={() => setIsMenuOpen(false)} className="absolute top-8 right-8 text-white">
+        <div className="fixed inset-0 z-[150] bg-[#022166] flex flex-col items-center justify-center gap-8 animate-in fade-in zoom-in-95 duration-300 xl:hidden">
+          <button onClick={() => setIsMenuOpen(false)} className="absolute top-8 right-8 text-white p-2">
             <X size={40} />
           </button>
-          <nav className="flex flex-col items-center gap-6 text-white font-black text-2xl uppercase tracking-widest">
+          <nav className="flex flex-col items-center gap-8 text-white font-black text-2xl uppercase tracking-widest">
             <a href="#home" onClick={() => setIsMenuOpen(false)}>Chi Siamo</a>
             <a href="#servizi" onClick={() => setIsMenuOpen(false)}>Trattamenti</a>
-            <a href="#metodo" onClick={() => setIsMenuOpen(false)} className="text-[#55B4FF]">Come Lavoriamo</a>
+            <a href="#metodo" onClick={() => setIsMenuOpen(false)}>Metodo</a>
             <a href="#team" onClick={() => setIsMenuOpen(false)}>Team</a>
             <a href="#recensioni" onClick={() => setIsMenuOpen(false)}>Recensioni</a>
             <a href="#dove-siamo" onClick={() => setIsMenuOpen(false)}>Dove Siamo</a>
           </nav>
+          <a href="#prenota" onClick={() => setIsMenuOpen(false)} className="mt-4 bg-[#55B4FF] text-[#022166] px-10 py-4 rounded-2xl font-black text-lg">PRENOTA ORA</a>
         </div>
       )}
-
+      
       {/* --- HERO SECTION --- */}
       <section id="home" className="h-screen w-full md:snap-start md:snap-always relative flex items-center justify-center px-4 md:px-8 overflow-hidden bg-[#022166]">
         <div className="absolute inset-0 z-0">
