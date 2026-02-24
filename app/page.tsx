@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Script from 'next/script'; // <--- AGGIUNTO PER CLARITY
+import Script from 'next/script';
 import CookieBanner from './components/CookieBanner';
 import { 
   Activity, X, ChevronRight, Zap, UserRound, CheckCircle, 
@@ -10,11 +10,8 @@ import {
   Calendar, Clock, Plus, ChevronLeft, Upload, FileText,
   Accessibility, HandIcon, Move, Spline, Scale,
   Stethoscope, Dumbbell, UserCheck,
-  // Nuove icone per approccio biomeccanico
   Dna, MoveVertical, Footprints, Layers,
-  // Icone specifiche per la sezione "Come Lavoriamo" e "Recensioni"
   MessageCircle, ClipboardCheck, Quote,
-  // Aggiunta icona scudo
   Shield 
 } from 'lucide-react';
 
@@ -49,7 +46,7 @@ export default function FisioterapiaMalavasi() {
     privacy: false
   });
 
-  // --- LOGICA CALENDARIO PREMIUM ---
+  // --- LOGICA CALENDARIO ---
   const oggi = new Date();
   const giorniMese = Array.from({ length: 28 }, (_, i) => {
     const d = new Date();
@@ -57,20 +54,16 @@ export default function FisioterapiaMalavasi() {
     return d;
   });
 
-  // Genera orari 9-13 e 15-21 ogni 15 minuti
   const generaOrari = () => {
     const slots = [];
     const intervalli = [
       { start: 9, end: 13 },
       { start: 15, end: 21 }
     ];
-
     intervalli.forEach(range => {
       for (let ora = range.start; ora < range.end; ora++) {
         for (let min = 0; min < 60; min += 15) {
-          const h = ora.toString().padStart(2, '0');
-          const m = min.toString().padStart(2, '0');
-          slots.push(`${h}:${m}`);
+          slots.push(`${ora.toString().padStart(2, '0')}:${min.toString().padStart(2, '0')}`);
         }
       }
     });
@@ -79,27 +72,21 @@ export default function FisioterapiaMalavasi() {
   };
 
   const orariDisponibili = generaOrari();
-
   const nextStep = () => setStep(step + 1);
   const prevStep = () => setStep(step - 1);
 
-// --- LOGICA NAVBAR AGGIORNATA (Nasconde in Prenotazione) ---
+  // --- LOGICA NAVBAR (Nasconde in Prenotazione) ---
   useEffect(() => {
     const mainContainer = document.querySelector('main');
-    
     const controlNavbar = () => {
       if (mainContainer) {
         const currentScrollY = mainContainer.scrollTop;
         const scrollHeight = mainContainer.scrollHeight;
         const clientHeight = mainContainer.clientHeight;
-
-        // Se siamo negli ultimi 800px (circa l'altezza della sezione prenota), nascondi l'header
         const isNearBottom = scrollHeight - currentScrollY - clientHeight < 400;
 
-        // Gestisce la trasparenza
         setIsScrolled(currentScrollY > 50);
 
-        // Gestisce la visibilità: scompare se scorri giù O se sei vicino al fondo (sezione prenota)
         if (isNearBottom) {
           setIsVisible(false);
         } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
@@ -107,44 +94,35 @@ export default function FisioterapiaMalavasi() {
         } else {
           setIsVisible(true);
         }
-        
         setLastScrollY(currentScrollY);
       }
     };
-
     mainContainer?.addEventListener('scroll', controlNavbar);
     return () => mainContainer?.removeEventListener('scroll', controlNavbar);
   }, [lastScrollY]);
 
-// --- FUNZIONE INVIO EMAIL RESEND ---
-const inviaPrenotazione = async () => {
+  // --- FUNZIONE INVIO EMAIL ---
+  const inviaPrenotazione = async () => {
     try {
       const data = new FormData();
       Object.entries(formData).forEach(([key, value]) => {
         data.append(key, value.toString());
       });
-      if (file) {
-        data.append('file', file);
-      }
-      const response = await fetch('/api/send', {
-        method: 'POST',
-        body: data,
-      });
-
+      if (file) data.append('file', file);
+      const response = await fetch('/api/send', { method: 'POST', body: data });
       if (response.ok) {
         window.location.href = 'https://fisioterapiamalavasi.it/thank-you-page/';
       } else {
         alert("Errore nell'invio. Riprova tra poco.");
       }
     } catch (error) {
-      alert("Errore di connessione. Controlla la tua rete.");
+      alert("Errore di connessione.");
     }
   };
 
   return (
-<main className="h-screen overflow-y-auto md:snap-y md:snap-mandatory scroll-smooth bg-[#022166] text-slate-800 font-sans">
+    <main className="h-screen overflow-y-auto md:snap-y md:snap-mandatory scroll-smooth bg-white text-slate-800 font-sans">
       
-      {/* --- CLARITY TRACKING CODE --- */}
       <Script id="microsoft-clarity" strategy="afterInteractive">
         {`
           (function(c,l,a,r,i,t,y){
@@ -155,66 +133,54 @@ const inviaPrenotazione = async () => {
         `}
       </Script>
 
-      {/* BACKGROUND DECORATIONS */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <div className="absolute top-[-5%] left-[-5%] w-[40%] h-[40%] bg-[#55B4FF]/10 rounded-full blur-[100px]"></div>
         <div className="absolute bottom-[5%] right-[-5%] w-[30%] h-[30%] bg-[#022166]/5 rounded-full blur-[100px]"></div>
       </div>
 
-{/* --- HEADER DINAMICO --- */}
-<header className={`fixed top-0 inset-x-0 z-[100] transition-all duration-500 ease-in-out 
-  ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'}
-  ${isScrolled ? 'py-2' : 'py-0'}`}>
+      <header className={`fixed top-0 inset-x-0 z-[100] transition-all duration-500 ease-in-out 
+        ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'}
+        ${isScrolled ? 'py-2' : 'py-0'}`}>
         
         <div className={`mx-auto transition-all duration-500 px-4 md:px-6 
           ${isScrolled 
-            ? 'max-w-7xl bg-white/80 backdrop-blur-xl border border-white/40 shadow-lg rounded-2xl h-20' 
+            ? 'max-w-7xl bg-white/90 backdrop-blur-xl border border-slate-200 shadow-lg rounded-2xl h-20' 
             : 'max-w-full bg-transparent h-24'}`}>
           
           <div className="h-full flex items-center w-full">
             <div className="flex items-center shrink-0">
-<img 
-  src="https://raw.githubusercontent.com/thinhdutong00/image-fisioterapia-malavasi/92e18a782853772b8d90a1ef6e851630fc1492ae/CENTRO-FISIOTERAPICO-CAVEZZO-MODENA-1.webp" 
-  alt="Logo Fisioterapia Malavasi" 
-  className={`transition-all duration-500 object-contain ${isScrolled ? 'h-8 md:h-12' : 'h-10 md:h-16 brightness-0 invert'}`}
-/>
+              <img 
+                src="https://raw.githubusercontent.com/thinhdutong00/image-fisioterapia-malavasi/92e18a782853772b8d90a1ef6e851630fc1492ae/CENTRO-FISIOTERAPICO-CAVEZZO-MODENA-1.webp" 
+                alt="Logo Fisioterapia Malavasi" 
+                className={`transition-all duration-500 object-contain ${isScrolled ? 'h-8 md:h-12' : 'h-10 md:h-16 brightness-0'}`}
+              />
             </div>
 
-            <nav className={`hidden xl:flex items-center gap-5 2xl:gap-8 text-[11px] 2xl:text-[12px] font-black uppercase tracking-[0.15em] ml-8 transition-colors duration-500
-              ${isScrolled ? 'text-[#022166]' : 'text-white'}`}>
-              <a href="#home" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">CHI SIAMO</a>
-              <a href="#servizi" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">TRATTAMENTI</a>
-              <a href="#metodo" className="hover:text-[#55B4FF] transition-all whitespace-nowrap text-[#55B4FF]">COME LAVORIAMO</a>
-              <a href="#team" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">TEAM</a>
-              <a href="#recensioni" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">RECENSIONI</a>
-              <a href="#dove-siamo" className="hover:text-[#55B4FF] transition-all whitespace-nowrap">DOVE SIAMO</a>
+            <nav className={`hidden xl:flex items-center gap-5 2xl:gap-8 text-[11px] font-black uppercase tracking-widest ml-8 text-[#022166]`}>
+              <a href="#home" className="hover:text-[#55B4FF] transition-all">CHI SIAMO</a>
+              <a href="#servizi" className="hover:text-[#55B4FF] transition-all">TRATTAMENTI</a>
+              <a href="#metodo" className="hover:text-[#55B4FF] transition-all text-[#55B4FF]">COME LAVORIAMO</a>
+              <a href="#team" className="hover:text-[#55B4FF] transition-all">TEAM</a>
+              <a href="#recensioni" className="hover:text-[#55B4FF] transition-all">RECENSIONI</a>
+              <a href="#dove-siamo" className="hover:text-[#55B4FF] transition-all">DOVE SIAMO</a>
             </nav>
 
-<div className="flex items-center gap-2 md:gap-3 ml-auto shrink-0">
-  <a href="tel:3338225464" className={`flex items-center gap-2 px-3 md:px-4 py-2 md:py-2.5 rounded-xl font-bold text-[11px] transition-all whitespace-nowrap border-2
-    ${isScrolled 
-      ? 'bg-white border-[#022166] text-[#022166] hover:bg-[#022166] hover:text-white' 
-      : 'bg-white/10 border-white/20 text-white hover:bg-white hover:text-[#022166]'}`}>
-    <Phone size={14} /> <span className="hidden sm:inline">333 822 5464</span>
-  </a>
-
-  <a href="#prenota" className={`hidden md:flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-[11px] transition-all shadow-md whitespace-nowrap
-    ${isScrolled 
-      ? 'bg-[#022166] text-white hover:bg-[#55B4FF]' 
-      : 'bg-[#55B4FF] text-[#022166] hover:bg-white'}`}>
-    PRENOTA ORA
-  </a>
-
-  <button className={`xl:hidden p-1 transition-colors ${isScrolled ? 'text-[#022166]' : 'text-white'}`} onClick={() => setIsMenuOpen(!isMenuOpen)}>
-    {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
-  </button>
-</div>
+            <div className="flex items-center gap-3 ml-auto">
+              <a href="tel:3338225464" className="flex items-center gap-2 px-4 py-2 rounded-xl font-bold text-[11px] border-2 border-[#022166] text-[#022166] hover:bg-[#022166] hover:text-white transition-all">
+                <Phone size={14} /> <span className="hidden sm:inline">333 822 5464</span>
+              </a>
+              <a href="#prenota" className="hidden md:flex bg-[#022166] text-white px-5 py-2.5 rounded-xl font-bold text-[11px] hover:bg-[#55B4FF] transition-all shadow-md">
+                PRENOTA ORA
+              </a>
+              <button className="xl:hidden p-1 text-[#022166]" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+              </button>
+            </div>
           </div>
         </div>
       </header>
 
-{/* --- TRATTAMENTI --- */}
-      <section id="servizi" className="min-h-screen w-full md:snap-start md:snap-always relative flex items-center justify-center py-24 px-4 bg-white/5 backdrop-blur-sm overflow-hidden">
+      <section id="servizi" className="min-h-screen w-full md:snap-start md:snap-always relative flex items-center justify-center py-24 px-4 bg-slate-50 overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10 w-full py-10">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-black text-[#022166] tracking-tight mb-4">I Nostri Trattamenti</h2>
@@ -222,21 +188,21 @@ const inviaPrenotazione = async () => {
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { id: 1, titolo: "Riabilitazione Post-Chirurgica (Protesi e LCA)", icona: <Accessibility size={32} />, breve: "Percorsi specialistici per il recupero della mobilità dopo interventi di protesi (anca/ginocchio) o ricostruzione legamentosa (LCA).", descrizione: "L'intervento chirurgico è solo il primo passo: il vero successo dipende dalla riabilitazione. Seguo protocolli basati sulle più recenti evidenze scientifiche per ridurre l'infiammazione, recuperare la forza muscolare e restituirti la piena autonomia nel minor tempo possibile. Non lasciare che la cicatrice limiti il tuo movimento.", colore: "from-blue-500/20 to-transparent" },
-              { id: 2, titolo: "Trattamento Cervicalgia, Lombalgia ed Ernie del Disco", icona: <MoveVertical size={32} />, breve: "Soluzioni efficaci per eliminare il dolore alla colonna vertebrale, sciatalgie e tensioni muscolari legate alla postura.", descrizione: "Il mal di schiena non deve diventare una condizione normale della tua vita. Attraverso tecniche di terapia manuale e manipolazioni mirate, agisco sulla causa del dolore (sia essa meccanica, posturale o compressiva) per liberare le articolazioni e rilassare i tessuti profondi. Torna a muoverti senza paura di rimanere bloccato.", colore: "from-cyan-500/20 to-transparent" },
-              { id: 3, titolo: "Fisioterapia Sportiva e Recupero Traumi da Sport", icona: <Footprints size={32} />, breve: "Trattamento specialistico per distorsioni alla caviglia, lesioni muscolari e problematiche articolari della spalla.", descrizione: "Per uno sportivo, ogni giorno fermo è un giorno perso. Mi occupo del trattamento di traumi acuti e cronici, applicando tecniche che accelerano la riparazione dei tessuti e prevengono future recidive. Dalla gestione della fase acuta al ritorno in campo, ogni fase è monitorata per garantirti la massima performance.", colore: "from-[#55B4FF]/20 to-transparent" },
-              { id: 4, titolo: "Cura delle Tendiniti e Infiammazioni Croniche", icona: <Dna size={32} />, breve: "Trattamento per dolore al gomito (epicondilite), tendine d'Achille e fascite plantare con approcci conservativi avanzati.", descrizione: "Le tendinopatie richiedono pazienza e competenza specifica: il riposo assoluto spesso non basta. Utilizzo un approccio combinato di terapia manuale ed esercizio terapeutico per rieducare il tendine al carico, eliminando quel dolore persistente che ostacola i tuoi gesti quotidiani o la tua corsa.", colore: "from-indigo-500/20 to-transparent" },
-              { id: 5, titolo: "Riabilitazione Posturale e Cefalee Muscolo-Tensive", icona: <Layers size={32} />, breve: "Risoluzione di rigidità, formicolii e cefalee causate da posture prolungate davanti al PC o stress lavorativo.", descrizione: "Ore trascorse in smartworking o alla guida creano squilibri che sfociano in mal di testa e pesantezza alle spalle. Il mio intervento mira a riequilibrare le catene muscolari e a darti gli strumenti ergonomici per proteggere il tuo corpo durante il lavoro. Riconquista una postura naturale e senza tensioni.", colore: "from-sky-500/20 to-transparent" },
-              { id: 6, titolo: "Altri Trattamenti", icona: <Plus size={32} />, breve: "Descrivici la tua condizione per un approccio su misura.", descrizione: "Ogni corpo ha una storia unica e non tutte le patologie rientrano in categorie standard. Che si tratti di dolori articolari diffusi, riabilitazione neurologica, problemi post-traumatici complessi o semplicemente il desiderio di un check-up preventivo, sono qui per ascoltarti. Utilizzeremo il modulo di prenotazione per analizzare il tuo caso specifico ancora prima del tuo arrivo in studio.", colore: "from-blue-400/20 to-transparent" }
+              { id: 1, titolo: "Riabilitazione Post-Chirurgica (Protesi e LCA)", icona: <Accessibility size={32} />, breve: "Percorsi specialistici per il recupero della mobilità.", colore: "from-blue-500/10", descrizione: "L'intervento chirurgico è solo il primo passo..." },
+              { id: 2, titolo: "Trattamento Cervicalgia e Lombalgia", icona: <MoveVertical size={32} />, breve: "Soluzioni efficaci per eliminare il dolore alla colonna.", colore: "from-cyan-500/10", descrizione: "Il mal di schiena non deve diventare una condizione normale..." },
+              { id: 3, titolo: "Fisioterapia Sportiva", icona: <Footprints size={32} />, breve: "Trattamento specialistico per distorsioni e lesioni.", colore: "from-[#55B4FF]/10", descrizione: "Per uno sportivo, ogni giorno fermo è un giorno perso..." },
+              { id: 4, titolo: "Cura delle Tendiniti", icona: <Dna size={32} />, breve: "Trattamento per epicondilite e fascite plantare.", colore: "from-indigo-500/10", descrizione: "Le tendinopatie richiedono pazienza e competenza..." },
+              { id: 5, titolo: "Riabilitazione Posturale", icona: <Layers size={32} />, breve: "Risoluzione di rigidità e cefalee muscolo-tensive.", colore: "from-sky-500/10", descrizione: "Ore trascorse in smartworking creano squilibri..." },
+              { id: 6, titolo: "Altri Trattamenti", icona: <Plus size={32} />, breve: "Approccio su misura per ogni tua esigenza specifica.", colore: "from-blue-400/10", descrizione: "Ogni corpo ha una storia unica..." }
             ].map((item) => (
-              <div key={item.id} onClick={() => setSelectedTrattamento(item)} className="group relative p-8 rounded-[2.5rem] bg-white/40 backdrop-blur-md border border-white/60 cursor-pointer transition-all duration-500 hover:bg-white hover:-translate-y-2 hover:shadow-2xl">
-                <div className={`absolute inset-0 bg-gradient-to-br ${item.colore} rounded-[2.5rem] opacity-0 group-hover:opacity-100 transition-opacity`}></div>
+              <div key={item.id} onClick={() => setSelectedTrattamento(item)} className="group relative p-8 rounded-[2.5rem] bg-white border border-slate-100 cursor-pointer transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl">
+                <div className={`absolute inset-0 bg-gradient-to-br ${item.colore} to-transparent rounded-[2.5rem] opacity-0 group-hover:opacity-100 transition-opacity`}></div>
                 <div className="relative z-10">
                   <div className="w-16 h-16 bg-[#022166] text-[#55B4FF] rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-[#022166]/20 transition-transform group-hover:scale-110">
                     {item.icona}
                   </div>
                   <h3 className="text-xl font-black text-[#022166] mb-3 leading-tight">{item.titolo}</h3>
-                  <p className="text-slate-600 text-sm font-medium mb-6 line-clamp-2">{item.breve}</p>
+                  <p className="text-slate-500 text-sm font-medium mb-6 line-clamp-2">{item.breve}</p>
                   <div className="inline-flex items-center gap-2 text-[#55B4FF] font-black text-[10px] uppercase tracking-widest">
                     Scopri i dettagli <ChevronRight size={14} />
                   </div>
