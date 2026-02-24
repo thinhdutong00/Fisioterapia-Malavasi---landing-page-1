@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Script from 'next/script'; // Import necessario per Clarity
+import Image from 'next/image'; // Import aggiunto per ottimizzazione immagini
+import Script from 'next/script';
 import CookieBanner from './components/CookieBanner';
 import {
   Activity, X, ChevronRight, Zap, UserRound, CheckCircle,
@@ -99,45 +100,39 @@ export default function FisioterapiaMalavasi() {
   }, [lastScrollY]);
 
   // --- FUNZIONE INVIO EMAIL ---
-const inviaPrenotazione = async () => {
-  try {
-    const data = new FormData();
-    
-    // Sostituito il ciclo generico con append espliciti per garantire la compatibilità con route.ts
-    data.append('nome', formData.nome);
-    data.append('email', formData.email);
-    data.append('telefono', formData.telefono);
-    data.append('sede', formData.sede);
-    data.append('data', formData.data);
-    data.append('ora', formData.ora);
-    // Qui colleghiamo il campo "messaggio" del form al campo "motivo" richiesto dal server
-    data.append('motivo', formData.motivo || ""); 
-    
-    if (file) data.append('file', file);
+  const inviaPrenotazione = async () => {
+    try {
+      const data = new FormData();
+      data.append('nome', formData.nome);
+      data.append('email', formData.email);
+      data.append('telefono', formData.telefono);
+      data.append('sede', formData.sede);
+      data.append('data', formData.data);
+      data.append('ora', formData.ora);
+      data.append('motivo', formData.motivo || ""); 
+      
+      if (file) data.append('file', file);
 
-    const response = await fetch('/api/send', {
-      method: 'POST',
-      body: data,
-    });
+      const response = await fetch('/api/send', {
+        method: 'POST',
+        body: data,
+      });
 
-    if (response.ok) {
-      window.location.href = 'https://fisioterapiamalavasi.it/thank-you-page/';
-    } else {
-      // Ho aggiunto un log per aiutarti a vedere nei log del browser se l'errore è 422 o 500
-      console.error("Errore risposta server:", response.status);
-      alert("Errore nell'invio. Riprova tra poco.");
+      if (response.ok) {
+        window.location.href = 'https://fisioterapiamalavasi.it/thank-you-page/';
+      } else {
+        console.error("Errore risposta server:", response.status);
+        alert("Errore nell'invio. Riprova tra poco.");
+      }
+    } catch (error) {
+      console.error("Errore connessione:", error);
+      alert("Errore di connessione.");
     }
-  } catch (error) {
-    console.error("Errore connessione:", error);
-    alert("Errore di connessione.");
-  }
-};
+  };
 
   return (
     <main className="h-screen overflow-y-auto md:snap-y md:snap-mandatory scroll-smooth bg-[#F0F4F8] text-slate-800 font-sans">
       
-
-
       {/* BACKGROUND DECORATIONS */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <div className="absolute top-[-5%] left-[-5%] w-[40%] h-[40%] bg-[#55B4FF]/10 rounded-full blur-[100px]"></div>
@@ -155,11 +150,13 @@ const inviaPrenotazione = async () => {
             : 'max-w-full bg-transparent h-24'}`}>
 
           <div className="h-full flex items-center w-full">
-            <div className="flex items-center shrink-0">
-              <img
+            <div className="flex items-center shrink-0 relative h-10 md:h-16 w-40 md:w-64">
+              <Image
                 src="https://raw.githubusercontent.com/thinhdutong00/image-fisioterapia-malavasi/92e18a782853772b8d90a1ef6e851630fc1492ae/CENTRO-FISIOTERAPICO-CAVEZZO-MODENA-1.webp"
                 alt="Logo Fisioterapia Malavasi"
-                className={`transition-all duration-500 object-contain ${isScrolled ? 'h-8 md:h-12' : 'h-10 md:h-16 brightness-0 invert'}`}
+                fill
+                className={`transition-all duration-500 object-contain ${isScrolled ? 'brightness-100' : 'brightness-0 invert'}`}
+                priority
               />
             </div>
 
@@ -216,21 +213,27 @@ const inviaPrenotazione = async () => {
       {/* --- HERO SECTION --- */}
       <section id="home" className="h-screen w-full md:snap-start md:snap-always relative flex items-center justify-center px-4 md:px-8 overflow-hidden bg-[#022166]">
         <div className="absolute inset-0 z-0">
-          <img
+          <Image
             src="https://github.com/thinhdutong00/image-fisioterapia-malavasi/blob/main/1.png?raw=true"
             alt="Sfondo Anatomia"
-            className="w-full h-full object-cover opacity-40"
+            fill
+            className="object-cover opacity-40"
+            priority
+            sizes="100vw"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[#022166]/80 via-[#022166]/60 to-[#022166]/90"></div>
         </div>
 
         <div className="max-w-4xl mx-auto relative z-10 text-center py-20">
           <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md border border-white/20 text-white px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.2em] mb-8 shadow-sm">
-            <img
-              src="https://github.com/thinhdutong00/Fisioterapia-Malavasi---landing-page-1/blob/main/public/Progetto%20senza%20titolo%20-%202026-02-23T223838.202.png?raw=true"
-              alt="Logo Malavasi"
-              className="h-5 w-auto object-contain brightness-0 invert"
-            />
+            <div className="relative h-5 w-10">
+              <Image
+                src="https://github.com/thinhdutong00/Fisioterapia-Malavasi---landing-page-1/blob/main/public/Progetto%20senza%20titolo%20-%202026-02-23T223838.202.png?raw=true"
+                alt="Logo Malavasi"
+                fill
+                className="object-contain brightness-0 invert"
+              />
+            </div>
             LA SCIENZA PENSATA PER IL TUO BENESSERE
           </div>
 
@@ -261,96 +264,71 @@ const inviaPrenotazione = async () => {
       </section>
 
 {/* --- TRATTAMENTI --- */}
-
 <section id="servizi" className="min-h-screen w-full snap-start snap-always relative flex items-center justify-center py-24 px-4 bg-white/5 backdrop-blur-sm overflow-hidden">
+  <div className="max-w-7xl mx-auto relative z-10 w-full py-10">
+    <div className="text-center mb-16">
+      <h2 className="text-4xl md:text-5xl font-black text-[#022166] tracking-tight mb-4">I Nostri Trattamenti</h2>
+      <div className="w-20 h-1.5 bg-[#55B4FF] mx-auto rounded-full"></div>
+    </div>
 
-<div className="max-w-7xl mx-auto relative z-10 w-full py-10">
-
-<div className="text-center mb-16">
-
-<h2 className="text-4xl md:text-5xl font-black text-[#022166] tracking-tight mb-4">I Nostri Trattamenti</h2>
-
-<div className="w-20 h-1.5 bg-[#55B4FF] mx-auto rounded-full"></div>
-
-</div>
-
-<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-{[
-
-{ id: 1, titolo: "Riabilitazione Post-Chirurgica", icona: <Accessibility size={32} />, breve: "Percorsi specialistici per il recupero della mobilità dopo interventi di protesi (anca/ginocchio) o ricostruzione legamentosa (LCA).", descrizione: "L'intervento chirurgico è solo il primo passo: il vero successo dipende dalla riabilitazione. Seguo protocolli basati sulle più recenti evidenze scientifiche per ridurre l'infiammazione, recuperare la forza muscolare e restituirti la piena autonomia nel minor tempo possibile. Non lasciare che la cicatrice limiti il tuo movimento.", colore: "from-blue-500/20 to-transparent" },
-
-{ id: 2, titolo: "Trattamento Cervicalgia, Lombalgia ed Ernie del Disco", icona: <MoveVertical size={32} />, breve: "Soluzioni efficaci per eliminare il dolore alla colonna vertebrale, sciatalgie e tensioni muscolari legate alla postura.", descrizione: "Il mal di schiena non deve diventare una condizione normale della tua vita. Attraverso tecniche di terapia manuale e manipolazioni mirate, agisco sulla causa del dolore (sia essa meccanica, posturale o compressiva) per liberare le articolazioni e rilassare i tessuti profondi. Torna a muoverti senza paura di rimanere bloccato.", colore: "from-cyan-500/20 to-transparent" },
-
-{ id: 3, titolo: "Fisioterapia Sportiva e Recupero Traumi da Sport", icona: <Footprints size={32} />, breve: "Trattamento specialistico per distorsioni alla caviglia, lesioni muscolari e problematiche articolari della spalla.", descrizione: "Per uno sportivo, ogni giorno fermo è un giorno perso. Mi occupo del trattamento di traumi acuti e cronici, applicando tecniche che accelerano la riparazione dei tessuti e prevengono future recidive. Dalla gestione della fase acuta al ritorno in campo, ogni fase è monitorata per garantirti la massima performance.", colore: "from-[#55B4FF]/20 to-transparent" },
-
-{ id: 4, titolo: "Cura delle Tendiniti e Infiammazioni Croniche", icona: <Dna size={32} />, breve: "Trattamento per dolore al gomito (epicondilite), tendine d'Achille e fascite plantare con approcci conservativi avanzati.", descrizione: "Le tendinopatie richiedono pazienza e competenza specifica: il riposo assoluto spesso non basta. Utilizzo un approccio combinato di terapia manuale ed esercizio terapeutico per rieducare il tendine al carico, eliminando quel dolore persistente che ostacola i tuoi gesti quotidiani o la tua corsa.", colore: "from-indigo-500/20 to-transparent" },
-
-{ id: 5, titolo: "Riabilitazione Cefalee e vertigini", icona: <Scale size={32} />, breve: "Trattamento specialistico per emicrania tensionali, vertigini posizionali e disturbi dell'equilibrio di origine cervicale.", descrizione: "Il mal di testa e il senso di sbandamento non sono fatalità, ma spesso derivano da disfunzioni del sistema cervicale o vestibolare. Attraverso manovre specifiche e rieducazione mirata, agisco sulla causa dei tuoi sintomi per restituirti stabilità e una mente libera dal dolore cronico. Non lasciare che le vertigini limitino la tua libertà: prenota un consulto per ritrovare il tuo equilibrio.", colore: "from-sky-500/20 to-transparent" },
-
-{ id: 6, titolo: "Fisioterapia a Domicilio", icona: <Home size={32} />, breve: "Il professionista direttamente a casa tua per pazienti con ridotta mobilità, post-operatori o anziani.", descrizione: "Se il dolore o le difficoltà motorie ti impediscono di raggiungere lo studio, sarò io a venire da te. Offro un servizio domiciliare completo a Cavezzo e zone limitrofe, portando tutta l'attrezzatura e le competenze necessarie per iniziare subito il tuo percorso di guarigione nell'ambiente confortevole di casa tua. La tua riabilitazione non deve aspettare: contattami per organizzare la tua prima seduta a domicilio.", colore: "from-blue-400/20 to-transparent" }
-
-].map((item) => (
-
-<div key={item.id} onClick={() => setSelectedTrattamento(item)} className="group relative p-8 rounded-[2.5rem] bg-white/40 backdrop-blur-md border border-white/60 cursor-pointer transition-all duration-500 hover:bg-white hover:-translate-y-2 hover:shadow-2xl">
-
-<div className={`absolute inset-0 bg-gradient-to-br ${item.colore} rounded-[2.5rem] opacity-0 group-hover:opacity-100 transition-opacity`}></div>
-
-<div className="relative z-10">
-
-<div className="w-16 h-16 bg-[#022166] text-[#55B4FF] rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-[#022166]/20 transition-transform group-hover:scale-110">
-
-{item.icona}
-
-</div>
-
-<h3 className="text-xl font-black text-[#022166] mb-3 leading-tight">{item.titolo}</h3>
-
-<p className="text-slate-600 text-sm font-medium mb-6 line-clamp-2">{item.breve}</p>
-
-<div className="inline-flex items-center gap-2 text-[#55B4FF] font-black text-[10px] uppercase tracking-widest">
-
-Scopri i dettagli <ChevronRight size={14} />
-
-</div>
-
-</div>
-
-</div>
-
-))}
-
-</div>
-
-</div>
-
-</section>
-
-      {/* --- SEZIONE STAFF --- */}
-      <section id="team" className="min-h-screen w-full md:snap-start md:snap-always relative flex items-center justify-center py-32 px-4 bg-white">
-        <div className="max-w-7xl mx-auto relative z-10 w-full py-10">
-          <div className="text-center mb-20">
-            <span className="text-[#55B4FF] font-black text-[10px] uppercase tracking-[0.3em] block mb-4">Professionalità e Competenza</span>
-            <h2 className="text-4xl md:text-6xl font-black text-[#022166] tracking-tighter mb-6">Il Nostro <span className="text-[#55B4FF]">Team</span></h2>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              { nome: "Mirco Malavasi", ruolo: "Fisioterapista OMPT", specialita: "Riabilitazione muscolo-scheletrica e oncologica", foto: "/mirco.webp" },
-              { nome: "Alice Nanetti", ruolo: "Fisioterapista", specialita: "Riabilitazione muscolo-scheletrica e neurologica", foto: "/alice.jpg" },
-              { nome: "Luca Rabaglia", ruolo: "Fisioterapista", specialita: "Riabilitazione muscolo-scheletrica e sportiva", foto: "/luca.webp" }
-            ].map((membro, idx) => (
-              <div key={idx} className="group bg-slate-50 rounded-[3.5rem] p-4 pb-12 transition-all duration-700 hover:shadow-xl border border-slate-100 text-center flex flex-col items-center">
-                <div className="aspect-[4/4.5] w-full relative overflow-hidden rounded-[2.8rem] mb-8">
-                  <img src={membro.foto} alt={membro.nome} className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105" />
-                </div>
-                <span className="bg-[#f0f9ff] text-[#55B4FF] border border-[#55B4FF]/20 px-4 py-1.5 rounded-full font-black text-[9px] uppercase tracking-widest mb-4">{membro.ruolo}</span>
-                <h3 className="text-3xl font-black text-[#022166] mb-4 group-hover:text-[#55B4FF] transition-colors">{membro.nome}</h3>
-                <p className="text-slate-500 text-sm font-bold italic max-w-[250px]">{membro.specialita}</p>
-              </div>
-            ))}
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {[
+        { id: 1, titolo: "Riabilitazione Post-Chirurgica", icona: <Accessibility size={32} />, breve: "Percorsi specialistici per il recupero della mobilità dopo interventi di protesi (anca/ginocchio) o ricostruzione legamentosa (LCA).", descrizione: "L'intervento chirurgico è solo il primo passo: il vero successo dipende dalla riabilitazione. Seguo protocolli basati sulle più recenti evidenze scientifiche per ridurre l'infiammazione, recuperare la forza muscolare e restituirti la piena autonomia nel minor tempo possibile. Non lasciare che la cicatrice limiti il tuo movimento.", colore: "from-blue-500/20 to-transparent" },
+        { id: 2, titolo: "Trattamento Cervicalgia, Lombalgia ed Ernie del Disco", icona: <MoveVertical size={32} />, breve: "Soluzioni efficaci per eliminare il dolore alla colonna vertebrale, sciatalgie e tensioni muscolari legate alla postura.", descrizione: "Il mal di schiena non deve diventare una condizione normale della tua vita. Attraverso tecniche di terapia manuale e manipolazioni mirate, agisco sulla causa del dolore (sia essa meccanica, posturale o compressiva) per liberare le articolazioni e rilassare i tessuti profondi. Torna a muoverti senza paura di rimanere bloccato.", colore: "from-cyan-500/20 to-transparent" },
+        { id: 3, titolo: "Fisioterapia Sportiva e Recupero Traumi da Sport", icona: <Footprints size={32} />, breve: "Trattamento specialistico per distorsioni alla caviglia, lesioni muscolari e problematiche articolari della spalla.", descrizione: "Per uno sportivo, ogni giorno fermo è un giorno perso. Mi occupo del trattamento di traumi acuti e cronici, applicando tecniche che accelerano la riparazione dei tessuti e prevengono future recidive. Dalla gestione della fase acuta al ritorno in campo, ogni fase è monitorata per garantirti la massima performance.", colore: "from-[#55B4FF]/20 to-transparent" },
+        { id: 4, titolo: "Cura delle Tendiniti e Infiammazioni Croniche", icona: <Dna size={32} />, breve: "Trattamento per dolore al gomito (epicondilite), tendine d'Achille e fascite plantare con approcci conservativi avanzati.", descrizione: "Le tendinopatie richiedono pazienza e competenza specifica: il riposo assoluto spesso non basta. Utilizzo un approccio combinato di terapia manuale ed esercizio terapeutico per rieducare il tendine al carico, eliminando quel dolore persistente che ostacola i tuoi gesti quotidiani o la tua corsa.", colore: "from-indigo-500/20 to-transparent" },
+        { id: 5, titolo: "Riabilitazione Cefalee e vertigini", icona: <Scale size={32} />, breve: "Trattamento specialistico per emicrania tensionali, vertigini posizionali e disturbi dell'equilibrio di origine cervicale.", descrizione: "Il mal di testa e il senso di sbandamento non sono fatalità, ma spesso derivano da disfunzioni del sistema cervicale o vestibolare. Attraverso manovre specifiche e rieducazione mirata, agisco sulla causa dei tuoi sintomi per restituirti stabilità e una mente libera dal dolore cronico. Non lasciare che le vertigini limitino la tua libertà: prenota un consulto per ritrovare il tuo equilibrio.", colore: "from-sky-500/20 to-transparent" },
+        { id: 6, titolo: "Fisioterapia a Domicilio", icona: <Home size={32} />, breve: "Il professionista direttamente a casa tua per pazienti con ridotta mobilità, post-operatori o anziani.", descrizione: "Se il dolore o le difficoltà motorie ti impediscono di raggiungere lo studio, sarò io a venire da te. Offro un servizio domiciliare completo a Cavezzo e zone limitrofe, portando tutta l'attrezzatura e le competenze necessarie per iniziare subito il tuo percorso di guarigione nell'ambiente confortevole di casa tua. La tua riabilitazione non deve aspettare: contattami per organizzare la tua prima seduta a domicilio.", colore: "from-blue-400/20 to-transparent" }
+      ].map((item) => (
+        <div key={item.id} onClick={() => setSelectedTrattamento(item)} className="group relative p-8 rounded-[2.5rem] bg-white/40 backdrop-blur-md border border-white/60 cursor-pointer transition-all duration-500 hover:bg-white hover:-translate-y-2 hover:shadow-2xl">
+          <div className={`absolute inset-0 bg-gradient-to-br ${item.colore} rounded-[2.5rem] opacity-0 group-hover:opacity-100 transition-opacity`}></div>
+          <div className="relative z-10">
+            <div className="w-16 h-16 bg-[#022166] text-[#55B4FF] rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-[#022166]/20 transition-transform group-hover:scale-110">
+              {item.icona}
+            </div>
+            <h3 className="text-xl font-black text-[#022166] mb-3 leading-tight">{item.titolo}</h3>
+            <p className="text-slate-600 text-sm font-medium mb-6 line-clamp-2">{item.breve}</p>
+            <div className="inline-flex items-center gap-2 text-[#55B4FF] font-black text-[10px] uppercase tracking-widest">
+              Scopri i dettagli <ChevronRight size={14} />
+            </div>
           </div>
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
+
+{/* --- SEZIONE STAFF --- */}
+<section id="team" className="min-h-screen w-full md:snap-start md:snap-always relative flex items-center justify-center py-32 px-4 bg-white">
+  <div className="max-w-7xl mx-auto relative z-10 w-full py-10">
+    <div className="text-center mb-20">
+      <span className="text-[#55B4FF] font-black text-[10px] uppercase tracking-[0.3em] block mb-4">Professionalità e Competenza</span>
+      <h2 className="text-4xl md:text-6xl font-black text-[#022166] tracking-tighter mb-6">Il Nostro <span className="text-[#55B4FF]">Team</span></h2>
+    </div>
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {[
+        { nome: "Mirco Malavasi", ruolo: "Fisioterapista OMPT", specialita: "Riabilitazione muscolo-scheletrica e oncologica", foto: "/mirco.webp" },
+        { nome: "Alice Nanetti", ruolo: "Fisioterapista", specialita: "Riabilitazione muscolo-scheletrica e neurologica", foto: "/alice.jpg" },
+        { nome: "Luca Rabaglia", ruolo: "Fisioterapista", specialita: "Riabilitazione muscolo-scheletrica e sportiva", foto: "/luca.webp" }
+      ].map((membro, idx) => (
+        <div key={idx} className="group bg-slate-50 rounded-[3.5rem] p-4 pb-12 transition-all duration-700 hover:shadow-xl border border-slate-100 text-center flex flex-col items-center">
+          <div className="aspect-[4/4.5] w-full relative overflow-hidden rounded-[2.8rem] mb-8">
+            <Image 
+              src={membro.foto} 
+              alt={membro.nome} 
+              fill
+              className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
+          </div>
+          <span className="bg-[#f0f9ff] text-[#55B4FF] border border-[#55B4FF]/20 px-4 py-1.5 rounded-full font-black text-[9px] uppercase tracking-widest mb-4">{membro.ruolo}</span>
+          <h3 className="text-3xl font-black text-[#022166] mb-4 group-hover:text-[#55B4FF] transition-colors">{membro.nome}</h3>
+          <p className="text-slate-500 text-sm font-bold italic max-w-[250px]">{membro.specialita}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
 
 {/* --- RECENSIONI --- */}
 <section id="recensioni" className="min-h-screen w-full md:snap-start md:snap-always py-20 md:py-24 px-4 relative overflow-hidden bg-gradient-to-b from-white to-[#F0F4F8] flex items-center">
@@ -600,6 +578,7 @@ Scopri i dettagli <ChevronRight size={14} />
         <div className="lg:w-3/5 w-full h-[350px] lg:h-full relative bg-slate-200 overflow-hidden">
           <iframe 
             src={mapUrl} 
+            title="Mappa Sedi Studio Fisioterapia Malavasi"
             className="w-full h-full grayscale-[0.2] contrast-[1.1]" 
             style={{ border: 0 }} 
             allowFullScreen 
