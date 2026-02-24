@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Script from 'next/script'; // <--- AGGIUNTO PER CLARITY
 import CookieBanner from './components/CookieBanner';
 import { 
   Activity, X, ChevronRight, Zap, UserRound, CheckCircle, 
@@ -141,9 +142,19 @@ const inviaPrenotazione = async () => {
   };
 
   return (
-    // AGGIUNTO: Snap-y e overflow per gestire le slide
-<main className="h-screen overflow-y-auto md:snap-y md:snap-mandatory scroll-smooth bg-[#F0F4F8] text-slate-800 font-sans">
+<main className="h-screen overflow-y-auto md:snap-y md:snap-mandatory scroll-smooth bg-[#022166] text-slate-800 font-sans">
       
+      {/* --- CLARITY TRACKING CODE --- */}
+      <Script id="microsoft-clarity" strategy="afterInteractive">
+        {`
+          (function(c,l,a,r,i,t,y){
+              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "vm4wfzivpa");
+        `}
+      </Script>
+
       {/* BACKGROUND DECORATIONS */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <div className="absolute top-[-5%] left-[-5%] w-[40%] h-[40%] bg-[#55B4FF]/10 rounded-full blur-[100px]"></div>
@@ -180,7 +191,6 @@ const inviaPrenotazione = async () => {
             </nav>
 
 <div className="flex items-center gap-2 md:gap-3 ml-auto shrink-0">
-  {/* Pulsante Chiamata: Sempre visibile */}
   <a href="tel:3338225464" className={`flex items-center gap-2 px-3 md:px-4 py-2 md:py-2.5 rounded-xl font-bold text-[11px] transition-all whitespace-nowrap border-2
     ${isScrolled 
       ? 'bg-white border-[#022166] text-[#022166] hover:bg-[#022166] hover:text-white' 
@@ -188,7 +198,6 @@ const inviaPrenotazione = async () => {
     <Phone size={14} /> <span className="hidden sm:inline">333 822 5464</span>
   </a>
 
-  {/* Pulsante Prenota: NASCOSTO su mobile (hidden), visibile da tablet in su (md:flex) */}
   <a href="#prenota" className={`hidden md:flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-[11px] transition-all shadow-md whitespace-nowrap
     ${isScrolled 
       ? 'bg-[#022166] text-white hover:bg-[#55B4FF]' 
@@ -196,7 +205,6 @@ const inviaPrenotazione = async () => {
     PRENOTA ORA
   </a>
 
-  {/* Hamburger Menu: Sempre a destra su mobile */}
   <button className={`xl:hidden p-1 transition-colors ${isScrolled ? 'text-[#022166]' : 'text-white'}`} onClick={() => setIsMenuOpen(!isMenuOpen)}>
     {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
   </button>
@@ -204,71 +212,6 @@ const inviaPrenotazione = async () => {
           </div>
         </div>
       </header>
-
-      {/* --- MENU MOBILE OVERLAY --- */}
-      {isMenuOpen && (
-        <div className="fixed inset-0 z-[150] bg-[#022166] flex flex-col items-center justify-center gap-8 animate-in fade-in duration-300 xl:hidden">
-          <button onClick={() => setIsMenuOpen(false)} className="absolute top-8 right-8 text-white">
-            <X size={40} />
-          </button>
-          <nav className="flex flex-col items-center gap-6 text-white font-black text-2xl uppercase tracking-widest">
-            <a href="#home" onClick={() => setIsMenuOpen(false)}>Chi Siamo</a>
-            <a href="#servizi" onClick={() => setIsMenuOpen(false)}>Trattamenti</a>
-            <a href="#metodo" onClick={() => setIsMenuOpen(false)} className="text-[#55B4FF]">Come Lavoriamo</a>
-            <a href="#team" onClick={() => setIsMenuOpen(false)}>Team</a>
-            <a href="#recensioni" onClick={() => setIsMenuOpen(false)}>Recensioni</a>
-            <a href="#dove-siamo" onClick={() => setIsMenuOpen(false)}>Dove Siamo</a>
-          </nav>
-        </div>
-      )}
-
-{/* --- HERO SECTION --- */}
-      <section id="home" className="h-screen w-full md:snap-start md:snap-always relative flex items-center justify-center px-4 md:px-8 overflow-hidden bg-[#022166]">
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="https://github.com/thinhdutong00/image-fisioterapia-malavasi/blob/main/1.png?raw=true" 
-            alt="Sfondo Anatomia" 
-            className="w-full h-full object-cover opacity-40" 
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#022166]/80 via-[#022166]/60 to-[#022166]/90"></div>
-        </div>
-
-<div className="max-w-4xl mx-auto relative z-10 text-center py-20">
-          <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md border border-white/20 text-white px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.2em] mb-8 shadow-sm">
-            <img 
-              src="https://github.com/thinhdutong00/Fisioterapia-Malavasi---landing-page-1/blob/main/public/Progetto%20senza%20titolo%20-%202026-02-23T223838.202.png?raw=true" 
-              alt="Logo Malavasi" 
-              className="h-5 w-auto object-contain brightness-0 invert" 
-            />
-            LA SCIENZA PENSATA PER IL TUO BENESSERE
-          </div>
-
-          {/* Titolo alleggerito da font-black a font-bold */}
-          <h1 className="text-5xl md:text-7xl xl:text-8xl font-bold text-white leading-[1.1] mb-8 tracking-tighter">
-            Fisioterapia e Riabilitazione <br />
-            <span className="text-[#55B4FF]">a Cavezzo</span>
-          </h1>
-          
-          <p className="text-lg md:text-xl text-white/80 mb-10 max-w-2xl mx-auto font-medium leading-relaxed">
-            Valutazioni precise e trattamenti fisioterapici basati su evidenze scientifiche, pensati per ridurre il dolore, migliorare la mobilità e accompagnarti verso un recupero stabile e reale.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <a href="#prenota" className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-[#55B4FF] text-[#022166] px-9 py-5 rounded-xl font-black text-xs uppercase tracking-widest hover:bg-white transition-all group shadow-lg shadow-[#55B4FF]/20">
-              Inizia il Percorso <ArrowRight size={18} className="group-hover:translate-x-1.5 transition-transform" />
-            </a>
-            <a href="#servizi" className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-white/10 backdrop-blur-md border border-white/20 text-white px-9 py-5 rounded-xl font-black text-xs uppercase tracking-widest hover:bg-white/20 transition-all">
-              I nostri trattamenti
-            </a>
-          </div>
-        </div>
-
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 animate-bounce text-white/30 hidden md:block">
-          <div className="w-6 h-10 border-2 border-white/20 rounded-full flex justify-center p-1">
-            <div className="w-1 h-2 bg-white/40 rounded-full"></div>
-          </div>
-        </div>
-      </section>
 
 {/* --- TRATTAMENTI --- */}
       <section id="servizi" className="min-h-screen w-full md:snap-start md:snap-always relative flex items-center justify-center py-24 px-4 bg-white/5 backdrop-blur-sm overflow-hidden">
