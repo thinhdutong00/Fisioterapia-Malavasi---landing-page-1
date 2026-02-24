@@ -148,8 +148,8 @@ export default function FisioterapiaMalavasi() {
             ? 'max-w-7xl bg-white/90 backdrop-blur-xl border border-white/40 shadow-2xl rounded-3xl h-24 px-8 md:px-12'
             : 'max-w-full bg-transparent h-24 px-4'}`}>
 
-          {/* LATO SINISTRO: LOGO (Occupa spazio per spingere il centro) */}
-          <div className="flex-1 flex justify-start">
+          {/* 1. BLOCCO LOGO (Sinistra) */}
+          <div className="flex-1 flex justify-start items-center">
             <div className="relative h-12 md:h-16 w-40 md:w-56">
               <Image
                 src="https://raw.githubusercontent.com/thinhdutong00/image-fisioterapia-malavasi/92e18a782853772b8d90a1ef6e851630fc1492ae/CENTRO-FISIOTERAPICO-CAVEZZO-MODENA-1.webp"
@@ -161,7 +161,7 @@ export default function FisioterapiaMalavasi() {
             </div>
           </div>
 
-          {/* CENTRO: NAV MENU (Posizionato esattamente al centro) */}
+          {/* 2. BLOCCO NAVIGAZIONE (Centro) */}
           <nav className={`hidden xl:flex flex-none items-center gap-6 2xl:gap-8 text-[11px] font-black uppercase tracking-[0.2em] transition-colors duration-500
             ${isScrolled ? 'text-[#022166]' : 'text-white'}`}>
             <a href="#home" className="hover:text-[#55B4FF] transition-all">CHI SIAMO</a>
@@ -172,7 +172,7 @@ export default function FisioterapiaMalavasi() {
             <a href="#dove-siamo" className="hover:text-[#55B4FF] transition-all">DOVE SIAMO</a>
           </nav>
 
-          {/* LATO DESTRO: PULSANTI (Occupa spazio uguale al lato sinistro) */}
+          {/* 3. BLOCCO PULSANTI (Destra) */}
           <div className="flex-1 flex justify-end items-center gap-3 md:gap-4">
             <a href="tel:3338225464" className={`flex items-center gap-2 px-4 py-3 rounded-2xl font-bold text-[11px] transition-all border-2
               ${isScrolled
