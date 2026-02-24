@@ -198,9 +198,13 @@ export default function FisioterapiaMalavasi() {
                 PRENOTA ORA
               </a>
 
-              <button className={`xl:hidden p-1 transition-colors ${isScrolled ? 'text-[#022166]' : 'text-white'}`} onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
-              </button>
+<button 
+  className={`xl:hidden p-1 transition-colors ${isScrolled ? 'text-[#022166]' : 'text-white'}`} 
+  onClick={() => setIsMenuOpen(!isMenuOpen)}
+  aria-label="Apri menu di navigazione"
+>
+  {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+</button>
             </div>
           </div>
         </div>
