@@ -150,16 +150,17 @@ export default function FisioterapiaMalavasi() {
             : 'max-w-full bg-transparent h-24'}`}>
 
           <div className="h-full flex items-center w-full">
-            <div className="flex items-center shrink-0">
+<div className="flex items-center shrink-0">
               <Image
                 src="https://raw.githubusercontent.com/thinhdutong00/image-fisioterapia-malavasi/92e18a782853772b8d90a1ef6e851630fc1492ae/CENTRO-FISIOTERAPICO-CAVEZZO-MODENA-1.webp"
                 alt="Logo Fisioterapia Malavasi"
-                width={256} // Larghezza massima indicativa per mantenere le proporzioni
-                height={64}  // Altezza massima indicativa
+                width={256}
+                height={64}
                 className={`transition-all duration-500 object-contain w-auto ${
                   isScrolled ? 'h-8 md:h-12 brightness-100' : 'h-10 md:h-16 brightness-0 invert'
                 }`}
-                priority
+                priority={true}
+                loading="eager"
               />
             </div>
 
