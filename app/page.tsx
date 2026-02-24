@@ -12,7 +12,9 @@ import {
   // Nuove icone per approccio biomeccanico
   Dna, MoveVertical, Footprints, Layers,
   // Icone specifiche per la sezione "Come Lavoriamo" e "Recensioni"
-  MessageCircle, ClipboardCheck, Quote
+  MessageCircle, ClipboardCheck, Quote,
+  // Aggiunta icona scudo
+  Shield 
 } from 'lucide-react';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -501,7 +503,7 @@ const inviaPrenotazione = async () => {
                 fase: "03",
                 titolo: "Trattamento ed Autonomia",
                 desc: "Risultati che durano. Combiniamo terapia manuale ed esercizi personalizzati, rendendoti protagonista e autonomo nel tuo processo di guarigione.",
-                icon: <Zap size={24} />
+                icon: <Shield size={24} />
               }
             ].map((step, idx) => (
               <div key={idx} className="relative z-10 group">
