@@ -111,11 +111,27 @@ export default function FisioterapiaMalavasi() {
         `}
       </Script>
 
-      {/* HEADER */}
-      <header className={`fixed top-0 inset-x-0 z-[100] transition-all duration-500 ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'} ${isScrolled ? 'py-2' : 'py-0'}`}>
-        <div className={`mx-auto transition-all duration-500 px-4 md:px-6 ${isScrolled ? 'max-w-7xl bg-white/90 backdrop-blur-xl border border-slate-200 shadow-lg rounded-2xl h-20' : 'max-w-full bg-transparent h-24'}`}>
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <div className="absolute top-[-5%] left-[-5%] w-[40%] h-[40%] bg-[#55B4FF]/10 rounded-full blur-[100px]"></div>
+        <div className="absolute bottom-[5%] right-[-5%] w-[30%] h-[30%] bg-[#022166]/5 rounded-full blur-[100px]"></div>
+      </div>
+
+      {/* --- HEADER --- */}
+      <header className={`fixed top-0 inset-x-0 z-[100] transition-all duration-500 ease-in-out 
+        ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'}
+        ${isScrolled ? 'py-2' : 'py-0'}`}>
+        <div className={`mx-auto transition-all duration-500 px-4 md:px-6 
+          ${isScrolled 
+            ? 'max-w-7xl bg-white/90 backdrop-blur-xl border border-slate-200 shadow-lg rounded-2xl h-20' 
+            : 'max-w-full bg-transparent h-24'}`}>
           <div className="h-full flex items-center w-full">
-            <img src="https://raw.githubusercontent.com/thinhdutong00/image-fisioterapia-malavasi/92e18a782853772b8d90a1ef6e851630fc1492ae/CENTRO-FISIOTERAPICO-CAVEZZO-MODENA-1.webp" alt="Logo" className={`transition-all duration-500 object-contain ${isScrolled ? 'h-8 md:h-12' : 'h-10 md:h-16 brightness-0'}`} />
+            <div className="flex items-center shrink-0">
+              <img 
+                src="https://raw.githubusercontent.com/thinhdutong00/image-fisioterapia-malavasi/92e18a782853772b8d90a1ef6e851630fc1492ae/CENTRO-FISIOTERAPICO-CAVEZZO-MODENA-1.webp" 
+                alt="Logo" 
+                className={`transition-all duration-500 object-contain ${isScrolled ? 'h-8 md:h-12' : 'h-10 md:h-16'}`}
+              />
+            </div>
             <nav className="hidden xl:flex items-center gap-5 ml-8 text-[11px] font-black uppercase tracking-widest text-[#022166]">
               <a href="#home" className="hover:text-[#55B4FF]">CHI SIAMO</a>
               <a href="#servizi" className="hover:text-[#55B4FF]">TRATTAMENTI</a>
@@ -125,34 +141,50 @@ export default function FisioterapiaMalavasi() {
               <a href="#dove-siamo" className="hover:text-[#55B4FF]">DOVE SIAMO</a>
             </nav>
             <div className="flex items-center gap-3 ml-auto">
-              <a href="tel:3338225464" className="flex items-center gap-2 px-4 py-2 rounded-xl font-bold text-[11px] border-2 border-[#022166] text-[#022166] hover:bg-[#022166] hover:text-white transition-all"><Phone size={14} /> <span className="hidden sm:inline">333 822 5464</span></a>
-              <a href="#prenota" className="hidden md:flex bg-[#022166] text-white px-5 py-2.5 rounded-xl font-bold text-[11px] hover:bg-[#55B4FF] shadow-md">PRENOTA ORA</a>
+              <a href="tel:3338225464" className="flex items-center gap-2 px-4 py-2 rounded-xl font-bold text-[11px] border-2 border-[#022166] text-[#022166] hover:bg-[#022166] hover:text-white transition-all">
+                <Phone size={14} /> <span className="hidden sm:inline">333 822 5464</span>
+              </a>
+              <a href="#prenota" className="hidden md:flex bg-[#022166] text-white px-5 py-2.5 rounded-xl font-bold text-[11px] hover:bg-[#55B4FF] shadow-md transition-all">
+                PRENOTA ORA
+              </a>
             </div>
           </div>
         </div>
       </header>
 
-      {/* --- HERO SECTION --- */}
+      {/* --- HERO SECTION (AGGIUNTA) --- */}
       <section id="home" className="min-h-screen w-full md:snap-start md:snap-always relative flex items-center justify-center pt-24 pb-12 px-4">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center relative z-10">
           <div className="space-y-8 text-center lg:text-left">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#022166]/5 border border-[#022166]/10 text-[#022166] font-bold text-xs uppercase tracking-widest">
-              <Zap size={14} className="text-[#55B4FF]" /> Professionalità Certificata
+              <Zap size={14} className="text-[#55B4FF]" /> Specialisti della Riabilitazione
             </div>
-            <h1 className="text-5xl md:text-7xl font-black text-[#022166] leading-[1.1] tracking-tighter">Riconquista il tuo <span className="text-[#55B4FF]">Movimento.</span></h1>
-            <p className="text-lg text-slate-600 font-medium leading-relaxed max-w-xl mx-auto lg:mx-0">Specialisti in riabilitazione muscolo-scheletrica e post-chirurgica con approccio basato sulle evidenze scientifiche.</p>
+            <h1 className="text-5xl md:text-7xl font-black text-[#022166] leading-[1.1] tracking-tighter">
+              Riconquista il tuo <span className="text-[#55B4FF]">Movimento.</span>
+            </h1>
+            <p className="text-lg text-slate-600 font-medium leading-relaxed max-w-xl mx-auto lg:mx-0">
+              Il Centro Fisioterapico Malavasi a Cavezzo (MO) offre percorsi di cura personalizzati basati sulle più recenti evidenze scientifiche.
+            </p>
             <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
-              <a href="#prenota" className="group flex items-center gap-3 bg-[#022166] text-white px-8 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-[#55B4FF] transition-all shadow-xl shadow-[#022166]/20">Inizia il Recupero <ArrowRight size={18} /></a>
-              <a href="#servizi" className="text-[#022166] font-black text-sm uppercase p-4">Scopri i Trattamenti</a>
+              <a href="#prenota" className="group flex items-center gap-3 bg-[#022166] text-white px-8 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-[#55B4FF] transition-all shadow-xl shadow-[#022166]/20">
+                Inizia il Recupero <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+              </a>
+              <a href="#servizi" className="text-[#022166] font-black text-sm uppercase p-4 hover:text-[#55B4FF] transition-colors">
+                I Nostri Trattamenti
+              </a>
             </div>
           </div>
           <div className="relative aspect-square md:aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white">
-            <img src="https://raw.githubusercontent.com/thinhdutong00/image-fisioterapia-malavasi/92e18a782853772b8d90a1ef6e851630fc1492ae/STUDIO-FISIOTERAPIA-CAVEZZO.webp" alt="Studio" className="w-full h-full object-cover" />
+            <img 
+              src="https://raw.githubusercontent.com/thinhdutong00/image-fisioterapia-malavasi/92e18a782853772b8d90a1ef6e851630fc1492ae/STUDIO-FISIOTERAPIA-CAVEZZO.webp" 
+              alt="Studio Fisioterapia" 
+              className="w-full h-full object-cover" 
+            />
           </div>
         </div>
       </section>
 
-      {/* TRATTAMENTI */}
+      {/* --- TRATTAMENTI --- */}
       <section id="servizi" className="min-h-screen w-full md:snap-start md:snap-always relative flex items-center justify-center py-24 px-4 bg-slate-50 overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10 w-full py-10">
           <div className="text-center mb-16">
@@ -161,21 +193,24 @@ export default function FisioterapiaMalavasi() {
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { id: 1, titolo: "Riabilitazione Post-Chirurgica (Protesi e LCA)", icona: <Accessibility size={32} />, colore: "from-blue-500/10" },
-              { id: 2, titolo: "Trattamento Cervicalgia e Lombalgia", icona: <MoveVertical size={32} />, colore: "from-cyan-500/10" },
-              { id: 3, titolo: "Fisioterapia Sportiva", icona: <Footprints size={32} />, colore: "from-[#55B4FF]/10" },
-              { id: 4, titolo: "Cura delle Tendiniti", icona: <Dna size={32} />, colore: "from-indigo-500/10" },
-              { id: 5, titolo: "Riabilitazione Posturale", icona: <Layers size={32} />, colore: "from-sky-500/10" },
-              { id: 6, titolo: "Altri Trattamenti", icona: <Plus size={32} />, colore: "from-blue-400/10" }
+              { id: 1, titolo: "Riabilitazione Post-Chirurgica", icona: <Accessibility size={32} />, breve: "Recupero mobilità post protesi o LCA.", colore: "from-blue-500/10" },
+              { id: 2, titolo: "Trattamento Cervicalgia e Lombalgia", icona: <MoveVertical size={32} />, breve: "Soluzioni per eliminare il dolore alla colonna.", colore: "from-cyan-500/10" },
+              { id: 3, titolo: "Fisioterapia Sportiva", icona: <Footprints size={32} />, breve: "Recupero traumi e ritorno in campo rapido.", colore: "from-[#55B4FF]/10" },
+              { id: 4, titolo: "Cura delle Tendiniti", icona: <Dna size={32} />, breve: "Trattamento avanzato per infiammazioni croniche.", colore: "from-indigo-500/10" },
+              { id: 5, titolo: "Riabilitazione Posturale", icona: <Layers size={32} />, breve: "Risoluzione di rigidità e cefalee tensive.", colore: "from-sky-500/10" },
+              { id: 6, titolo: "Altri Trattamenti", icona: <Plus size={32} />, breve: "Approccio su misura per ogni tua condizione.", colore: "from-blue-400/10" }
             ].map((item) => (
               <div key={item.id} onClick={() => setSelectedTrattamento(item)} className="group relative p-8 rounded-[2.5rem] bg-white border border-slate-100 cursor-pointer transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl">
                 <div className={`absolute inset-0 bg-gradient-to-br ${item.colore} to-transparent rounded-[2.5rem] opacity-0 group-hover:opacity-100 transition-opacity`}></div>
-                <div className="relative z-10 text-center">
-                  <div className="w-16 h-16 bg-[#022166] text-[#55B4FF] rounded-2xl flex items-center justify-center mb-6 mx-auto shadow-lg shadow-[#022166]/20 transition-transform group-hover:scale-110">
+                <div className="relative z-10">
+                  <div className="w-16 h-16 bg-[#022166] text-[#55B4FF] rounded-2xl flex items-center justify-center mb-6 shadow-lg transition-transform group-hover:scale-110">
                     {item.icona}
                   </div>
                   <h3 className="text-xl font-black text-[#022166] mb-3 leading-tight">{item.titolo}</h3>
-                  <div className="inline-flex items-center gap-2 text-[#55B4FF] font-black text-[10px] uppercase tracking-widest">Scopri i dettagli <ChevronRight size={14} /></div>
+                  <p className="text-slate-500 text-sm font-medium mb-6 line-clamp-2">{item.breve}</p>
+                  <div className="inline-flex items-center gap-2 text-[#55B4FF] font-black text-[10px] uppercase tracking-widest">
+                    Scopri i dettagli <ChevronRight size={14} />
+                  </div>
                 </div>
               </div>
             ))}
@@ -183,72 +218,26 @@ export default function FisioterapiaMalavasi() {
         </div>
       </section>
 
-{/* --- SEZIONE STAFF --- */}
-<section id="team" className="min-h-screen w-full md:snap-start md:snap-always relative flex items-center justify-center py-32 px-4 overflow-hidden bg-slate-50">
-        {/* Elementi decorativi di sfondo */}
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#55B4FF]/5 rounded-full blur-[120px] -z-10 translate-x-1/2" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#022166]/5 rounded-full blur-[100px] -z-10 -translate-x-1/2" />
-
+      {/* --- SEZIONE STAFF --- */}
+      <section id="team" className="min-h-screen w-full md:snap-start md:snap-always relative flex items-center justify-center py-32 px-4 bg-white">
         <div className="max-w-7xl mx-auto relative z-10 w-full py-10">
           <div className="text-center mb-20">
-            <div className="inline-flex items-center justify-center p-1 px-3 mb-4 rounded-full bg-[#55B4FF]/10 border border-[#55B4FF]/20">
-               <span className="text-[#55B4FF] font-black text-[10px] uppercase tracking-[0.3em]">Professionalità e Competenza</span>
-            </div>
+            <span className="text-[#55B4FF] font-black text-[10px] uppercase tracking-[0.3em] block mb-4">Professionalità e Competenza</span>
             <h2 className="text-4xl md:text-6xl font-black text-[#022166] tracking-tighter mb-6">Il Nostro <span className="text-[#55B4FF]">Team</span></h2>
-            <div className="w-16 h-1 bg-[#022166] mx-auto rounded-full opacity-20"></div>
           </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 xl:gap-12">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { 
-                nome: "Mirco Malavasi", 
-                ruolo: "Fisioterapista OMPT", 
-                specialita: "Specializzato in riabilitazione muscolo-scheletrica e fisioterapia oncologica", 
-                foto: "/mirco.webp" 
-              },
-              { 
-                nome: "Alice Nanetti", 
-                ruolo: "Fisioterapista", 
-                specialita: "Specializzata in riabilitazione muscolo-scheletrica e fisioterapia neurologica", 
-                foto: "/alice.jpg" 
-              },
-              { 
-                nome: "Luca Rabaglia", 
-                ruolo: "Fisioterapista", 
-                specialita: "Specializzato in riabilitazione muscolo-scheletrica e fisioterapia sportiva", 
-                foto: "/luca.webp" 
-              }
+              { nome: "Mirco Malavasi", ruolo: "Fisioterapista OMPT", specialita: "Riabilitazione muscolo-scheletrica e oncologica", foto: "/mirco.webp" },
+              { nome: "Alice Nanetti", ruolo: "Fisioterapista", specialita: "Riabilitazione muscolo-scheletrica e neurologica", foto: "/alice.jpg" },
+              { nome: "Luca Rabaglia", ruolo: "Fisioterapista", specialita: "Riabilitazione muscolo-scheletrica e sportiva", foto: "/luca.webp" }
             ].map((membro, idx) => (
-              <div key={idx} className="group bg-white rounded-[3.5rem] p-4 pb-12 transition-all duration-700 hover:shadow-[0_40px_80px_-20px_rgba(2,33,102,0.15)] border border-slate-100 relative text-center flex flex-col items-center">
-                
-                {/* Immagine con maschera stondata e focus sui volti (object-top) */}
+              <div key={idx} className="group bg-slate-50 rounded-[3.5rem] p-4 pb-12 transition-all duration-700 hover:shadow-xl border border-slate-100 text-center flex flex-col items-center">
                 <div className="aspect-[4/4.5] w-full relative overflow-hidden rounded-[2.8rem] mb-8">
-                  <img 
-                    src={membro.foto} 
-                    alt={membro.nome} 
-                    className="w-full h-full object-cover object-top grayscale-[20%] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#022166]/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <img src={membro.foto} alt={membro.nome} className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105" />
                 </div>
-                
-                <div className="px-6 relative flex flex-col items-center w-full">
-                  {/* Badge Ruolo centrato */}
-                  <div className="mb-4 inline-block">
-                    <span className="bg-[#f0f9ff] text-[#55B4FF] border border-[#55B4FF]/20 px-4 py-1.5 rounded-full font-black text-[9px] uppercase tracking-widest">
-                      {membro.ruolo}
-                    </span>
-                  </div>
-                  
-                  {/* Nome centrato */}
-                  <h3 className="text-3xl font-black text-[#022166] mb-4 tracking-tight group-hover:text-[#55B4FF] transition-colors leading-tight">
-                    {membro.nome}
-                  </h3>
-                  
-                  {/* Specialità centrata */}
-                  <p className="text-slate-500 text-sm font-bold leading-relaxed tracking-tight italic max-w-[250px]">
-                    {membro.specialita}
-                  </p>
-                </div>
+                <span className="bg-[#f0f9ff] text-[#55B4FF] border border-[#55B4FF]/20 px-4 py-1.5 rounded-full font-black text-[9px] uppercase tracking-widest mb-4">{membro.ruolo}</span>
+                <h3 className="text-3xl font-black text-[#022166] mb-4 group-hover:text-[#55B4FF] transition-colors">{membro.nome}</h3>
+                <p className="text-slate-500 text-sm font-bold italic max-w-[250px]">{membro.specialita}</p>
               </div>
             ))}
           </div>
