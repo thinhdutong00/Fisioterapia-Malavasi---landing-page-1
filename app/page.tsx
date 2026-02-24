@@ -99,26 +99,39 @@ export default function FisioterapiaMalavasi() {
   }, [lastScrollY]);
 
   // --- FUNZIONE INVIO EMAIL ---
-  const inviaPrenotazione = async () => {
-    try {
-      const data = new FormData();
-      Object.entries(formData).forEach(([key, value]) => {
-        data.append(key, value.toString());
-      });
-      if (file) data.append('file', file);
-      const response = await fetch('/api/send', {
-        method: 'POST',
-        body: data,
-      });
-      if (response.ok) {
-        window.location.href = 'https://fisioterapiamalavasi.it/thank-you-page/';
-      } else {
-        alert("Errore nell'invio. Riprova tra poco.");
-      }
-    } catch (error) {
-      alert("Errore di connessione.");
+const inviaPrenotazione = async () => {
+  try {
+    const data = new FormData();
+    
+    // Sostituito il ciclo generico con append espliciti per garantire la compatibilità con route.ts
+    data.append('nome', formData.nome);
+    data.append('email', formData.email);
+    data.append('telefono', formData.telefono);
+    data.append('sede', formData.sede);
+    data.append('data', formData.data);
+    data.append('ora', formData.ora);
+    // Qui colleghiamo il campo "messaggio" del form al campo "motivo" richiesto dal server
+    data.append('motivo', formData.motivo || ""); 
+    
+    if (file) data.append('file', file);
+
+    const response = await fetch('/api/send', {
+      method: 'POST',
+      body: data,
+    });
+
+    if (response.ok) {
+      window.location.href = 'https://fisioterapiamalavasi.it/thank-you-page/';
+    } else {
+      // Ho aggiunto un log per aiutarti a vedere nei log del browser se l'errore è 422 o 500
+      console.error("Errore risposta server:", response.status);
+      alert("Errore nell'invio. Riprova tra poco.");
     }
-  };
+  } catch (error) {
+    console.error("Errore connessione:", error);
+    alert("Errore di connessione.");
+  }
+};
 
   return (
     <main className="h-screen overflow-y-auto md:snap-y md:snap-mandatory scroll-smooth bg-[#F0F4F8] text-slate-800 font-sans">

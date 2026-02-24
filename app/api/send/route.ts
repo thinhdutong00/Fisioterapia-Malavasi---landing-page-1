@@ -26,9 +26,9 @@ export async function POST(req: Request) {
     }
 
     // Gestione corretta dell'oggetto risposta con await
-    const { data, error } = await resend.emails.send({
-      from: 'Studio Malavasi <info@send.fisioterapiamalavasi.it>',
-      to: ['fisioterapiamalavasi@gmail.com'],
+const { data, error } = await resend.emails.send({
+      from: 'Resend <onboarding@resend.dev>', 
+      to: ['fisioterapiamalavasi@gmail.com'], // O la tua email di registrazione Resend
       subject: `Nuova Prenotazione: ${nome}`,
       attachments: attachments,
       html: `
