@@ -27,7 +27,7 @@ export async function POST(req: Request) {
 
 const data = await resend.emails.send({
       from: 'Studio Malavasi <onboarding@resend.dev>',
-      to: ['thinh.dutong00@gmail.com'], 
+      to: ['fisioterapiamalavasi@gmail.com'], 
       subject: `Nuova Prenotazione: ${nome}`,
       attachments: attachments,
       html: `
