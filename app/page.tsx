@@ -367,9 +367,9 @@ const [mounted, setMounted] = useState(false);
       </div>
       
       <div className="bg-white p-6 rounded-[2rem] shadow-xl shadow-blue-900/5 border border-slate-100 flex items-center gap-6">
-<div className="flex-shrink-0 w-8 h-8 bg-[#4285F4] rounded-lg flex items-center justify-center aspect-square">
+<div className="flex-shrink-0 w-12 h-12 bg-[#4285F4] rounded-xl flex items-center justify-center overflow-hidden">
   <svg 
-    className="w-6 h-6 text-white" 
+    className="w-10 h-10 text-white" 
     fill="currentColor" 
     viewBox="0 0 24 24" 
     preserveAspectRatio="xMidYMid meet"
