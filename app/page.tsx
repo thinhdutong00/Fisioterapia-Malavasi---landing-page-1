@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import Script from 'next/script';
@@ -26,6 +27,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
 export default function FisioterapiaMalavasi() {
+  const router = useRouter();
   // --- STATI INTERFACCIA ---
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
@@ -124,7 +126,7 @@ const [mounted, setMounted] = useState(false);
       });
 
       if (response.ok) {
-        window.location.href = 'https://fisioterapiamalavasi.it/thank-you-page/';
+        window.location.href = '/grazie';
       } else {
         alert("Errore nell'invio. Riprova tra poco.");
       }
