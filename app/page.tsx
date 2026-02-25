@@ -367,13 +367,13 @@ const [mounted, setMounted] = useState(false);
       </div>
       
       <div className="bg-white p-6 rounded-[2rem] shadow-xl shadow-blue-900/5 border border-slate-100 flex items-center gap-6">
-<div className="flex-shrink-0 w-12 h-12 bg-[#4285F4] rounded-xl flex items-center justify-center aspect-square">
+<div className="flex-shrink-0 w-8 h-8 bg-[#4285F4] rounded-lg flex items-center justify-center aspect-square">
   <svg 
     className="w-6 h-6 text-white" 
     fill="currentColor" 
     viewBox="0 0 24 24" 
     preserveAspectRatio="xMidYMid meet"
-    style={{ minWidth: '24px', minHeight: '24px', flexShrink: 0 }}
+    style={{ flexShrink: 0 }}
   >
     <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.9 3.34-2 4.6-1.5 1.5-3.3 3.1-6.6 3.1-5.54 0-10.24-4.5-10.24-10.38s4.7-10.38 10.24-10.38c3.1 0 5.4 1.2 7.1 2.8l2.3-2.3c-2.4-2.2-5.5-4-9.4-4-7.3 0-13.4 6.1-13.4 13.5s6.1 13.5 13.4 13.5c4.4 0 7.7-1.5 10.2-4.1 2.6-2.6 3.4-6.3 3.4-9.2 0-.9-.08-1.7-.2-2.5h-13.4z" />
   </svg>
