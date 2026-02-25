@@ -367,11 +367,11 @@ const [mounted, setMounted] = useState(false);
       </div>
       
       <div className="bg-white p-6 rounded-[2rem] shadow-xl shadow-blue-900/5 border border-slate-100 flex items-center gap-6">
-        <div className="bg-[#4285F4] p-3 rounded-xl">
-          <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.9 3.34-2 4.6-1.5 1.5-3.3 3.1-6.6 3.1-5.54 0-10.24-4.5-10.24-10.38s4.7-10.38 10.24-10.38c3.1 0 5.4 1.2 7.1 2.8l2.3-2.3c-2.4-2.2-5.5-4-9.4-4-7.3 0-13.4 6.1-13.4 13.5s6.1 13.5 13.4 13.5c4.4 0 7.7-1.5 10.2-4.1 2.6-2.6 3.4-6.3 3.4-9.2 0-.9-.08-1.7-.2-2.5h-13.4z"/>
-          </svg>
-        </div>
+<div className="bg-[#4285F4] p-2 rounded-xl flex items-center justify-center w-fit">
+  <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+    <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.9 3.34-2 4.6-1.5 1.5-3.3 3.1-6.6 3.1-5.54 0-10.24-4.5-10.24-10.38s4.7-10.38 10.24-10.38c3.1 0 5.4 1.2 7.1 2.8l2.3-2.3c-2.4-2.2-5.5-4-9.4-4-7.3 0-13.4 6.1-13.4 13.5s6.1 13.5 13.4 13.5c4.4 0 7.7-1.5 10.2-4.1 2.6-2.6 3.4-6.3 3.4-9.2 0-.9-.08-1.7-.2-2.5h-13.4z"/>
+  </svg>
+</div>
         <div>
           <div className="flex gap-1 text-yellow-400 mb-1">
             {[...Array(5)].map((_, i) => <Star key={i} size={18} fill="currentColor" />)}
@@ -400,12 +400,12 @@ const [mounted, setMounted] = useState(false);
           className="!pb-16 md:!pb-20 !overflow-visible"
         >
           {[
-            { n: "Federico Rossi", t: "Eccellente professionista. Mi ha seguito dopo un intervento al menisco con una tabella di marcia perfetta. Recupero rapido e completa mobilità riacquisita in tempi record.", d: "2 giorni fa" },
-            { n: "Giulia Ferrari", t: "Il Dott. Malavasi è molto preparato e trasmette grande sicurezza. Ha risolto i miei problemi di postura e mal di schiena che mi portavo dietro da anni. Studio impeccabile.", d: "1 settimana fa" },
-            { n: "Alessandro Moretti", t: "Ottima esperienza per un infortunio muscolare durante la preparazione atletica. Molto utile la Tecarterapia abbinata ai trattamenti manuali. Tornerò sicuramente.", d: "2 settimane fa" },
-            { n: "Valentina Gatti", t: "Professionista serio, puntuale e molto onesto. Mi ha spiegato ogni passaggio della terapia con molta chiarezza. I dolori cervicali sono spariti dopo solo tre sedute.", d: "3 settimane fa" },
-            { n: "Matteo Bianchi", t: "Ho apprezzato molto la flessibilità degli orari e la disponibilità. Trattamenti mirati ed efficaci. Uno dei migliori centri di fisioterapia della zona Modena/Cavezzo.", d: "1 mese fa" },
-            { n: "Elena Piazzi", t: "Servizio a domicilio eccellente per mia madre anziana. Grande umanità e pazienza, oltre alla competenza tecnica. Un supporto fondamentale per la nostra famiglia.", d: "1 mese fa" }
+            { n: "Rosalba Cantuti", t: "Lo studio Malavasi è molto serio e professionale, Mirco segue molto bene il paziente e da’ consigli utili x continuare a migliorare nel percorso di riabilitazione.", d: "2 settimane fa" },
+            { n: "Samuele Pini", t: "Mi sono rotto il crociato e subito ho deciso di iniziare il mio percorso preoperatorio grazie al quale ho potuto affrontare la riabilitazione molto meglio, psicologicamente più sollevato. Grazie al Dott. Mirco e al suo staff, dotato di ottima preparazione", d: "1 mese fa" },
+            { n: "Federico Zagni", t: "Professionista e collega di alto livello! Grande empatia e professionalità!", d: "3 settimane fa" },
+            { n: "Alessandro Papazzoni", t: "Ci sono andato per la mia caviglia e mi hanno aiutato con molta cura e attenzione, in più sono migliorato velocemente.", d: "10 mesi fa" },
+            { n: "Elisa Cavazzoli", t: "Con Mirco mi sono trovata bene fin da subito. È ATTENTO e molto preparato nonostante la giovane età. Con i giusti esercizi e le giuste tempistiche sono riuscita a gestire e risolvere il mio problema, sono molto contenta! Consigliatissimo a tutti!!", d: "1 anno fa" },
+            { n: "Edoardo Marchesi", t: "Ho portato mia mamma da lui perchè aveva male al piede destro faceva fatica a camminare, a scendere le scale non se ne parla e dopo due infiltrazioni di cortisone non era migliorata, quindi si è decisa ad andarci con ottimi risultati non solo il piede non le duole più, ma ha acquisito un po' più di sicurezza nel camminare e a fare le scale. Grazie Mirco", d: "1 anno fa" }
           ].map((rev, i) => (
             <SwiperSlide key={i} className="h-auto px-2 md:px-0">
               <div className="bg-white p-7 md:p-10 rounded-[2.5rem] border border-slate-100 h-full flex flex-col relative shadow-lg shadow-blue-900/[0.02] hover:shadow-2xl transition-all duration-500 group">
