@@ -220,12 +220,17 @@ const [mounted, setMounted] = useState(false);
           
           <nav className="flex flex-col items-center gap-8 text-white font-black text-2xl uppercase tracking-widest">
             <a href="#home" onClick={() => setIsMenuOpen(false)}>Chi Siamo</a>
-            <a href="#servizi" onClick={() => setIsMenuOpen(false)}>Trattamenti</a>
-            <a href="#metodo" onClick={() => setIsMenuOpen(false)}>Metodo</a>
+            
+           <a href="#servizi" onClick={() => setIsMenuOpen(false)}>Trattamenti</a>
+           
+           <a href="#metodo" onClick={() => setIsMenuOpen(false)}>Metodo</a>
             <a href="#team" onClick={() => setIsMenuOpen(false)}>Team</a>
             <a href="#recensioni" onClick={() => setIsMenuOpen(false)}>Recensioni</a>
+            
             <a href="#dove-siamo" onClick={() => setIsMenuOpen(false)}>Dove Siamo</a>
+         <a href="#servizio-domiciliare" className="text-[#55B4FF]" onClick={() => setIsMenuOpen(false)}>Domicilio</a>
           </nav>
+
           
           <a 
             href="#prenota" 
@@ -321,6 +326,47 @@ const [mounted, setMounted] = useState(false);
           </div>
         </div>
       ))}
+    </div>
+  </div>
+</section>
+
+{/* --- SEZIONE DOMICILIO --- */}
+<section id="servizio-domiciliare" className="min-h-[60vh] w-full md:snap-start md:snap-always relative flex items-center justify-center py-20 px-4 bg-white/30 backdrop-blur-sm overflow-hidden">
+  <div className="max-w-6xl mx-auto relative z-10 w-full">
+    <div className="group relative p-8 md:p-12 rounded-[3rem] bg-white/60 backdrop-blur-xl border border-white/80 shadow-xl transition-all duration-500 hover:shadow-2xl flex flex-col md:flex-row items-center gap-10">
+      
+      {/* Icona Grande */}
+      <div className="shrink-0">
+        <div className="w-24 h-24 md:w-32 md:h-32 bg-[#022166] text-[#55B4FF] rounded-[2rem] flex items-center justify-center shadow-2xl shadow-[#022166]/30 transition-transform duration-700 group-hover:rotate-[10deg] group-hover:scale-110">
+          <Home size={60} />
+        </div>
+      </div>
+
+      {/* Contenuto Testuale */}
+      <div className="flex-1 text-center md:text-left">
+        <div className="inline-flex items-center gap-2 text-[#55B4FF] font-black text-[10px] uppercase tracking-[0.2em] mb-4">
+          <MapPin size={14} /> CAVEZZO E ZONE LIMITROFE
+        </div>
+        
+        <h2 className="text-3xl md:text-5xl font-black text-[#022166] leading-tight mb-6 tracking-tight">
+          Fisioterapia <span className="text-[#55B4FF]">a Domicilio</span>
+        </h2>
+        
+        <p className="text-slate-600 text-lg font-medium mb-8 leading-relaxed max-w-2xl">
+          Il professionista direttamente a casa tua per pazienti con ridotta mobilità, quadri neurologici o necessità post-chirurgiche. Porto tutta l'attrezzatura necessaria per garantire la stessa qualità dello studio nel comfort di casa tua.
+        </p>
+
+        {/* Box Istruzioni Modulo */}
+        <div className="bg-[#022166]/5 border-l-4 border-[#55B4FF] p-5 rounded-r-2xl mb-8">
+          <p className="text-[#022166] text-sm font-bold italic leading-relaxed">
+            NOTA PER LA PRENOTAZIONE: Se richiedi il domicilio, specifica il tuo indirizzo di residenza nel campo Note del modulo finale.
+          </p>
+        </div>
+
+        <a href="#prenota" className="inline-flex items-center justify-center gap-3 bg-[#022166] text-white px-10 py-5 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-[#55B4FF] transition-all group shadow-lg shadow-[#022166]/20">
+          Richiedi Visita a Domicilio <ArrowRight size={18} className="group-hover:translate-x-1.5 transition-transform" />
+        </a>
+      </div>
     </div>
   </div>
 </section>
